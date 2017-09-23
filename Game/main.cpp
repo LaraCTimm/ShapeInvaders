@@ -9,7 +9,6 @@ using std::endl;
 
 int main()
 {
-    
 	
     sf::RenderWindow window(sf::VideoMode(800, 800, 32), "SFML Vleis Invaders",
                             sf::Style::Titlebar | sf::Style::Close);
@@ -72,7 +71,20 @@ int main()
             {
                 newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
                 newGame.setGeneratorFired(true);
+<<<<<<< HEAD
             }
+            
+            if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && newGame.getGeneratorFired()) 
+            {
+                newGame.setGeneratorFired(false);
+=======
+>>>>>>> master
+            }
+//            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))// && !spawned) 
+//            {
+//                //spawned = true;
+//                newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
+//            }
             
             if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && newGame.getGeneratorFired()) 
             {
