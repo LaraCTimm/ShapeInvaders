@@ -1,9 +1,5 @@
 #include "Enemy.h"
-#include "Game.h"
 
-#include <iostream>
-using std::cout;
-using std::endl;
 
 Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
 {
@@ -22,12 +18,11 @@ Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
     _scaleCount = 0;
     _objectType = gameObjectType::Enemy;
     
+    float vecX = cos(_angle*M_PI/90);
+    float vecY = sin(_angle*M_PI/90);
     
-    float vecX = cos(_angle*M_PI/90);//*Game::PATH_RADIUS;
-    float vecY = sin(_angle*M_PI/90);//*Game::PATH_RADIUS;
-    
-    vecX = -vecX;//300;
-    vecY = -vecY;//300;
+    vecX = -vecX;
+    vecY = -vecY;
     _pathVector = sf::Vector2f(vecX, vecY); // start position of linear path
     cout << vecX << " " << vecY << " " << angle << " Enemy" << endl;
     

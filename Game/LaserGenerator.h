@@ -32,21 +32,16 @@ public:
 //{
 //    return _partner_ptr;
 //}
-int getID()
+int &getID()
 {
     return _ID;
 }
 
 LaserGenerator (float degrees, int ID);
 
-//LaserGenerator (shared_ptr<LaserGenerator> partner_ptr, float degrees);
-
 private:
 
 int _ID;
-//shared_ptr<LaserGenerator> _partner_ptr;
-//vector<ArcSegment> _segmentsVector;
-//Arc _arc = NULL;
 
 };
 

@@ -2,6 +2,9 @@
 #define PLAYERBULLET_H
 
 #include "GameObject.h"
+#include "Game.h"
+#include "Player.h"
+#include <SFML/Graphics.hpp>
 
 class PlayerBullet : public GameObject
 {

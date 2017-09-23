@@ -3,29 +3,30 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="main.cpp"/>
+    <File Name="tests_player.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="Arc.cpp"/>
+    <File Name="Arc.h"/>
+    <File Name="ArcSegment.cpp"/>
+    <File Name="ArcSegment.h"/>
+    <File Name="Asteriod.cpp"/>
+    <File Name="Asteriod.h"/>
+    <File Name="doctest.h" ExcludeProjConfig="Debug"/>
+    <File Name="Enemy.cpp"/>
+    <File Name="Enemy.h"/>
+    <File Name="EnemyBullet.cpp"/>
+    <File Name="EnemyBullet.h"/>
+    <File Name="Game.cpp"/>
+    <File Name="Game.h"/>
     <File Name="GameObject.cpp"/>
     <File Name="GameObject.h"/>
-    <File Name="Game.h"/>
-    <File Name="Game.cpp"/>
+    <File Name="GameTests.cpp"/>
+    <File Name="LaserGenerator.cpp"/>
+    <File Name="LaserGenerator.h"/>
+    <File Name="main.cpp"/>
     <File Name="Player.cpp"/>
     <File Name="Player.h"/>
     <File Name="PlayerBullet.cpp"/>
     <File Name="PlayerBullet.h"/>
-    <File Name="Enemy.h"/>
-    <File Name="Enemy.cpp"/>
-    <File Name="GameTests.cpp" ExcludeProjConfig="Debug"/>
-    <File Name="EnemyBullet.h"/>
-    <File Name="EnemyBullet.cpp"/>
-    <File Name="tests_player.cpp" ExcludeProjConfig="Debug"/>
-    <File Name="Asteriod.h"/>
-    <File Name="Asteriod.cpp"/>
-    <File Name="LaserGenerator.h"/>
-    <File Name="LaserGenerator.cpp"/>
-    <File Name="ArcSegment.h"/>
-    <File Name="ArcSegment.cpp"/>
-    <File Name="Arc.h"/>
-    <File Name="Arc.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

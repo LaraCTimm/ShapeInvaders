@@ -23,9 +23,8 @@ enum class gameObjectType
     ArcSegment
 };
 
-class GameObject
+class GameObject : public std::enable_shared_from_this<GameObject>
 {
-
     static constexpr float BULLET_SPEED_MODIFIER = 20.0f;
     
 public:
@@ -39,10 +38,18 @@ public:
     // Move object by calculating new co-ords and setting position
     void circularMove(int direction);
     void lineMove();
+    
+//    struct GameObject: std::enable_shared_from_this<GameObject> // note: public inheritance
+//    {
+//        std::shared_ptr<GameObject> getptr() {
+//        return shared_from_this();
+//        }
+//    };
 
-    void checkCollisions(vector<GameObject> &objectVector);
+    void checkCollisions(vector<shared_ptr<GameObject>> &objectVector);//, vector<shared_ptr<GameObject>> &laserObjVector);
 
     void decrementBulletCooldown();
+    
     
 
     virtual ~GameObject() {};
@@ -157,6 +164,10 @@ public:
     gameObjectType getObjectType() {
         return _objectType;
     }
+    
+    std::shared_ptr<GameObject> getptr() {
+        return shared_from_this();
+    }
 
 
 
@@ -180,5 +191,6 @@ protected:
 
     
 };
+
 
 #endif
