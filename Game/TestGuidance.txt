@@ -1,0 +1,7 @@
+need a test file for 
+- Player
+- Player bullet
+- Enemy
+
+For each test file we need to check the functions that that object performs
+

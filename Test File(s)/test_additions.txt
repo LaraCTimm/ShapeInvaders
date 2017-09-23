@@ -1,0 +1,9 @@
+TO ADD
+
+In 'public' of game.h
+	vector<GameObject> getGOVector();
+
+In game.cpp
+	vector<GameObject> Game::getGOVector(){
+		return _GameObjectsVector;
+	}
