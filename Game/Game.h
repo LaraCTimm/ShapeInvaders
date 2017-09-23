@@ -8,6 +8,8 @@
 #include "Enemy.h"
 #include "EnemyBullet.h"
 #include "Asteriod.h"
+#include "LaserGenerator.h"
+#include "ArcSegment.h"
 #include <vector>
 using std::vector;
 

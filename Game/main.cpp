@@ -18,12 +18,12 @@ int main()
     Game newGame(5);
     
     //srand(time(NULL));
-    float randFloat;
     const float _RAND_FLOAT_MAX = 150.0f;
     const float _RAND_FLOAT_MIN = 75.0f;
     //srand (time(0));         // seed randomness for enemy spawning
 
     bool playing = true;
+    bool spawned = false;
 
     while(window.isOpen())
     {
@@ -65,6 +65,12 @@ int main()
                 newGame.setShotFired(false);
             }
             
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !spawned) 
+            {
+                spawned = true;
+                newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
+            }
+            
             
             newGame.decrementEnemyCooldown();
             newGame.decrementAsteriodCooldown();
@@ -73,7 +79,7 @@ int main()
             if (newGame.getEnemyCooldown() <= 0)
             {
                 newGame.AddGameObject(gameObjectType::Enemy, 0);
-                newGame.setEnemyCooldown(newGame.generateRandomNumber(_RAND_FLOAT_MIN, _RAND_FLOAT_MAX));
+                newGame.setEnemyCooldown(newGame.generateRandomNumber(75.0f, 150.0f));
             }
             
             if (newGame.getAsteriodCooldown() <= 0)
@@ -112,6 +118,21 @@ int main()
         {
             newGame = Game(5);
             playing = true;
+        }
+        
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) 
+        {
+            window.close();
+        }
+        
+        sf::Event event;
+            
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
         }
     }
 

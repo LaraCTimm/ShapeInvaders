@@ -5,11 +5,11 @@
 #include <vector>
 using std::vector;
 
-//#include <memory> // required for smart pointers
-//using std::unique_ptr;
-//using std::make_unique;
-//using std::shared_ptr;
-//using std::make_shared;
+#include <memory> // required for smart pointers
+using std::unique_ptr;
+using std::make_unique;
+using std::shared_ptr;
+using std::make_shared;
 
 enum class gameObjectType 
 {
@@ -19,7 +19,8 @@ enum class gameObjectType
     EnemyBullet,
     Asteriod,
     Satellite,
-    LaserGenerator
+    LaserGenerator,
+    ArcSegment
 };
 
 class GameObject
@@ -29,6 +30,8 @@ class GameObject
 
     
 public:
+
+virtual ~GameObject() {}
 
 // Accessors and Mutators ----------------------------
 

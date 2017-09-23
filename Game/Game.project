@@ -20,6 +20,12 @@
     <File Name="tests_player.cpp" ExcludeProjConfig="Debug"/>
     <File Name="Asteriod.h"/>
     <File Name="Asteriod.cpp"/>
+    <File Name="LaserGenerator.h"/>
+    <File Name="LaserGenerator.cpp"/>
+    <File Name="ArcSegment.h"/>
+    <File Name="ArcSegment.cpp"/>
+    <File Name="Arc.h"/>
+    <File Name="Arc.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

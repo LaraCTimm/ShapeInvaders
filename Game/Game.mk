@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Lara
-Date                   :=19/09/2017
+Date                   :=20/09/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -62,7 +62,8 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/Player.cpp$(ObjectSuffix) $(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/Player.cpp$(ObjectSuffix) $(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix) $(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) $(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix) 
 
 
 
@@ -156,6 +157,30 @@ $(IntermediateDirectory)/Asteriod.cpp$(DependSuffix): Asteriod.cpp
 
 $(IntermediateDirectory)/Asteriod.cpp$(PreprocessSuffix): Asteriod.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Asteriod.cpp$(PreprocessSuffix) Asteriod.cpp
+
+$(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix): LaserGenerator.cpp $(IntermediateDirectory)/LaserGenerator.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/LaserGenerator.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/LaserGenerator.cpp$(DependSuffix): LaserGenerator.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/LaserGenerator.cpp$(DependSuffix) -MM LaserGenerator.cpp
+
+$(IntermediateDirectory)/LaserGenerator.cpp$(PreprocessSuffix): LaserGenerator.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/LaserGenerator.cpp$(PreprocessSuffix) LaserGenerator.cpp
+
+$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix): ArcSegment.cpp $(IntermediateDirectory)/ArcSegment.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/ArcSegment.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/ArcSegment.cpp$(DependSuffix): ArcSegment.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/ArcSegment.cpp$(DependSuffix) -MM ArcSegment.cpp
+
+$(IntermediateDirectory)/ArcSegment.cpp$(PreprocessSuffix): ArcSegment.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ArcSegment.cpp$(PreprocessSuffix) ArcSegment.cpp
+
+$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix): Arc.cpp $(IntermediateDirectory)/Arc.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/Arc.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Arc.cpp$(DependSuffix): Arc.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Arc.cpp$(DependSuffix) -MM Arc.cpp
+
+$(IntermediateDirectory)/Arc.cpp$(PreprocessSuffix): Arc.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Arc.cpp$(PreprocessSuffix) Arc.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

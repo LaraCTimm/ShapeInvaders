@@ -42,7 +42,39 @@ GameObject Game::spawnGameObject(gameObjectType type, int index)
         case gameObjectType::Satellite:
             break;
         case gameObjectType::LaserGenerator:
+        {
+            int ID = 0;
+            
+            for(auto element : _GameObjectsVector)
+            {
+                if(element.getObjectType() == gameObjectType::LaserGenerator )
+                {
+                    GameObject* temp = &element;
+                    LaserGenerator* tempGen = dynamic_cast<LaserGenerator*>(temp);
+                    
+                    if(tempGen->getID() > ID)
+                    {
+                        ID = tempGen->getID();
+                    }
+                }
+            }
+            
+            ID++;
+            
+            float angle = generateRandomNumber(0, 360);
+            _GameObjectsVector.push_back(LaserGenerator(angle, ID));
+            
+            for(int i=0; i<9; i++)
+            {
+                angle += 5;
+                _GameObjectsVector.push_back(ArcSegment(angle, ID));
+            }
+            
+            angle += 5;
+            return LaserGenerator(angle, ID);
             break;
+            
+        }
         default:
             break;
     }
