@@ -2,9 +2,9 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Majestic Window");
+    sf::RenderWindow window(sf::VideoMode(800, 800), "Majestic Window");
     
-    sf::RectangleShape rectangle(sf::Vector2f(83,207));
+    sf::RectangleShape rectangle(sf::Vector2f(800,800));
     
     // Set bullet attributes
 //    rectangle.setOutlineThickness(2);
@@ -15,11 +15,11 @@ int main()
     rectangle.setPosition(0, 0);
     
     sf::Texture texture;
-    texture.loadFromFile("C:/Users/l_tim/Google Drive/1 Electrical 3rd Year/Sofware_II/SFMLTest/Reference images and ideas/Untitled-1.png");
+    texture.loadFromFile("C:/Users/l_tim/Google Drive/1 Electrical 3rd Year/Sofware_II/SFMLTest/Reference images and ideas/vertex_Spritesheet.png");
 //    sf::Sprite sprite;
 //    sprite.setTexture(texture);
     rectangle.setTexture(&texture);
-    sf::IntRect rectSourceSprite(0, 0, 83,207);
+    sf::IntRect rectSourceSprite(0, 0, 800,800);
     rectangle.setTextureRect(rectSourceSprite);
     
     sf::Clock clock;
@@ -36,12 +36,12 @@ int main()
             }
         }
         
-        if (clock.getElapsedTime().asSeconds() > 0.2f)
+        if (clock.getElapsedTime().asSeconds() > 0.1f)
         {
-            if (rectSourceSprite.left == 415)
+            if (rectSourceSprite.left == 5600)
                 rectSourceSprite.left = 0;
             else
-                 rectSourceSprite.left += 83;
+                 rectSourceSprite.left += 800;
                  
             rectangle.setTextureRect(rectSourceSprite);
             clock.restart();

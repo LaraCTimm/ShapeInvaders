@@ -12,7 +12,7 @@ ArcSegment::ArcSegment(float angle, int ID) : GameObject()
     _health = 1;
     _points = 10;
     _scale = 0.2;
-    _scaleFactor = (1 - _scale) / 300;//Game::PATH_RADIUS;
+    _scaleFactor = (1 - _scale) / 275;//Game::PATH_RADIUS;
     _scaleCount = 0;
     _objectType = gameObjectType::ArcSegment;
     

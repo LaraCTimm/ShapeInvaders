@@ -11,7 +11,14 @@
 #include "LaserGenerator.h"
 #include "ArcSegment.h"
 #include <vector>
+#include <memory> // required for smart pointers
+
 using std::vector;
+using std::unique_ptr;
+using std::make_unique;
+using std::shared_ptr;
+using std::make_shared;
+using std::iterator;
 
 
 //////////////////////////////////////////////////////
@@ -25,6 +32,13 @@ static constexpr float ORIGIN_Y = 400.0f;
 static constexpr float PATH_RADIUS = 300.0f;
 
 // Accessors and Mutators ----------------------------
+
+vector<shared_ptr<GameObject>> getLaserPointerVector() {
+    return _LaserPointerVector;
+}
+
+
+
 
 vector<GameObject> getGameObjectsVector() {
     return _GameObjectsVector;
@@ -96,6 +110,10 @@ void movePlayerObject(int direction);
 // Moves objects that travel in a straight line
 void moveLineObject(int objectIndex);
 
+
+void movePointerLineObject(int index);
+
+
 // Adds game object to vector be rendered
 void AddGameObject(gameObjectType type, int index);
 
@@ -117,6 +135,7 @@ float generateRandomNumber(float min, float max);
     
 private:
     vector<GameObject> _GameObjectsVector;
+    vector<shared_ptr<GameObject>> _LaserPointerVector;
     int _score;
     sf::Clock _clock;
     int _bulletCooldown;

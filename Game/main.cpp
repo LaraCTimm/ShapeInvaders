@@ -24,6 +24,7 @@ int main()
 
     bool playing = true;
     bool spawned = false;
+    window.setKeyRepeatEnabled(false);
 
     while(window.isOpen())
     {
@@ -106,6 +107,17 @@ int main()
                 }
                 
                 window.draw(newGame.getGameObjectsVector()[i].getObjectShape());
+                
+            }
+            
+            //(auto z = begin(even_numbers); z != end(even_numbers); ++z
+            //// FIGURE OUT ITERATORS //
+            //for (auto z = newGame.getLaserPointerVector().begin(); z != newGame.getLaserPointerVector().end(); z++)
+            for (int i = 0; i < newGame.getLaserPointerVector().size(); i++)
+
+            {
+                newGame.movePointerLineObject(i);
+                window.draw(newGame.getLaserPointerVector()[i]->getObjectShape());
             }
             
             
@@ -118,6 +130,7 @@ int main()
         {
             newGame = Game(5);
             playing = true;
+            spawned = false;
         }
         
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) 
