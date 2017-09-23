@@ -23,7 +23,7 @@ int main()
     //srand (time(0));         // seed randomness for enemy spawning
 
     bool playing = true;
-    bool spawned = false;
+//    bool spawned = false;
     window.setKeyRepeatEnabled(false);
 
     while(window.isOpen())
@@ -66,11 +66,23 @@ int main()
                 newGame.setShotFired(false);
             }
             
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !spawned) 
+            /////////////////// HACK
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !newGame.getGeneratorFired()) 
             {
-                spawned = true;
                 newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
+                newGame.setGeneratorFired(true);
             }
+            
+            if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && newGame.getGeneratorFired()) 
+            {
+                newGame.setGeneratorFired(false);
+            }
+//            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))// && !spawned) 
+//            {
+//                //spawned = true;
+//                newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
+//            }
             
             
             newGame.decrementEnemyCooldown();
@@ -92,7 +104,7 @@ int main()
             newGame.CheckCollisions();
             newGame.ObjectCleanup();
             
-            if (newGame.getGameObjectsVector().size() > 0 && newGame.getGameObjectsVector()[0].getObjectType() != gameObjectType::Player)
+            if (newGame.getGameObjectsVector().size() > 0 && newGame.getGameObjectsVector()[0]->getObjectType() != gameObjectType::Player)
             {
                 playing = false;//return 0;
                 
@@ -101,25 +113,14 @@ int main()
             
             for (int i = 0u; i < newGame.getGameObjectsVector().size(); i++)
             {
-                if (newGame.getGameObjectsVector()[i].getObjectType() != gameObjectType::Player)
+                if (newGame.getGameObjectsVector()[i]->getObjectType() != gameObjectType::Player)
                 {
                     newGame.moveLineObject(i);
                 }
                 
-                window.draw(newGame.getGameObjectsVector()[i].getObjectShape());
+                window.draw(newGame.getGameObjectsVector()[i]->getObjectShape());
                 
             }
-            
-            //(auto z = begin(even_numbers); z != end(even_numbers); ++z
-            //// FIGURE OUT ITERATORS //
-            //for (auto z = newGame.getLaserPointerVector().begin(); z != newGame.getLaserPointerVector().end(); z++)
-            for (int i = 0; i < newGame.getLaserPointerVector().size(); i++)
-
-            {
-                newGame.movePointerLineObject(i);
-                window.draw(newGame.getLaserPointerVector()[i]->getObjectShape());
-            }
-            
             
             ///////////////////
             window.display();
@@ -130,7 +131,7 @@ int main()
         {
             newGame = Game(5);
             playing = true;
-            spawned = false;
+//            spawned = false;
         }
         
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) 

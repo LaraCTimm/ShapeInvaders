@@ -10,6 +10,7 @@ using std::sqrt;
 using std::cout;
 using std::endl;
 
+
 GameObject::GameObject()
 {   }
 
@@ -31,7 +32,7 @@ void GameObject::circularMove(int direction)
     _objectShape.setRotation(_angle*2);
 	//cout << _xCoord << " " << _yCoord << " " << _angle <<  endl;
     
-    // setup for bullet movement vecor
+    // setup for player bullet movement vecor
     vecX = -vecX/BULLET_SPEED_MODIFIER;
     vecY = -vecY/BULLET_SPEED_MODIFIER;
     _pathVector = sf::Vector2f(vecX, vecY);
@@ -55,11 +56,7 @@ void GameObject::lineMove()
     _objectShape.setSize(newSize);
     _objectShape.setOrigin(_objectShape.getSize().x/2, _objectShape.getSize().y/2);
     _hitRadius = (_objectShape.getSize().y + _objectShape.getSize().x)/4;
-    //_objectHeight*_scale/4;
-    //cout<< _hitRadius << endl;
-     
-    
-    
+
     // Check bullet reaches screen centre
     if (_objectType == gameObjectType::PlayerBullet && (_xCoord >= 395 && _xCoord <= 405 && _yCoord >= 395 && _yCoord <= 405))
     {
@@ -71,135 +68,152 @@ void GameObject::lineMove()
     {
         _health = 0;
     }
-    
 }
 
-void GameObject::checkCollisions(vector<GameObject> &objectVector)
+void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
 {
     for (auto element : objectVector)
     {
-        if (element.getObjectType() == gameObjectType::PlayerBullet && _objectType == gameObjectType::Enemy)
+        if (element->getObjectType() == gameObjectType::PlayerBullet && _objectType == gameObjectType::Enemy)
         {
-            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
-            if (distance <= element.getHitRadius()+_hitRadius)
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
             {
                 _health = 0;                
             }
         }
         
-        if (element.getObjectType() == gameObjectType::Enemy && _objectType == gameObjectType::PlayerBullet)
+        if (element->getObjectType() == gameObjectType::Enemy && _objectType == gameObjectType::PlayerBullet)
         {
-            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
-            if (distance <= element.getHitRadius()+_hitRadius)
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
                 _health = 0;
         }
         
-        if (element.getObjectType() == gameObjectType::Enemy && _objectType == gameObjectType::Player)
+        if (element->getObjectType() == gameObjectType::Enemy && _objectType == gameObjectType::Player)
         {
-            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
-            if (distance <= element.getHitRadius()+_hitRadius)
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
                 _health--;
         }
         
-        if (element.getObjectType() == gameObjectType::Player && _objectType == gameObjectType::Enemy)
+        if (element->getObjectType() == gameObjectType::Player && _objectType == gameObjectType::Enemy)
         {
-            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
-            if (distance <= element.getHitRadius()+_hitRadius)
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
             {
                 _health--;
             }
         }
         
-        if (element.getObjectType() == gameObjectType::EnemyBullet && _objectType == gameObjectType::Player)
+        if (element->getObjectType() == gameObjectType::EnemyBullet && _objectType == gameObjectType::Player)
         {
-            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
-            if (distance <= element.getHitRadius()+_hitRadius)
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
                 _health--;
         }
         
-        if (element.getObjectType() == gameObjectType::Player && _objectType == gameObjectType::EnemyBullet)
+        if (element->getObjectType() == gameObjectType::Player && _objectType == gameObjectType::EnemyBullet)
         {
-            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
-            if (distance <= element.getHitRadius()+_hitRadius)
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
                 _health = 0;
         }
         
-        if (element.getObjectType() == gameObjectType::Asteriod && _objectType == gameObjectType::Player)
+        if (element->getObjectType() == gameObjectType::Asteriod && _objectType == gameObjectType::Player)
         {
-            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
-            if (distance <= element.getHitRadius()+_hitRadius)
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
             {
                 _health--;
             }
         }
         
-        if ((element.getObjectType() == gameObjectType::LaserGenerator || element.getObjectType() == gameObjectType::ArcSegment) && _objectType == gameObjectType::Player)
+        if ((element->getObjectType() == gameObjectType::LaserGenerator || element->getObjectType() == gameObjectType::ArcSegment) && _objectType == gameObjectType::Player)
         {
-            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
-            if (distance <= element.getHitRadius()+_hitRadius)
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
             {
                 _health--;
             }
         }
         
-        if (element.getObjectType() == gameObjectType::Player && (_objectType == gameObjectType::LaserGenerator || _objectType == gameObjectType::ArcSegment))
+        if (element->getObjectType() == gameObjectType::Player && (_objectType == gameObjectType::LaserGenerator || _objectType == gameObjectType::ArcSegment))
         {
-            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
-            if (distance <= element.getHitRadius()+_hitRadius)
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
             {
-                int ID;
+                int ID = 0;
+                
+                // get ID of element that hit the player
                 if (_objectType == gameObjectType::LaserGenerator)
                 {
-                    GameObject* temp = this;
-                    LaserGenerator *tempGen;
-                    tempGen = dynamic_cast<LaserGenerator*>(temp);
-                    ID = tempGen->getID();
-                    temp = NULL;
-                    tempGen = NULL;
+                    //shared_ptr<GameObject> bp = (*this).getptr();
+                    //bp = make_shared<GameObject>();
+                    shared_ptr<LaserGenerator> laserGen_ptr = std::static_pointer_cast<LaserGenerator>((*this).getptr());
+                    ID = laserGen_ptr->getID();
+                    //ID = this->getID();
                 }
                 else
                 {
-                    GameObject* temp = this;
-                    ArcSegment* tempGen = dynamic_cast<ArcSegment*>(temp);
-                    ID = tempGen->getID();
-                    temp = NULL;
-                    tempGen = NULL;
+                    shared_ptr<ArcSegment> arcSeg_ptr = std::static_pointer_cast<ArcSegment>((*this).getptr());
+                    ID = arcSeg_ptr->getID();
                 }
                 
+                // delete objects with the same ID
                 for (int i = 0; i < objectVector.size(); i++)
                 {
-                    if (objectVector[i].getObjectType() == gameObjectType::LaserGenerator)
+                    if (objectVector[i]->getObjectType() == gameObjectType::LaserGenerator)
                     {
-                        GameObject *temp = &objectVector[i];
-                        LaserGenerator *tempGen;
-                        tempGen = dynamic_cast<LaserGenerator*>(temp);
-//                        LaserGenerator* tempGen = dynamic_cast<LaserGenerator*>(temp);
-                        int tempID = tempGen->getID();
+                        //int tempID = 9;
+                        shared_ptr<LaserGenerator> laserGen_ptr = std::static_pointer_cast<LaserGenerator>((*objectVector[i]).getptr());
+                        int tempID = laserGen_ptr->getID();
+                        //int tempID = objectVector[i]->getID();
                         if (tempID == ID)
                         {
-                            objectVector[i].setHealth(0);
+                            objectVector[i]->setHealth(0);
                         }
-                        temp = NULL;
-                        //tempGen = NULL;
                     }
                     
-                    if (objectVector[i].getObjectType() == gameObjectType::ArcSegment)
+                    if (objectVector[i]->getObjectType() == gameObjectType::ArcSegment)
                     {
-                        GameObject* temp = &objectVector[i];
-                        ArcSegment* tempGen = dynamic_cast<ArcSegment*>(temp);
-                        int tempID = tempGen->getID();
+                        int tempID = 9;
+                        //int tempID = objectVector[i]->getID();
+                        shared_ptr<ArcSegment> arcSeg_ptr = std::static_pointer_cast<ArcSegment>((*objectVector[i]).getptr());
+                        tempID = arcSeg_ptr->getID();
+                        
                         if (tempID == ID)
                         {
-                            objectVector[i].setHealth(0);
+                            objectVector[i]->setHealth(0);
                         }
-                        temp = NULL;
-                        tempGen = NULL;
                     }
                 }
-                //_health = 0;
             }
         }
         
+        if (element->getObjectType() == gameObjectType::PlayerBullet && _objectType == gameObjectType::LaserGenerator)
+        {
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
+            {
+                _health = 0;
+                
+                //int ID = this->getID();
+                shared_ptr<LaserGenerator> laserGen_ptr = std::static_pointer_cast<LaserGenerator>((*this).getptr());
+                int ID = laserGen_ptr->getID();
+                
+                // delete objects with the same ID
+                for (int i = 0; i < objectVector.size(); i++)
+                {
+                    shared_ptr<LaserGenerator> arcSeg_ptr = std::static_pointer_cast<LaserGenerator>((*objectVector[i]).getptr());
+
+                    if (objectVector[i]->getObjectType() == gameObjectType::ArcSegment && arcSeg_ptr->getID() == ID)
+                    {
+                        objectVector[i]->setHealth(0);
+                    }
+                }
+            }
+        }
     }
 }
 

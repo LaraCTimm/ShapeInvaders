@@ -1,4 +1,4 @@
-Debug/Enemy.cpp.o: Enemy.cpp Enemy.h GameObject.h \
+Debug/Enemy.cpp.o: Enemy.cpp Enemy.h Game.h \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Window.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/System.hpp \
@@ -68,11 +68,12 @@ Debug/Enemy.cpp.o: Enemy.cpp Enemy.h GameObject.h \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Shader.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp \
- Game.h Player.h PlayerBullet.h EnemyBullet.h Asteriod.h
+ GameObject.h Player.h PlayerBullet.h EnemyBullet.h Asteriod.h \
+ LaserGenerator.h ArcSegment.h Arc.h
 
 Enemy.h:
 
-GameObject.h:
+Game.h:
 
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics.hpp:
 
@@ -212,7 +213,7 @@ C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.
 
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp:
 
-Game.h:
+GameObject.h:
 
 Player.h:
 
@@ -221,3 +222,9 @@ PlayerBullet.h:
 EnemyBullet.h:
 
 Asteriod.h:
+
+LaserGenerator.h:
+
+ArcSegment.h:
+
+Arc.h:

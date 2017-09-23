@@ -1,6 +1,3 @@
-#include <SFML/Graphics.hpp>
-#include "Game.h"
-#include "Player.h"
 #include "PlayerBullet.h"
 
 #include <iostream>

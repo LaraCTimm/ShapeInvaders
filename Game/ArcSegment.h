@@ -11,10 +11,7 @@ public:
 
 ArcSegment(float angle, int ID);
 
-int getID()
-{
-    return _ID;
-}
+int getID() { return _ID; };
 
 private:
 

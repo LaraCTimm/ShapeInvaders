@@ -12,12 +12,12 @@
 #include "ArcSegment.h"
 #include <vector>
 #include <memory> // required for smart pointers
-
 using std::vector;
 using std::unique_ptr;
 using std::make_unique;
 using std::shared_ptr;
 using std::make_shared;
+
 using std::iterator;
 
 
@@ -33,18 +33,18 @@ static constexpr float PATH_RADIUS = 300.0f;
 
 // Accessors and Mutators ----------------------------
 
-vector<shared_ptr<GameObject>> getLaserPointerVector() {
-    return _LaserPointerVector;
-}
+//vector<shared_ptr<GameObject>> getLaserPointerVector() {
+//    return _LaserPointerVector;
+//}
 
 
 
 
-vector<GameObject> getGameObjectsVector() {
+vector<shared_ptr<GameObject>> getGameObjectsVector() {
     return _GameObjectsVector;
 }
 
-void setGameObjectsVector(const std::vector<GameObject> newGameObjectsVector) {
+void setGameObjectsVector(const vector<shared_ptr<GameObject>> newGameObjectsVector) {
     _GameObjectsVector = newGameObjectsVector;
 }
 
@@ -96,13 +96,21 @@ void setShotFired(const bool newShotFired) {
     _shotFired = newShotFired;
 }
 
+bool getGeneratorFired() {
+    return _generatorFired;
+}
+
+void setGeneratorFired(const bool newGeneratorFired) {
+    _generatorFired = newGeneratorFired;
+}
+
 //---------------------------------------------------
 
 // Constructor
 Game(int highScore);
 
 // Create a game object
-GameObject spawnGameObject(gameObjectType type, int index);
+shared_ptr<GameObject> spawnGameObject(gameObjectType type, int index);
 
 // Moves the player in a circular arc
 void movePlayerObject(int direction);
@@ -111,7 +119,7 @@ void movePlayerObject(int direction);
 void moveLineObject(int objectIndex);
 
 
-void movePointerLineObject(int index);
+//void movePointerLineObject(int index);
 
 
 // Adds game object to vector be rendered
@@ -132,16 +140,19 @@ float generateRandomNumber(float min, float max);
 
 
 //////////////////////////////////////////////////////
-    
+
+
 private:
-    vector<GameObject> _GameObjectsVector;
-    vector<shared_ptr<GameObject>> _LaserPointerVector;
+    vector<shared_ptr<GameObject>> _GameObjectsVector;
+    //vector<shared_ptr<GameObject>> _LaserPointerVector;
     int _score;
     sf::Clock _clock;
     int _bulletCooldown;
     float _enemyCooldown;
     float _asteriodCooldown;
     bool _shotFired;
+    bool _generatorFired;
+
     
 
 
