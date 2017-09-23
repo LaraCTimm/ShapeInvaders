@@ -21,6 +21,7 @@ void GameObject::move(float xOffset, float yOffset)
 
 void GameObject::circularMove(int direction)
 {
+    // control player movement
 	_angle += direction; // positive or negative
     float vecX = cos(_angle*M_PI/90)*Game::PATH_RADIUS;
     float vecY = sin(_angle*M_PI/90)*Game::PATH_RADIUS;
@@ -30,8 +31,9 @@ void GameObject::circularMove(int direction)
     _objectShape.setRotation(_angle*2);
 	//cout << _xCoord << " " << _yCoord << " " << _angle <<  endl;
     
-    vecX = -vecX/PLAYER_BULLET_SPEED_MODIFIER;
-    vecY = -vecY/PLAYER_BULLET_SPEED_MODIFIER;
+    // setup for bullet movement vecor
+    vecX = -vecX/BULLET_SPEED_MODIFIER;
+    vecY = -vecY/BULLET_SPEED_MODIFIER;
     _pathVector = sf::Vector2f(vecX, vecY);
 
 }
@@ -45,7 +47,7 @@ void GameObject::lineMove()
     _scale += _scaleFactor;
     _scaleCount++;
     
-    if (_scale > 1) {
+    if (_scale > 1 && !(_objectType == gameObjectType::LaserGenerator || _objectType == gameObjectType::ArcSegment)) {
         _scale = 1;
     }
     
@@ -65,14 +67,14 @@ void GameObject::lineMove()
     }
     
     // Check enemy goes off the screen
-    if ((_objectType == gameObjectType::Enemy || _objectType == gameObjectType::EnemyBullet || _objectType == gameObjectType::Asteriod) && (_xCoord >= 850 || _xCoord <= -50 || _yCoord >= 850 || _yCoord <= -50))
+    if ((_objectType == gameObjectType::Enemy || _objectType == gameObjectType::EnemyBullet || _objectType == gameObjectType::Asteriod || _objectType == gameObjectType::LaserGenerator || _objectType == gameObjectType::ArcSegment) && (_xCoord >= 850 || _xCoord <= -50 || _yCoord >= 850 || _yCoord <= -50))
     {
         _health = 0;
     }
     
 }
 
-void GameObject::checkCollisions(vector<GameObject> objectVector)
+void GameObject::checkCollisions(vector<GameObject> &objectVector)
 {
     for (auto element : objectVector)
     {
@@ -96,7 +98,7 @@ void GameObject::checkCollisions(vector<GameObject> objectVector)
         {
             float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
             if (distance <= element.getHitRadius()+_hitRadius)
-                _health = 0;
+                _health--;
         }
         
         if (element.getObjectType() == gameObjectType::Player && _objectType == gameObjectType::Enemy)
@@ -104,10 +106,7 @@ void GameObject::checkCollisions(vector<GameObject> objectVector)
             float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
             if (distance <= element.getHitRadius()+_hitRadius)
             {
-                //cout << "ENEMY " << _xCoord << " " << _yCoord << endl;
-                //cout << "ENEMY " << _objectShape.getPosition().x << " " << _objectShape.getPosition().y << endl;
-                _health = 0;
-                
+                _health--;
             }
         }
         
@@ -115,7 +114,7 @@ void GameObject::checkCollisions(vector<GameObject> objectVector)
         {
             float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
             if (distance <= element.getHitRadius()+_hitRadius)
-                _health = 0;
+                _health--;
         }
         
         if (element.getObjectType() == gameObjectType::Player && _objectType == gameObjectType::EnemyBullet)
@@ -130,12 +129,77 @@ void GameObject::checkCollisions(vector<GameObject> objectVector)
             float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
             if (distance <= element.getHitRadius()+_hitRadius)
             {
-                //cout << "ENEMY " << _xCoord << " " << _yCoord << endl;
-                //cout << "ENEMY " << _objectShape.getPosition().x << " " << _objectShape.getPosition().y << endl;
-                _health = 0;
-                
+                _health--;
             }
         }
+        
+        if ((element.getObjectType() == gameObjectType::LaserGenerator || element.getObjectType() == gameObjectType::ArcSegment) && _objectType == gameObjectType::Player)
+        {
+            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
+            if (distance <= element.getHitRadius()+_hitRadius)
+            {
+                _health--;
+            }
+        }
+        
+        if (element.getObjectType() == gameObjectType::Player && (_objectType == gameObjectType::LaserGenerator || _objectType == gameObjectType::ArcSegment))
+        {
+            float distance = sqrt(pow(element.getXCoord()-_xCoord,2) + pow(element.getYCoord()-_yCoord,2));
+            if (distance <= element.getHitRadius()+_hitRadius)
+            {
+                int ID;
+                if (_objectType == gameObjectType::LaserGenerator)
+                {
+                    GameObject* temp = this;
+                    LaserGenerator *tempGen;
+                    tempGen = dynamic_cast<LaserGenerator*>(temp);
+                    ID = tempGen->getID();
+                    temp = NULL;
+                    tempGen = NULL;
+                }
+                else
+                {
+                    GameObject* temp = this;
+                    ArcSegment* tempGen = dynamic_cast<ArcSegment*>(temp);
+                    ID = tempGen->getID();
+                    temp = NULL;
+                    tempGen = NULL;
+                }
+                
+                for (int i = 0; i < objectVector.size(); i++)
+                {
+                    if (objectVector[i].getObjectType() == gameObjectType::LaserGenerator)
+                    {
+                        GameObject *temp = &objectVector[i];
+                        LaserGenerator *tempGen;
+                        tempGen = dynamic_cast<LaserGenerator*>(temp);
+//                        LaserGenerator* tempGen = dynamic_cast<LaserGenerator*>(temp);
+                        int tempID = tempGen->getID();
+                        if (tempID == ID)
+                        {
+                            objectVector[i].setHealth(0);
+                        }
+                        temp = NULL;
+                        //tempGen = NULL;
+                    }
+                    
+                    if (objectVector[i].getObjectType() == gameObjectType::ArcSegment)
+                    {
+                        GameObject* temp = &objectVector[i];
+                        ArcSegment* tempGen = dynamic_cast<ArcSegment*>(temp);
+                        int tempID = tempGen->getID();
+                        if (tempID == ID)
+                        {
+                            objectVector[i].setHealth(0);
+                        }
+                        temp = NULL;
+                        tempGen = NULL;
+                    }
+                }
+                //_health = 0;
+            }
+        }
+        
     }
 }
 

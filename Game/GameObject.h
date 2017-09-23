@@ -26,141 +26,139 @@ enum class gameObjectType
 class GameObject
 {
 
-    static constexpr float PLAYER_BULLET_SPEED_MODIFIER = 20.0f;
-
+    static constexpr float BULLET_SPEED_MODIFIER = 20.0f;
     
 public:
 
-virtual ~GameObject() {}
+    // Constructor
+    GameObject();
 
-// Accessors and Mutators ----------------------------
+    // Move object by an offset
+    void move(float xOffset, float yOffset);
 
-float getXCoord() {
-    return _xCoord;
-}
+    // Move object by calculating new co-ords and setting position
+    void circularMove(int direction);
+    void lineMove();
 
-void setXCoord(const float newXCoord) {
-    _xCoord = newXCoord;
-}
+    void checkCollisions(vector<GameObject> &objectVector);
 
-float getYCoord() {
-    return _yCoord;
-}
-
-void setYCoord(const float newYCoord) {
-    _yCoord = newYCoord;
-}
-////
-float getObjectHeight() {
-    return _objectHeight;
-}
-
-void setObjectHeight(const float newHeight) {
-    _objectHeight = newHeight;
-}
-
-float getObjectWidth() {
-    return _objectWidth;
-}
-
-void setObjectWidth(const float newWidth) {
-    _objectWidth = newWidth;
-}
-
-float getAngle() {
-    return _angle;
-}
-
-void setAngle(const float newAngle) {
-    _angle = newAngle;
-}
-
-float getHitRadius() {
-    return _hitRadius;
-}
-
-void setHitRadius(const float newHitRadius) {
-    _hitRadius = newHitRadius;
-}
-
-/////
-float getBulletCooldown() {
-    return _bulletCooldown;
-}
+    void decrementBulletCooldown();
     
-void setBulletCooldown(float newBulletCooldown) {
-    _bulletCooldown = newBulletCooldown;
-}
-/////
 
-int getHealth() {
-    return _health;
-}
+    virtual ~GameObject() {};
+    
 
-void setHealth(const int newHealth) {
-    _health = newHealth;
-}
+    // Accessors and Mutators ----------------------------
 
-int getPoints() {
-    return _points;
-}
+    float getXCoord() {
+        return _xCoord;
+    }
 
-void setPoints(const int newPoints) {
-    _points = newPoints;
-}
+    void setXCoord(const float newXCoord) {
+        _xCoord = newXCoord;
+    }
 
-int getScaleCount() {
-    return _scaleCount;
-}
+    float getYCoord() {
+        return _yCoord;
+    }
 
-void setScaleCount(const int newScaleCount) {
-    _scaleCount = newScaleCount;
-}
+    void setYCoord(const float newYCoord) {
+        _yCoord = newYCoord;
+    }
+    ////
+    float getObjectHeight() {
+        return _objectHeight;
+    }
+
+    void setObjectHeight(const float newHeight) {
+        _objectHeight = newHeight;
+    }
+
+    float getObjectWidth() {
+        return _objectWidth;
+    }
+
+    void setObjectWidth(const float newWidth) {
+        _objectWidth = newWidth;
+    }
+
+    float getAngle() {
+        return _angle;
+    }
+
+    void setAngle(const float newAngle) {
+        _angle = newAngle;
+    }
+
+    float getHitRadius() {
+        return _hitRadius;
+    }
+
+    void setHitRadius(const float newHitRadius) {
+        _hitRadius = newHitRadius;
+    }
+
+    /////
+    float getBulletCooldown() {
+        return _bulletCooldown;
+    }
+        
+    void setBulletCooldown(float newBulletCooldown) {
+        _bulletCooldown = newBulletCooldown;
+    }
+    /////
+
+    int getHealth() {
+        return _health;
+    }
+
+    void setHealth(const int newHealth) {
+        _health = newHealth;
+    }
+
+    int getPoints() {
+        return _points;
+    }
+
+    void setPoints(const int newPoints) {
+        _points = newPoints;
+    }
+
+    int getScaleCount() {
+        return _scaleCount;
+    }
+
+    void setScaleCount(const int newScaleCount) {
+        _scaleCount = newScaleCount;
+    }
 
 
-sf::RectangleShape getObjectShape() {
-    return _objectShape;
-}
+    sf::RectangleShape getObjectShape() {
+        return _objectShape;
+    }
 
-//shared_ptr<sf::RectangleShape> getObjectShape() {
-//	auto objectShape_ptr = make_shared<sf::RectangleShape>(_objectShape);
-//    return objectShape_ptr;
-//}
+    //shared_ptr<sf::RectangleShape> getObjectShape() {
+    //	auto objectShape_ptr = make_shared<sf::RectangleShape>(_objectShape);
+    //    return objectShape_ptr;
+    //}
 
-void setObjectShape(sf::RectangleShape newObjectShape) {
-    _objectShape = newObjectShape;
-}
+    void setObjectShape(sf::RectangleShape newObjectShape) {
+        _objectShape = newObjectShape;
+    }
 
-sf::Vector2f getPathVector() {
-    return _pathVector;
-}
+    sf::Vector2f getPathVector() {
+        return _pathVector;
+    }
 
-void setPathVector(sf::Vector2f newPathVector) {
-    _pathVector = newPathVector;
-}
+    void setPathVector(sf::Vector2f newPathVector) {
+        _pathVector = newPathVector;
+    }
 
-gameObjectType getObjectType() {
-    return _objectType;
-}
-
-
-
-//---------------------------------------------------
+    gameObjectType getObjectType() {
+        return _objectType;
+    }
 
 
-// Constructor
-GameObject();
-
-// Move object by an offset
-void move(float xOffset, float yOffset);
-
-// Move object by calculating new co-ords and setting position
-void circularMove(int direction);
-void lineMove();
-
-void checkCollisions(vector<GameObject> objectVector);
-
-void decrementBulletCooldown();
 
 // variables are protected rather that private so that can be accessed by classes inherited by the GameObject class
 protected:

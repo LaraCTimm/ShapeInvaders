@@ -8,6 +8,8 @@
 using std::cout;
 using std::endl;
 
+#include <typeinfo>
+
 //#include <iostream>
 //#include "GameObject.h"
 
@@ -24,8 +26,6 @@ GameObject Game::spawnGameObject(gameObjectType type, int index)
             
         case gameObjectType::Enemy:
 //            Creates enemy spawning at the center of the screen
-//            randAngle = float(rand()) / float(RAND_MAX/(_RAND_FLOAT_MAX));
-//            cout << randAngle << endl;2
             return Enemy(ORIGIN_X, ORIGIN_Y, generateRandomNumber(0, 360));
             
         case gameObjectType::PlayerBullet:
@@ -45,33 +45,42 @@ GameObject Game::spawnGameObject(gameObjectType type, int index)
         {
             int ID = 0;
             
-            for(auto element : _GameObjectsVector)
-            {
-                if(element.getObjectType() == gameObjectType::LaserGenerator )
-                {
-                    GameObject* temp = &element;
-                    LaserGenerator* tempGen = dynamic_cast<LaserGenerator*>(temp);
-                    
-                    if(tempGen->getID() > ID)
-                    {
-                        ID = tempGen->getID();
-                    }
-                }
-            }
-            
+//            for(auto element : _GameObjectsVector)
+//            {
+//                if(element.getObjectType() == gameObjectType::LaserGenerator)
+//                {
+//                    GameObject* temp = &element;
+//                    LaserGenerator* tempGen = dynamic_cast<LaserGenerator*>(temp);
+//                    
+//                    if(tempGen->getID() > ID)
+//                    {
+//                        ID = tempGen->getID();
+//                        temp = NULL;
+//                        tempGen = NULL;
+//                    }
+//                }
+//            }
+//            
             ID++;
             
             float angle = generateRandomNumber(0, 360);
-            _GameObjectsVector.push_back(LaserGenerator(angle, ID));
+
+            shared_ptr<GameObject> laserGen_ptr1(new LaserGenerator(angle+1, ID));
             
             for(int i=0; i<9; i++)
             {
-                angle += 5;
-                _GameObjectsVector.push_back(ArcSegment(angle, ID));
+                angle += 4;
+                shared_ptr<GameObject> arcSeg_ptr(new ArcSegment(angle, ID));
+                _LaserPointerVector.push_back(arcSeg_ptr);
             }
+
+            _LaserPointerVector.push_back(laserGen_ptr1);
             
-            angle += 5;
-            return LaserGenerator(angle, ID);
+            angle += 3;
+            
+            shared_ptr<GameObject> laserGen_ptr2(new LaserGenerator(angle, ID));
+            
+            return *laserGen_ptr2;
             break;
             
         }
@@ -104,10 +113,30 @@ void Game::moveLineObject(int objectIndex)
     _GameObjectsVector[objectIndex].lineMove();
 }
 
+//************************
+
+void Game::movePointerLineObject(int index)
+{
+    _LaserPointerVector[index]->lineMove();
+}
+
+//************************
+
+
 void Game::AddGameObject(gameObjectType type, int index)
 {
-    GameObject obj =  Game::spawnGameObject(type, index); 
-    _GameObjectsVector.push_back(obj);
+    if (type == gameObjectType::LaserGenerator)
+    {
+        shared_ptr<GameObject> laser_ptr = make_shared<GameObject>(Game::spawnGameObject(type, index));
+        _LaserPointerVector.push_back(laser_ptr);
+    }
+    else
+    {
+        GameObject obj =  Game::spawnGameObject(type, index); 
+        _GameObjectsVector.push_back(obj);
+    }
+    
+    
 }
 
 void Game::ObjectCleanup() 
