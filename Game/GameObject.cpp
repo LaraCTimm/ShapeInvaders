@@ -62,7 +62,7 @@ void GameObject::lineMove()
         _health = 0;
     }
     
-    // Check enemy goes off the screen
+    // Check enemy/enemy bullet/asteroid/laser generator/arc segment goes off the screen
     if ((_objectType == gameObjectType::Enemy || _objectType == gameObjectType::EnemyBullet || _objectType == gameObjectType::Asteriod || _objectType == gameObjectType::LaserGenerator || _objectType == gameObjectType::ArcSegment) && (_xCoord >= 850 || _xCoord <= -50 || _yCoord >= 850 || _yCoord <= -50))
     {
         _health = 0;
@@ -78,7 +78,7 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
             float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
             if (distance <= element->getHitRadius()+_hitRadius)
             {
-                _health = 0;                
+                _health = 0;
             }
         }
         
@@ -100,9 +100,7 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
         {
             float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
             if (distance <= element->getHitRadius()+_hitRadius)
-            {
-                _health--;
-            }
+                _health = 0;
         }
         
         if (element->getObjectType() == gameObjectType::EnemyBullet && _objectType == gameObjectType::Player)
@@ -142,16 +140,13 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
             float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
             if (distance <= element->getHitRadius()+_hitRadius)
             {
-                int ID = 0;
+                int ID;
                 
                 // get ID of element that hit the player
                 if (_objectType == gameObjectType::LaserGenerator)
                 {
-                    //shared_ptr<GameObject> bp = (*this).getptr();
-                    //bp = make_shared<GameObject>();
                     shared_ptr<LaserGenerator> laserGen_ptr = std::static_pointer_cast<LaserGenerator>((*this).getptr());
                     ID = laserGen_ptr->getID();
-                    //ID = this->getID();
                 }
                 else
                 {
@@ -159,30 +154,25 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
                     ID = arcSeg_ptr->getID();
                 }
                 
-                // delete objects with the same ID
+                // delete objects with the same ID in vector
                 for (int i = 0; i < objectVector.size(); i++)
                 {
                     if (objectVector[i]->getObjectType() == gameObjectType::LaserGenerator)
                     {
-                        //int tempID = 9;
                         shared_ptr<LaserGenerator> laserGen_ptr = std::static_pointer_cast<LaserGenerator>((*objectVector[i]).getptr());
                         int tempID = laserGen_ptr->getID();
-                        //int tempID = objectVector[i]->getID();
-                        if (tempID == ID)
-                        {
+                        
+                        if (tempID == ID) {
                             objectVector[i]->setHealth(0);
                         }
                     }
                     
                     if (objectVector[i]->getObjectType() == gameObjectType::ArcSegment)
                     {
-                        int tempID = 9;
-                        //int tempID = objectVector[i]->getID();
                         shared_ptr<ArcSegment> arcSeg_ptr = std::static_pointer_cast<ArcSegment>((*objectVector[i]).getptr());
-                        tempID = arcSeg_ptr->getID();
+                        int tempID = arcSeg_ptr->getID();
                         
-                        if (tempID == ID)
-                        {
+                        if (tempID == ID) {
                             objectVector[i]->setHealth(0);
                         }
                     }
@@ -195,16 +185,21 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
             float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
             if (distance <= element->getHitRadius()+_hitRadius)
             {
+                // delete player bullet
+                shared_ptr<PlayerBullet> playerBullet_ptr = std::static_pointer_cast<PlayerBullet>((*element).getptr());
+                playerBullet_ptr->setHealth(0);
+                
+                // delete laserGen
                 _health = 0;
                 
-                //int ID = this->getID();
+                // find ID of hit laserGen
                 shared_ptr<LaserGenerator> laserGen_ptr = std::static_pointer_cast<LaserGenerator>((*this).getptr());
                 int ID = laserGen_ptr->getID();
                 
-                // delete objects with the same ID
+                // delete all arcSegs with the same ID
                 for (int i = 0; i < objectVector.size(); i++)
                 {
-                    shared_ptr<LaserGenerator> arcSeg_ptr = std::static_pointer_cast<LaserGenerator>((*objectVector[i]).getptr());
+                    shared_ptr<ArcSegment> arcSeg_ptr = std::static_pointer_cast<ArcSegment>((*objectVector[i]).getptr());
 
                     if (objectVector[i]->getObjectType() == gameObjectType::ArcSegment && arcSeg_ptr->getID() == ID)
                     {

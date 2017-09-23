@@ -64,15 +64,6 @@ void restartClock() {
     _clock.restart();
 }
 
-///////// should be in other classes ////////
-//int getBulletCooldown() {
-//    return _bulletCooldown;
-//}
-//
-//void setBulletCooldown(const int newBulletCooldown) {
-//    _bulletCooldown = newBulletCooldown;
-//}
-//
 int getEnemyCooldown() {
     return _enemyCooldown;
 }
@@ -146,6 +137,7 @@ private:
     //int _bulletCooldown;
     float _enemyCooldown;
     float _asteriodCooldown;
+    float _laserGeneratorCooldown;
     bool _shotFired;
     bool _generatorFired;
 

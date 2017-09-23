@@ -18,9 +18,11 @@ Game::Game(int highScore)
     shared_ptr<GameObject> obj_ptr = Game::spawnGameObject(gameObjectType::Player, 0);
     _GameObjectsVector.push_back(obj_ptr);
     //_bulletCooldown = 0;
-    _enemyCooldown = 0;
-    _asteriodCooldown = 0;
-    //_shotFired = false;
+    _enemyCooldown = 10;
+    _asteriodCooldown = 400;
+    _laserGeneratorCooldown = 800;
+    _shotFired = false;
+    _generatorFired = false;
     srand (time(0));         // seed randomness for enemy spawning
 }
 
@@ -40,8 +42,6 @@ shared_ptr<GameObject> Game::spawnGameObject(gameObjectType type, int index)
             return shared_ptr<GameObject>(new PlayerBullet(_GameObjectsVector[0]->getXCoord(), _GameObjectsVector[0]->getYCoord(), _GameObjectsVector[0]->getPathVector(), _GameObjectsVector[0]->getAngle()));
             
         case gameObjectType::EnemyBullet:
-            //shared_ptr<Enemy> enemy_ptr = std::static_pointer_cast<Enemy>((*_GameObjectsVector[index]).getptr());
-            //enemy_ptr->setEnemyBulletCooldown(generateRandomNumber(100, 200));
             return shared_ptr<GameObject>(new EnemyBullet(_GameObjectsVector[index]->getXCoord(), _GameObjectsVector[index]->getYCoord(), _GameObjectsVector[index]->getPathVector(), _GameObjectsVector[index]->getAngle(), _GameObjectsVector[index]->getScaleCount() ));
             
         case gameObjectType::Asteriod:
@@ -131,7 +131,7 @@ void Game::DecrementCooldowns()
         if (_GameObjectsVector[i]->getObjectType() == gameObjectType::Enemy)
         {
             shared_ptr<Enemy> enemy_ptr = std::static_pointer_cast<Enemy>((*_GameObjectsVector[i]).getptr());
-            enemy_ptr->decrementEnemyBulletCooldown();  
+            enemy_ptr->decrementEnemyBulletCooldown(); 
           
             if (enemy_ptr->getBulletCooldown() <= 0)
             {
@@ -149,20 +149,44 @@ void Game::DecrementCooldowns()
         _asteriodCooldown--;
     }
     
+     if (_laserGeneratorCooldown > 0) {
+        _laserGeneratorCooldown--;
+    }
 }
+
+//void Game::SpawnGameObjects()
+//{
+//    if (getEnemyCooldown() <= 0)
+//    {
+//        AddGameObject(gameObjectType::Enemy, 0);
+//        setEnemyCooldown(generateRandomNumber(75.0f, 150.0f));
+//    }
+//            
+//    if (getAsteriodCooldown() <= 0)
+//    {
+//        AddGameObject(gameObjectType::Asteriod, 0);
+//        setAsteriodCooldown(generateRandomNumber(100.0f, 150.0f));
+//    }
+//}
 
 void Game::SpawnGameObjects()
 {
-    if (getEnemyCooldown() <= 0)
+    if (_enemyCooldown <= 0)
     {
         AddGameObject(gameObjectType::Enemy, 0);
-        setEnemyCooldown(generateRandomNumber(75.0f, 150.0f));
+        _enemyCooldown = generateRandomNumber(75.0f, 150.0f);
     }
             
-    if (getAsteriodCooldown() <= 0)
+    if (_asteriodCooldown <= 0)
     {
         AddGameObject(gameObjectType::Asteriod, 0);
-        setAsteriodCooldown(generateRandomNumber(100.0f, 150.0f));
+        _asteriodCooldown = generateRandomNumber(100.0f, 150.0f);
+    }
+    
+    if (_laserGeneratorCooldown <= 0)
+    {
+        AddGameObject(gameObjectType::LaserGenerator, 0);
+        _laserGeneratorCooldown = generateRandomNumber(350.0f, 400.0f);
     }
 }
 

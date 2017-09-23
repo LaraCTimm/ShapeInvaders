@@ -104,13 +104,13 @@ public:
     }
 
     /////
-    float getEnemyBulletCooldown() {
-        return _bulletCooldown;
-    }
-        
-    void setEnemyBulletCooldown(float newBulletCooldown) {
-        _bulletCooldown = newBulletCooldown;
-    }
+//    float getEnemyBulletCooldown() {
+//        return _bulletCooldown;
+//    }
+//        
+//    void setEnemyBulletCooldown(float newBulletCooldown) {
+//        _bulletCooldown = newBulletCooldown;
+//    }
     /////
 
     int getHealth() {
@@ -177,7 +177,7 @@ protected:
     float _objectWidth;
 	float _angle;
     float _hitRadius;
-    float _bulletCooldown; // not all objects
+    //float _bulletCooldown; // not all objects
     int _health;
     int _points; // only not for asteroids
     float _scale;

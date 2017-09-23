@@ -38,7 +38,7 @@ public:
 
 private:
 
-    float _cooldown;
+    //float _cooldown;
     float _bulletCooldown;
     
 };

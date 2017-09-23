@@ -66,32 +66,24 @@ int main()
             
             /////////////////// HACK
             
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !newGame.getGeneratorFired()) 
-            {
-                newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
-                newGame.setGeneratorFired(true);
-            }
-            
-            if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && newGame.getGeneratorFired()) 
-            {
-                newGame.setGeneratorFired(false);
-            }
-            
+//            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !newGame.getGeneratorFired()) 
+//            {
+//                newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
+//                newGame.setGeneratorFired(true);
+//            }
+//            
+//            if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && newGame.getGeneratorFired()) 
+//            {
+//                newGame.setGeneratorFired(false);
+//            }
+//            
 //            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 //            {
 //                newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
 //            }
-            
-//            newGame.decrementEnemyCooldown();
-//            newGame.decrementAsteriodCooldown();
-//            newGame.decrementCooldowns();
 
             newGame.DecrementCooldowns();
-            
             newGame.SpawnGameObjects();
-            
-
-            
             newGame.CheckCollisions();
             newGame.ObjectCleanup();
             
