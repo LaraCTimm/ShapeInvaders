@@ -64,14 +64,15 @@ void restartClock() {
     _clock.restart();
 }
 
-int getBulletCooldown() {
-    return _bulletCooldown;
-}
-
-void setBulletCooldown(const int newBulletCooldown) {
-    _bulletCooldown = newBulletCooldown;
-}
-
+///////// should be in other classes ////////
+//int getBulletCooldown() {
+//    return _bulletCooldown;
+//}
+//
+//void setBulletCooldown(const int newBulletCooldown) {
+//    _bulletCooldown = newBulletCooldown;
+//}
+//
 int getEnemyCooldown() {
     return _enemyCooldown;
 }
@@ -104,6 +105,8 @@ void setGeneratorFired(const bool newGeneratorFired) {
     _generatorFired = newGeneratorFired;
 }
 
+///////// should be in other classes ////////
+
 //---------------------------------------------------
 
 // Constructor
@@ -118,21 +121,15 @@ void movePlayerObject(int direction);
 // Moves objects that travel in a straight line
 void moveLineObject(int objectIndex);
 
-
-//void movePointerLineObject(int index);
-
-
 // Adds game object to vector be rendered
 void AddGameObject(gameObjectType type, int index);
 
 // Delete objects from vector that are no longer needed
 void ObjectCleanup();
 
-void decrementBulletCooldowns();
+void DecrementCooldowns();
 
-void decrementEnemyCooldown();
-
-void decrementAsteriodCooldown();
+void SpawnGameObjects();
 
 void CheckCollisions();
 
@@ -144,10 +141,9 @@ float generateRandomNumber(float min, float max);
 
 private:
     vector<shared_ptr<GameObject>> _GameObjectsVector;
-    //vector<shared_ptr<GameObject>> _LaserPointerVector;
     int _score;
     sf::Clock _clock;
-    int _bulletCooldown;
+    //int _bulletCooldown;
     float _enemyCooldown;
     float _asteriodCooldown;
     bool _shotFired;

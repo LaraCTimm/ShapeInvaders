@@ -5,8 +5,8 @@
 ## Debug
 ProjectName            :=Game
 ConfigurationName      :=Debug
-WorkspacePath          :=C:/Users/l_tim/Documents/SFMLTest
-ProjectPath            :=C:/Users/l_tim/Documents/SFMLTest/Game
+WorkspacePath          :=C:/Users/l_tim/Documents/VleisInvaders
+ProjectPath            :=C:/Users/l_tim/Documents/VleisInvaders/Game
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
@@ -95,7 +95,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/Arc.cpp$(ObjectSuffix): Arc.cpp $(IntermediateDirectory)/Arc.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/Arc.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/Arc.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Arc.cpp$(DependSuffix): Arc.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Arc.cpp$(DependSuffix) -MM Arc.cpp
 
@@ -103,7 +103,7 @@ $(IntermediateDirectory)/Arc.cpp$(PreprocessSuffix): Arc.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Arc.cpp$(PreprocessSuffix) Arc.cpp
 
 $(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix): ArcSegment.cpp $(IntermediateDirectory)/ArcSegment.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/ArcSegment.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/ArcSegment.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/ArcSegment.cpp$(DependSuffix): ArcSegment.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/ArcSegment.cpp$(DependSuffix) -MM ArcSegment.cpp
 
@@ -111,7 +111,7 @@ $(IntermediateDirectory)/ArcSegment.cpp$(PreprocessSuffix): ArcSegment.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ArcSegment.cpp$(PreprocessSuffix) ArcSegment.cpp
 
 $(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix): Asteriod.cpp $(IntermediateDirectory)/Asteriod.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/Asteriod.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/Asteriod.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Asteriod.cpp$(DependSuffix): Asteriod.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Asteriod.cpp$(DependSuffix) -MM Asteriod.cpp
 
@@ -119,7 +119,7 @@ $(IntermediateDirectory)/Asteriod.cpp$(PreprocessSuffix): Asteriod.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Asteriod.cpp$(PreprocessSuffix) Asteriod.cpp
 
 $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix): Enemy.cpp $(IntermediateDirectory)/Enemy.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/Enemy.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/Enemy.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Enemy.cpp$(DependSuffix): Enemy.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Enemy.cpp$(DependSuffix) -MM Enemy.cpp
 
@@ -127,7 +127,7 @@ $(IntermediateDirectory)/Enemy.cpp$(PreprocessSuffix): Enemy.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Enemy.cpp$(PreprocessSuffix) Enemy.cpp
 
 $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix): EnemyBullet.cpp $(IntermediateDirectory)/EnemyBullet.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/EnemyBullet.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/EnemyBullet.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/EnemyBullet.cpp$(DependSuffix): EnemyBullet.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EnemyBullet.cpp$(DependSuffix) -MM EnemyBullet.cpp
 
@@ -135,7 +135,7 @@ $(IntermediateDirectory)/EnemyBullet.cpp$(PreprocessSuffix): EnemyBullet.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EnemyBullet.cpp$(PreprocessSuffix) EnemyBullet.cpp
 
 $(IntermediateDirectory)/Game.cpp$(ObjectSuffix): Game.cpp $(IntermediateDirectory)/Game.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/Game.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/Game.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Game.cpp$(DependSuffix): Game.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Game.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Game.cpp$(DependSuffix) -MM Game.cpp
 
@@ -143,7 +143,7 @@ $(IntermediateDirectory)/Game.cpp$(PreprocessSuffix): Game.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Game.cpp$(PreprocessSuffix) Game.cpp
 
 $(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix): GameObject.cpp $(IntermediateDirectory)/GameObject.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/GameObject.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/GameObject.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/GameObject.cpp$(DependSuffix): GameObject.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/GameObject.cpp$(DependSuffix) -MM GameObject.cpp
 
@@ -151,7 +151,7 @@ $(IntermediateDirectory)/GameObject.cpp$(PreprocessSuffix): GameObject.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/GameObject.cpp$(PreprocessSuffix) GameObject.cpp
 
 $(IntermediateDirectory)/GameTests.cpp$(ObjectSuffix): GameTests.cpp $(IntermediateDirectory)/GameTests.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/GameTests.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/GameTests.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/GameTests.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/GameTests.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/GameTests.cpp$(DependSuffix): GameTests.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/GameTests.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/GameTests.cpp$(DependSuffix) -MM GameTests.cpp
 
@@ -159,7 +159,7 @@ $(IntermediateDirectory)/GameTests.cpp$(PreprocessSuffix): GameTests.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/GameTests.cpp$(PreprocessSuffix) GameTests.cpp
 
 $(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix): LaserGenerator.cpp $(IntermediateDirectory)/LaserGenerator.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/LaserGenerator.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/LaserGenerator.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/LaserGenerator.cpp$(DependSuffix): LaserGenerator.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/LaserGenerator.cpp$(DependSuffix) -MM LaserGenerator.cpp
 
@@ -167,7 +167,7 @@ $(IntermediateDirectory)/LaserGenerator.cpp$(PreprocessSuffix): LaserGenerator.c
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/LaserGenerator.cpp$(PreprocessSuffix) LaserGenerator.cpp
 
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 
@@ -175,7 +175,7 @@ $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
 $(IntermediateDirectory)/Player.cpp$(ObjectSuffix): Player.cpp $(IntermediateDirectory)/Player.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/Player.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Player.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/Player.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Player.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Player.cpp$(DependSuffix): Player.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Player.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Player.cpp$(DependSuffix) -MM Player.cpp
 
@@ -183,7 +183,7 @@ $(IntermediateDirectory)/Player.cpp$(PreprocessSuffix): Player.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Player.cpp$(PreprocessSuffix) Player.cpp
 
 $(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix): PlayerBullet.cpp $(IntermediateDirectory)/PlayerBullet.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/Game/PlayerBullet.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/PlayerBullet.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/PlayerBullet.cpp$(DependSuffix): PlayerBullet.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/PlayerBullet.cpp$(DependSuffix) -MM PlayerBullet.cpp
 

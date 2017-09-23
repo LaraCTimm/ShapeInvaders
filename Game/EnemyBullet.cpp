@@ -57,3 +57,9 @@ EnemyBullet::EnemyBullet(float xCoord, float yCoord, sf::Vector2f enemyPathVecto
     setObjectShape(rectangle);
     
 }
+
+//EnemyBullet::void decrementEnemyBulletCooldown() 
+//{
+//    if (_cooldown > 0)
+//        _cooldown--;
+//}

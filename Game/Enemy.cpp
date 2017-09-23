@@ -40,3 +40,15 @@ Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
     setObjectShape(rectangle);
 
 }
+
+//void Enemy::decrementEnemyCooldown() 
+//{
+//    if (_cooldown > 0)
+//        _cooldown--;
+//}
+
+void Enemy::decrementEnemyBulletCooldown() 
+{
+    if (_bulletCooldown > 0)
+        _bulletCooldown--;
+}

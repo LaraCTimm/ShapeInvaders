@@ -16,18 +16,17 @@ int main()
     
     Game newGame(5);
     
-    //srand(time(NULL));
     const float _RAND_FLOAT_MAX = 150.0f;
     const float _RAND_FLOAT_MIN = 75.0f;
-    //srand (time(0));         // seed randomness for enemy spawning
 
     bool playing = true;
-//    bool spawned = false;
-    window.setKeyRepeatEnabled(false);
 
     while(window.isOpen())
     {
-    // set repeat enabled to false to not aallow holding down button to spawn more than one object
+        //window.setKeyRepeatEnabled(false); // doesnt seem to work
+        //window.setKeyRepeatEnabled(false);
+        
+    // set repeat enabled to false to not allow holding down button to spawn more than one object
         while (playing)//window.isOpen())
         {
             sf::Event event;
@@ -54,7 +53,7 @@ int main()
             }
 
             // Fire a bullet
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !newGame.getShotFired()) 
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !newGame.getShotFired())
             {
                 newGame.AddGameObject(gameObjectType::PlayerBullet, 0);
                 newGame.setShotFired(true);
@@ -77,39 +76,33 @@ int main()
             {
                 newGame.setGeneratorFired(false);
             }
-//            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))// && !spawned) 
+            
+//            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 //            {
-//                //spawned = true;
 //                newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
 //            }
             
+//            newGame.decrementEnemyCooldown();
+//            newGame.decrementAsteriodCooldown();
+//            newGame.decrementCooldowns();
+
+            newGame.DecrementCooldowns();
             
-            newGame.decrementEnemyCooldown();
-            newGame.decrementAsteriodCooldown();
-            newGame.decrementBulletCooldowns();
+            newGame.SpawnGameObjects();
             
-            if (newGame.getEnemyCooldown() <= 0)
-            {
-                newGame.AddGameObject(gameObjectType::Enemy, 0);
-                newGame.setEnemyCooldown(newGame.generateRandomNumber(75.0f, 150.0f));
-            }
-            
-            if (newGame.getAsteriodCooldown() <= 0)
-            {
-                newGame.AddGameObject(gameObjectType::Asteriod, 0);
-                newGame.setAsteriodCooldown(newGame.generateRandomNumber(100.0f, 150.0f));
-            }
+
             
             newGame.CheckCollisions();
             newGame.ObjectCleanup();
             
             if (newGame.getGameObjectsVector().size() > 0 && newGame.getGameObjectsVector()[0]->getObjectType() != gameObjectType::Player)
             {
-                playing = false;//return 0;
+                playing = false;
                 
                 ///// DISPLAY GAME OVER HERE /////
             }
             
+            // update Game Objects' positions and draw to the window
             for (int i = 0u; i < newGame.getGameObjectsVector().size(); i++)
             {
                 if (newGame.getGameObjectsVector()[i]->getObjectType() != gameObjectType::Player)
@@ -118,7 +111,6 @@ int main()
                 }
                 
                 window.draw(newGame.getGameObjectsVector()[i]->getObjectShape());
-                
             }
             
             ///////////////////
@@ -130,7 +122,6 @@ int main()
         {
             newGame = Game(5);
             playing = true;
-//            spawned = false;
         }
         
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) 

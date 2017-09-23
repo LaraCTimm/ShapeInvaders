@@ -26,8 +26,8 @@ Asteriod::Asteriod(float xCoord, float yCoord, float angle) : GameObject()
     
     const float SPEED_MULTIPLIER = 2.0f;
     
-    vecX = -vecX * SPEED_MULTIPLIER;//300;
-    vecY = -vecY * SPEED_MULTIPLIER;//300;
+    vecX = vecX * SPEED_MULTIPLIER;//300;
+    vecY = vecY * SPEED_MULTIPLIER;//300;
     _pathVector = sf::Vector2f(vecX, vecY);
     
     // Create bullet rectangle
@@ -44,3 +44,9 @@ Asteriod::Asteriod(float xCoord, float yCoord, float angle) : GameObject()
 
     //cout << _pathVector.x << " " << _pathVector.y << endl;
 }
+
+//void Asteriod::decrementAsteriodCooldown() 
+//{
+//    if (_cooldown > 0)
+//        _cooldown--;
+//}

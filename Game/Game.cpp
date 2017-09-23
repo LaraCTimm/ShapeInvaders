@@ -8,17 +8,24 @@
 using std::cout;
 using std::endl;
 
-#include <typeinfo>
-
 //#include <iostream>
-//#include "GameObject.h"
+#include "GameObject.h"
 
+// Pass in the previous high score from a text file
+Game::Game(int highScore)
+{
+    // Player becomes first element in _GameObjectsVector
+    shared_ptr<GameObject> obj_ptr = Game::spawnGameObject(gameObjectType::Player, 0);
+    _GameObjectsVector.push_back(obj_ptr);
+    //_bulletCooldown = 0;
+    _enemyCooldown = 0;
+    _asteriodCooldown = 0;
+    //_shotFired = false;
+    srand (time(0));         // seed randomness for enemy spawning
+}
 
 shared_ptr<GameObject> Game::spawnGameObject(gameObjectType type, int index) 
 {
-//    float randAngle;
-//    const float _RAND_FLOAT_MAX = 360;//2*M_PI;
-
     switch (type) 
     {
         case gameObjectType::Player:
@@ -33,12 +40,13 @@ shared_ptr<GameObject> Game::spawnGameObject(gameObjectType type, int index)
             return shared_ptr<GameObject>(new PlayerBullet(_GameObjectsVector[0]->getXCoord(), _GameObjectsVector[0]->getYCoord(), _GameObjectsVector[0]->getPathVector(), _GameObjectsVector[0]->getAngle()));
             
         case gameObjectType::EnemyBullet:
-            _GameObjectsVector[index]->setBulletCooldown(generateRandomNumber(100, 200));
+            //shared_ptr<Enemy> enemy_ptr = std::static_pointer_cast<Enemy>((*_GameObjectsVector[index]).getptr());
+            //enemy_ptr->setEnemyBulletCooldown(generateRandomNumber(100, 200));
             return shared_ptr<GameObject>(new EnemyBullet(_GameObjectsVector[index]->getXCoord(), _GameObjectsVector[index]->getYCoord(), _GameObjectsVector[index]->getPathVector(), _GameObjectsVector[index]->getAngle(), _GameObjectsVector[index]->getScaleCount() ));
             
         case gameObjectType::Asteriod:
-            return shared_ptr<GameObject>(new Asteriod(ORIGIN_X, ORIGIN_Y, generateRandomNumber(0, 360)));
-            break;
+            return shared_ptr<GameObject>(new Asteriod(ORIGIN_X, ORIGIN_Y, _GameObjectsVector[0]->getAngle()));
+            
         case gameObjectType::Satellite:
             break;
         case gameObjectType::LaserGenerator:
@@ -55,17 +63,14 @@ shared_ptr<GameObject> Game::spawnGameObject(gameObjectType type, int index)
                     {
                         ID = laserGen_ptr->getID();
                     }
-                    //ID++;
                 }
             }
             
-            ID+=1;
-            
+            ID++;
             float angle = generateRandomNumber(0, 360);
-            //LaserGenerator LG(angle+1, ID);
-            shared_ptr<GameObject> laserGen_ptr1(new LaserGenerator(angle+1, ID));
+            shared_ptr<GameObject> laserGen_ptr1(new LaserGenerator(angle + 1, ID));
             
-            for(int i=0; i<9; i++)
+            for(int i = 0; i < 7; i++)
             {
                 angle += 4;
                 shared_ptr<GameObject> arcSeg_ptr(new ArcSegment(angle, ID));
@@ -74,32 +79,19 @@ shared_ptr<GameObject> Game::spawnGameObject(gameObjectType type, int index)
 
             _GameObjectsVector.push_back(laserGen_ptr1);
             
-            angle += 3;
-            
-            shared_ptr<GameObject> laserGen_ptr2(new LaserGenerator(angle, ID));
+            angle += 4;
+            shared_ptr<GameObject> laserGen_ptr2(new LaserGenerator(angle - 1, ID));
             
             return laserGen_ptr2;
-            break;
-            
         }
+        
         default:
             break;
     }
     return shared_ptr<GameObject>();
 } 
 
-// Creating an instance of a game automatically spawns a player
-// Pass in the previous high score from a text file
-Game::Game(int highScore)
-{
-    // Player becomes first element in _GameObjectsVector
-    shared_ptr<GameObject> obj_ptr = Game::spawnGameObject(gameObjectType::Player, 0);
-    _GameObjectsVector.push_back(obj_ptr);
-    _bulletCooldown = 0;
-    _enemyCooldown = 0;
-    _shotFired = false;
-    srand (time(0));         // seed randomness for enemy spawning
-}
+
 
 void Game::movePlayerObject(int direction)
 {
@@ -111,24 +103,17 @@ void Game::moveLineObject(int objectIndex)
     _GameObjectsVector[objectIndex]->lineMove();
 }
 
-
 void Game::AddGameObject(gameObjectType type, int index)
 {
     shared_ptr<GameObject> object_ptr = Game::spawnGameObject(type, index);
     _GameObjectsVector.push_back(object_ptr);
-    
-    if(object_ptr->getObjectType() == gameObjectType::LaserGenerator || object_ptr->getObjectType() == gameObjectType::ArcSegment)
-    {
-        GameObject GO = *object_ptr;
-        //cout << object_ptr->getID() << "ID here" << endl;
-    }
 }
 
 void Game::ObjectCleanup() 
 {
     for (int i = 0; i < _GameObjectsVector.size(); i++)
     {
-        // all game objects that aren't of type 'player' use health as a cleanup flag
+        // all game objects use health as a cleanup flag
         if (_GameObjectsVector[i]->getHealth() == 0)  
         {
             _GameObjectsVector.erase(_GameObjectsVector.begin() + i);
@@ -137,34 +122,50 @@ void Game::ObjectCleanup()
     }
 }
 
+//// should all be in individual files
 
-void Game::decrementBulletCooldowns()
+void Game::DecrementCooldowns()
 {
     for (int i = 0; i < _GameObjectsVector.size(); i++)
     {
         if (_GameObjectsVector[i]->getObjectType() == gameObjectType::Enemy)
         {
-            _GameObjectsVector[i]->decrementBulletCooldown();
-            
-            if(_GameObjectsVector[i]->getBulletCooldown() <= 0)
+            shared_ptr<Enemy> enemy_ptr = std::static_pointer_cast<Enemy>((*_GameObjectsVector[i]).getptr());
+            enemy_ptr->decrementEnemyBulletCooldown();  
+          
+            if (enemy_ptr->getBulletCooldown() <= 0)
             {
                 AddGameObject(gameObjectType::EnemyBullet, i);
+                enemy_ptr->setBulletCooldown(generateRandomNumber(100,200));
             }
         }
     }
-}
-
-void Game::decrementEnemyCooldown()
-{
-    if (_enemyCooldown > 0)
+    
+    if (_enemyCooldown > 0) {
         _enemyCooldown--;
+    }
+    
+    if (_asteriodCooldown > 0) {
+        _asteriodCooldown--;
+    }
+    
 }
 
-void Game::decrementAsteriodCooldown()
+void Game::SpawnGameObjects()
 {
-    if (_asteriodCooldown > 0)
-        _asteriodCooldown--;
+    if (getEnemyCooldown() <= 0)
+    {
+        AddGameObject(gameObjectType::Enemy, 0);
+        setEnemyCooldown(generateRandomNumber(75.0f, 150.0f));
+    }
+            
+    if (getAsteriodCooldown() <= 0)
+    {
+        AddGameObject(gameObjectType::Asteriod, 0);
+        setAsteriodCooldown(generateRandomNumber(100.0f, 150.0f));
+    }
 }
+
 
 void Game::CheckCollisions() 
 {

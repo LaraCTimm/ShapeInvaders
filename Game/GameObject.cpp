@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include "GameObject.h"
 #include "Game.h"
 #include "math.h"
@@ -217,8 +216,20 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
     }
 }
 
-void GameObject::decrementBulletCooldown()
-{
-    if (_bulletCooldown > 0)
-        _bulletCooldown--;
-}
+//void GameObject::decrementEnemyBulletCooldown()
+//{
+//    if (_bulletCooldown > 0)
+//        _bulletCooldown--;
+//}
+//
+//void Game::decrementEnemyCooldown()
+//{
+//    if (_enemyCooldown > 0)
+//        _enemyCooldown--;
+//}
+//
+//void Game::decrementAsteriodCooldown()
+//{
+//    if (_asteriodCooldown > 0)
+//        _asteriodCooldown--;
+//}

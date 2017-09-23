@@ -9,7 +9,18 @@ public:
 
     Asteriod(float xCoord, float yCoord, float angle);
     
+//    float getCooldown() {
+//        return _cooldown;
+//    }
+//    
+//    void setCooldown(float newCooldown) {
+//        _cooldown = newCooldown;
+//    }
+//    
+//    void decrementAsteriodCooldown();
 private:
+
+    float _cooldown;
     
 };
 
