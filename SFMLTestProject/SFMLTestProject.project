@@ -3,8 +3,7 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="main.cpp" ExcludeProjConfig="Debug"/>
-    <File Name="../../../Desktop/StevesDownloads/win-64/sfml/test-code/Pong.cpp"/>
+    <File Name="main.cpp" ExcludeProjConfig=""/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -104,4 +103,6 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

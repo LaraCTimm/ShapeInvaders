@@ -68,7 +68,8 @@ Debug/GameObject.cpp.o: GameObject.cpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Shader.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp \
- GameObject.h Game.h Player.h PlayerBullet.h Enemy.h
+ GameObject.h Game.h Player.h PlayerBullet.h Enemy.h EnemyBullet.h \
+ Asteriod.h
 
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics.hpp:
 
@@ -217,3 +218,7 @@ Player.h:
 PlayerBullet.h:
 
 Enemy.h:
+
+EnemyBullet.h:
+
+Asteriod.h:

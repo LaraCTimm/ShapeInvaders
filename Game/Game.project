@@ -15,6 +15,11 @@
     <File Name="Enemy.h"/>
     <File Name="Enemy.cpp"/>
     <File Name="GameTests.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="EnemyBullet.h"/>
+    <File Name="EnemyBullet.cpp"/>
+    <File Name="tests_player.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="Asteriod.h"/>
+    <File Name="Asteriod.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -114,4 +119,6 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

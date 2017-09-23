@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Lara
-Date                   :=10/09/2017
+Date                   :=19/09/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/up_up_up_Desktop_StevesDownloads_win-64_sfml_test-code_Pong.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
 
 
 
@@ -93,13 +93,13 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/up_up_up_Desktop_StevesDownloads_win-64_sfml_test-code_Pong.cpp$(ObjectSuffix): ../../../Desktop/StevesDownloads/win-64/sfml/test-code/Pong.cpp $(IntermediateDirectory)/up_up_up_Desktop_StevesDownloads_win-64_sfml_test-code_Pong.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Desktop/StevesDownloads/win-64/sfml/test-code/Pong.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/up_up_up_Desktop_StevesDownloads_win-64_sfml_test-code_Pong.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/up_up_up_Desktop_StevesDownloads_win-64_sfml_test-code_Pong.cpp$(DependSuffix): ../../../Desktop/StevesDownloads/win-64/sfml/test-code/Pong.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/up_up_up_Desktop_StevesDownloads_win-64_sfml_test-code_Pong.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/up_up_up_Desktop_StevesDownloads_win-64_sfml_test-code_Pong.cpp$(DependSuffix) -MM ../../../Desktop/StevesDownloads/win-64/sfml/test-code/Pong.cpp
+$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/SFMLTestProject/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 
-$(IntermediateDirectory)/up_up_up_Desktop_StevesDownloads_win-64_sfml_test-code_Pong.cpp$(PreprocessSuffix): ../../../Desktop/StevesDownloads/win-64/sfml/test-code/Pong.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/up_up_up_Desktop_StevesDownloads_win-64_sfml_test-code_Pong.cpp$(PreprocessSuffix) ../../../Desktop/StevesDownloads/win-64/sfml/test-code/Pong.cpp
+$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

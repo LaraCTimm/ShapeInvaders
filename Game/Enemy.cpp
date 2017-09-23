@@ -1,20 +1,36 @@
 #include "Enemy.h"
+#include "Game.h"
 
 #include <iostream>
 using std::cout;
 using std::endl;
 
-Enemy::Enemy(float xCoord, float yCoord, sf::Vector2f pathVector, float angle) : GameObject()
+Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
 {
-    _hitRadius = 5;
+    _xCoord = xCoord;
+	_yCoord = yCoord;
+    _angle = angle;
     _objectWidth = 50;
     _objectHeight = 50;
+    _hitRadius = (_objectWidth + _objectHeight)/4;
+    _bulletCooldown = 25;
+
     _health = 1;
     _points = 0;
     _scale = 0.2;
-    _scaleFactor = 0.08;
+    _scaleFactor = (1 - _scale) / Game::PATH_RADIUS;
+    _scaleCount = 0;
     _objectType = gameObjectType::Enemy;
-    _pathVector = -pathVector;
+    
+    
+    float vecX = cos(_angle*M_PI/90);//*Game::PATH_RADIUS;
+    float vecY = sin(_angle*M_PI/90);//*Game::PATH_RADIUS;
+    
+    vecX = -vecX;//300;
+    vecY = -vecY;//300;
+    _pathVector = sf::Vector2f(vecX, vecY); // start position of linear path
+    cout << vecX << " " << vecY << " " << angle << " Enemy" << endl;
+    
 
     // Create bullet rectangle
     sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));
@@ -24,15 +40,8 @@ Enemy::Enemy(float xCoord, float yCoord, sf::Vector2f pathVector, float angle) :
     rectangle.setOutlineColor(sf::Color::Green);
     rectangle.setFillColor(sf::Color::White);
     rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
-    rectangle.setRotation(angle*2);
-
-    
-    _xCoord = xCoord + pathVector.x;
-	_yCoord = yCoord + pathVector.y;
-    cout << pathVector.x << " " << pathVector.y << endl;
-    
-	rectangle.setPosition(_xCoord, _yCoord);
-    
+    rectangle.setRotation(_angle*2);
+    rectangle.setPosition(_xCoord, _yCoord);
     setObjectShape(rectangle);
-    
+
 }

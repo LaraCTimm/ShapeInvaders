@@ -7,7 +7,7 @@ class Enemy : public GameObject
 {
 public:
 
-    Enemy(float xCoord, float yCoord, sf::Vector2f pathVector, float angle);
+    Enemy(float xCoord, float yCoord, float angle);
     
 private:
     

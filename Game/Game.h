@@ -6,6 +6,8 @@
 #include "Player.h"
 #include "PlayerBullet.h"
 #include "Enemy.h"
+#include "EnemyBullet.h"
+#include "Asteriod.h"
 #include <vector>
 using std::vector;
 
@@ -16,9 +18,9 @@ class Game
 {
 public:
 
-static constexpr float ORIGIN_X = 400.f;
-static constexpr float ORIGIN_Y = 400.f;
-static constexpr float PATH_RADIUS = 300.f;
+static constexpr float ORIGIN_X = 400.0f;
+static constexpr float ORIGIN_Y = 400.0f;
+static constexpr float PATH_RADIUS = 300.0f;
 
 // Accessors and Mutators ----------------------------
 
@@ -54,13 +56,37 @@ void setBulletCooldown(const int newBulletCooldown) {
     _bulletCooldown = newBulletCooldown;
 }
 
+int getEnemyCooldown() {
+    return _enemyCooldown;
+}
+
+void setEnemyCooldown(const int newEnemyCooldown) {
+    _enemyCooldown = newEnemyCooldown;
+}
+
+int getAsteriodCooldown() {
+    return _asteriodCooldown;
+}
+
+void setAsteriodCooldown(const int newAsteriodCooldown) {
+    _asteriodCooldown = newAsteriodCooldown;
+}
+
+bool getShotFired() {
+    return _shotFired;
+}
+
+void setShotFired(const bool newShotFired) {
+    _shotFired = newShotFired;
+}
+
 //---------------------------------------------------
 
 // Constructor
 Game(int highScore);
 
 // Create a game object
-GameObject spawnGameObject(gameObjectType type);
+GameObject spawnGameObject(gameObjectType type, int index);
 
 // Moves the player in a circular arc
 void movePlayerObject(int direction);
@@ -69,12 +95,20 @@ void movePlayerObject(int direction);
 void moveLineObject(int objectIndex);
 
 // Adds game object to vector be rendered
-void AddGameObject(gameObjectType type);
+void AddGameObject(gameObjectType type, int index);
 
 // Delete objects from vector that are no longer needed
 void ObjectCleanup();
 
-void DecrementBulletCooldown();
+void decrementBulletCooldowns();
+
+void decrementEnemyCooldown();
+
+void decrementAsteriodCooldown();
+
+void CheckCollisions();
+
+float generateRandomNumber(float min, float max);
 
 
 //////////////////////////////////////////////////////
@@ -84,6 +118,12 @@ private:
     int _score;
     sf::Clock _clock;
     int _bulletCooldown;
+    float _enemyCooldown;
+    float _asteriodCooldown;
+    bool _shotFired;
+    
+
+
     
 };
 
