@@ -9,7 +9,7 @@ using std::endl;
 Player::Player() : GameObject()
 {
     _angle = 0;
-    _hitRadius = 5; 
+    _hitRadius = 25; 
     _objectWidth = 50;
     _objectHeight = 50;
     _health = 1;

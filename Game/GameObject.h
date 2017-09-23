@@ -2,6 +2,8 @@
 #define GAMEOBJECT_H
 
 #include <SFML/Graphics.hpp>
+#include <vector>
+using std::vector;
 
 //#include <memory> // required for smart pointers
 //using std::unique_ptr;
@@ -15,13 +17,17 @@ enum class gameObjectType
 	Enemy,
     PlayerBullet,
     EnemyBullet,
-    Astroid,
+    Asteriod,
     Satellite,
     LaserGenerator
 };
 
 class GameObject
 {
+
+    static constexpr float PLAYER_BULLET_SPEED_MODIFIER = 20.0f;
+
+    
 public:
 
 // Accessors and Mutators ----------------------------
@@ -74,6 +80,16 @@ void setHitRadius(const float newHitRadius) {
     _hitRadius = newHitRadius;
 }
 
+/////
+float getBulletCooldown() {
+    return _bulletCooldown;
+}
+    
+void setBulletCooldown(float newBulletCooldown) {
+    _bulletCooldown = newBulletCooldown;
+}
+/////
+
 int getHealth() {
     return _health;
 }
@@ -90,13 +106,14 @@ void setPoints(const int newPoints) {
     _points = newPoints;
 }
 
-float getScale() {
-    return _scale;
+int getScaleCount() {
+    return _scaleCount;
 }
 
-void setScale(const float newScale) {
-    _scale = newScale;
+void setScaleCount(const int newScaleCount) {
+    _scaleCount = newScaleCount;
 }
+
 
 sf::RectangleShape getObjectShape() {
     return _objectShape;
@@ -123,7 +140,10 @@ gameObjectType getObjectType() {
     return _objectType;
 }
 
+
+
 //---------------------------------------------------
+
 
 // Constructor
 GameObject();
@@ -135,6 +155,10 @@ void move(float xOffset, float yOffset);
 void circularMove(int direction);
 void lineMove();
 
+void checkCollisions(vector<GameObject> objectVector);
+
+void decrementBulletCooldown();
+
 // variables are protected rather that private so that can be accessed by classes inherited by the GameObject class
 protected:
     float _xCoord;
@@ -143,13 +167,16 @@ protected:
     float _objectWidth;
 	float _angle;
     float _hitRadius;
+    float _bulletCooldown;
     int _health;
     int _points;
     float _scale;
     float _scaleFactor;
+    int _scaleCount;
 	sf::RectangleShape _objectShape;
     sf::Vector2f _pathVector;
     gameObjectType _objectType;
+
     
 };
 
