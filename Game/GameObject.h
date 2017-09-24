@@ -1,15 +1,23 @@
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
+#ifndef GAME_OBJECT_H
+#define GAME_OBJECT_H
 
+class Game; // not entirely sure why doing this fixed things, but hey
 #include <SFML/Graphics.hpp>
+#include <cmath>
+#include <iostream>
 #include <vector>
-using std::vector;
+#include <memory>
 
-#include <memory> // required for smart pointers
-using std::unique_ptr;
-using std::make_unique;
+using std::sin;
+using std::cos;
+using std::pow;
+using std::sqrt;
+using std::cout;
+using std::endl;
+using std::vector;
 using std::shared_ptr;
 using std::make_shared;
+
 
 enum class gameObjectType 
 {
@@ -32,8 +40,7 @@ public:
     // Constructor
     GameObject();
 
-    // Move object by an offset
-    void move(float xOffset, float yOffset);
+//    void move(float xOffset, float yOffset);
 
     // Move object by calculating new co-ords and setting position
     void circularMove(int direction);
@@ -42,15 +49,7 @@ public:
 
     void checkCollisions(vector<shared_ptr<GameObject>> &objectVector);//, vector<shared_ptr<GameObject>> &laserObjVector);
 
-
-// NOT NECESSARY FOR ALL GAME OBJECTS
-    void decrementEnemyBulletCooldown();
-    void decrementEnemyCooldown();
-    void decrementAsteriodCooldown();
-
-//    
-
-    virtual ~GameObject() {};
+    //virtual ~GameObject() {}; 
     
 
     // Accessors and Mutators ----------------------------
@@ -102,16 +101,6 @@ public:
     void setHitRadius(const float newHitRadius) {
         _hitRadius = newHitRadius;
     }
-
-    /////
-//    float getEnemyBulletCooldown() {
-//        return _bulletCooldown;
-//    }
-//        
-//    void setEnemyBulletCooldown(float newBulletCooldown) {
-//        _bulletCooldown = newBulletCooldown;
-//    }
-    /////
 
     int getHealth() {
         return _health;
@@ -177,15 +166,16 @@ protected:
     float _objectWidth;
 	float _angle;
     float _hitRadius;
-    //float _bulletCooldown; // not all objects
     int _health;
-    int _points; // only not for asteroids
+    int _points;        // enemy, laser gen, satellites
     float _scale;
     float _scaleFactor;
-    int _scaleCount;
+    int _scaleCount;    // enemy, enemy bullet
 	sf::RectangleShape _objectShape;
     sf::Vector2f _pathVector; // not sure who exactly needs this
     gameObjectType _objectType;
+    
+private:
 
     
 };

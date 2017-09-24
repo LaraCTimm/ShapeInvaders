@@ -1,35 +1,25 @@
 #include "GameObject.h"
 #include "Game.h"
-#include "math.h"
-using std::sin;
-using std::cos;
-using std::pow;
-using std::sqrt;
-#include <iostream>
-using std::cout;
-using std::endl;
-
 
 GameObject::GameObject()
 {   }
 
-void GameObject::move(float xOffset, float yOffset)
-{
-	_objectShape.move(xOffset, yOffset);
-}
+//void GameObject::move(float xOffset, float yOffset)
+//{
+//	_objectShape.move(xOffset, yOffset);
+//}
 
 
 void GameObject::circularMove(int direction)
 {
-    // control player movement
+    // control circular movement
 	_angle += direction; // positive or negative
-    float vecX = cos(_angle*M_PI/90)*Game::PATH_RADIUS;
-    float vecY = sin(_angle*M_PI/90)*Game::PATH_RADIUS;
+    float vecX = cos(_angle*M_PI/90)*Game::PLAYER_RADIUS;
+    float vecY = sin(_angle*M_PI/90)*Game::PLAYER_RADIUS;
 	_xCoord = Game::ORIGIN_X + vecX;
 	_yCoord = Game::ORIGIN_Y + vecY;
 	_objectShape.setPosition(_xCoord, _yCoord);
     _objectShape.setRotation(_angle*2);
-	//cout << _xCoord << " " << _yCoord << " " << _angle <<  endl;
     
     // setup for player bullet movement vecor
     vecX = -vecX/BULLET_SPEED_MODIFIER;

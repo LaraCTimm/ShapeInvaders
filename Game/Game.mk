@@ -62,8 +62,8 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix) $(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) $(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameTests.cpp$(ObjectSuffix) $(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/Player.cpp$(ObjectSuffix) $(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) $(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameTests.cpp$(ObjectSuffix) $(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Player.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) 
 
 
 
@@ -94,14 +94,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix): Arc.cpp $(IntermediateDirectory)/Arc.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/Arc.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Arc.cpp$(DependSuffix): Arc.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Arc.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Arc.cpp$(DependSuffix) -MM Arc.cpp
-
-$(IntermediateDirectory)/Arc.cpp$(PreprocessSuffix): Arc.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Arc.cpp$(PreprocessSuffix) Arc.cpp
-
 $(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix): ArcSegment.cpp $(IntermediateDirectory)/ArcSegment.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/ArcSegment.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/ArcSegment.cpp$(DependSuffix): ArcSegment.cpp

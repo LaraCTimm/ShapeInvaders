@@ -67,7 +67,9 @@ Debug/ArcSegment.cpp.o: ArcSegment.cpp ArcSegment.h GameObject.h \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/RenderWindow.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Shader.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp \
- C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp
+ C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp \
+ Game.h Player.h PlayerBullet.h Enemy.h EnemyBullet.h Asteriod.h \
+ LaserGenerator.h
 
 ArcSegment.h:
 
@@ -210,3 +212,17 @@ C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Shader.
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp:
 
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp:
+
+Game.h:
+
+Player.h:
+
+PlayerBullet.h:
+
+Enemy.h:
+
+EnemyBullet.h:
+
+Asteriod.h:
+
+LaserGenerator.h:

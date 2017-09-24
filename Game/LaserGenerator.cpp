@@ -8,11 +8,10 @@ LaserGenerator::LaserGenerator (float degrees, int ID) : GameObject()
     _objectWidth = 35;
     _objectHeight = 35;
     _hitRadius = (_objectWidth + _objectHeight)/4;
-//    _bulletCooldown = 25;
     _health = 1;
     _points = 10;
     _scale = 0.2;
-    _scaleFactor = (1 - _scale) / Game::PATH_RADIUS;
+    _scaleFactor = (1 - _scale) / Game::PLAYER_RADIUS;
     _scaleCount = 0;
     _objectType = gameObjectType::LaserGenerator;
     

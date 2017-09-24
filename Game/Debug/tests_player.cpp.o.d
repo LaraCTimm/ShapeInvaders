@@ -69,7 +69,7 @@ Debug/tests_player.cpp.o: tests_player.cpp Player.h GameObject.h \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp \
  Game.h PlayerBullet.h Enemy.h EnemyBullet.h Asteriod.h LaserGenerator.h \
- ArcSegment.h Arc.h doctest.h
+ ArcSegment.h doctest.h
 
 Player.h:
 
@@ -226,7 +226,5 @@ Asteriod.h:
 LaserGenerator.h:
 
 ArcSegment.h:
-
-Arc.h:
 
 doctest.h:

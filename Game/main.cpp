@@ -16,15 +16,14 @@ int main()
     
     Game newGame(5);
     
-    const float _RAND_FLOAT_MAX = 150.0f;
-    const float _RAND_FLOAT_MIN = 75.0f;
+//    const float _RAND_FLOAT_MAX = 150.0f;
+//    const float _RAND_FLOAT_MIN = 75.0f;
 
     bool playing = true;
 
     while(window.isOpen())
     {
         //window.setKeyRepeatEnabled(false); // doesnt seem to work
-        //window.setKeyRepeatEnabled(false);
         
     // set repeat enabled to false to not allow holding down button to spawn more than one object
         while (playing)//window.isOpen())
@@ -44,12 +43,12 @@ int main()
             // Move player on button press
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) 
             {
-                newGame.movePlayerObject(-1);
+                newGame.MovePlayerObject(-1);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) 
             {
-                newGame.movePlayerObject(1);
+                newGame.MovePlayerObject(1);
             }
 
             // Fire a bullet
@@ -83,7 +82,7 @@ int main()
 //            }
 
             newGame.DecrementCooldowns();
-            newGame.SpawnGameObjects();
+            newGame.CreateGameObjects();
             newGame.CheckCollisions();
             newGame.ObjectCleanup();
             
@@ -99,7 +98,7 @@ int main()
             {
                 if (newGame.getGameObjectsVector()[i]->getObjectType() != gameObjectType::Player)
                 {
-                    newGame.moveLineObject(i);
+                    newGame.MoveLineObject(i);
                 }
                 
                 window.draw(newGame.getGameObjectsVector()[i]->getObjectShape());

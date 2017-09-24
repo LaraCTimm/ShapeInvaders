@@ -1,34 +1,23 @@
 #include "Asteriod.h"
-#include "Game.h"
 
-#include <iostream>
-using std::cout;
-using std::endl;
-
-Asteriod::Asteriod(float xCoord, float yCoord, float angle) : GameObject()
+Asteriod::Asteriod(float angle) : GameObject()
 {
-    _xCoord = xCoord;
-	_yCoord = yCoord;
+    _xCoord = Game::ORIGIN_X;
+	_yCoord = Game::ORIGIN_Y;
     _angle = angle;
     _objectWidth = 35;
     _objectHeight = 35;
     _hitRadius = (_objectWidth + _objectHeight)/4;
-//    _bulletCooldown = 25;
     _health = 1;
-//    _points = 0;
     _scale = 0.2;
-    _scaleFactor = (1 - _scale) / Game::PATH_RADIUS;
+    _scaleFactor = (1 - _scale) / Game::PLAYER_RADIUS;
     _scaleCount = 0;
     _objectType = gameObjectType::Asteriod;
     
-    float vecX = cos(_angle*M_PI/90);//*Game::PATH_RADIUS;
-    float vecY = sin(_angle*M_PI/90);//*Game::PATH_RADIUS;
+    float vecX = cos(_angle*M_PI/90);//*Game::PLAYER_RADIUS;
+    float vecY = sin(_angle*M_PI/90);//*Game::PLAYER_RADIUS;
     
-    const float SPEED_MULTIPLIER = 2.0f;
-    
-    vecX = vecX * SPEED_MULTIPLIER;//300;
-    vecY = vecY * SPEED_MULTIPLIER;//300;
-    _pathVector = sf::Vector2f(vecX, vecY);
+    _pathVector = sf::Vector2f(vecX * _SPEED_MULTIPLIER, vecY * _SPEED_MULTIPLIER);
     
     // Create bullet rectangle
     sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));

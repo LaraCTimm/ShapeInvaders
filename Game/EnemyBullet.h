@@ -2,6 +2,8 @@
 #define ENEMYBULLET_H
 
 #include "GameObject.h"
+#include "Game.h"
+#include "Enemy.h"
 
 class EnemyBullet : public GameObject
 {

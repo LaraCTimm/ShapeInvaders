@@ -1,6 +1,5 @@
 #include "Enemy.h"
 
-
 Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
 {
     _xCoord = xCoord;
@@ -14,7 +13,7 @@ Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
     _health = 1;
     _points = 0;
     _scale = 0.2;
-    _scaleFactor = (1 - _scale) / Game::PATH_RADIUS;
+    _scaleFactor = (1 - _scale) / Game::PLAYER_RADIUS;
     _scaleCount = 0;
     _objectType = gameObjectType::Enemy;
     

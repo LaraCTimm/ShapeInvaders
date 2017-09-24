@@ -7,13 +7,13 @@ using std::endl;
 PlayerBullet::PlayerBullet(float xCoord, float yCoord, sf::Vector2f pathVector, float angle) : GameObject()
 {
     _angle = angle;
-    _hitRadius = 5;
     _objectWidth = 10;
     _objectHeight = 10;
+    _hitRadius = (_objectWidth + _objectHeight)/4;
     _health = 1;
     _points = 0;
     _scale = 1;
-    _scaleFactor = -0.035;
+    _scaleFactor = -0.035; //// FIX THIS
     _scaleCount = 0;
     _objectType = gameObjectType::PlayerBullet;
     _pathVector = pathVector;

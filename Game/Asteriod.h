@@ -2,12 +2,14 @@
 #define ASTERIOD_H
 
 #include "GameObject.h"
+#include "Game.h"
+
 
 class Asteriod : public GameObject
 {
 public:
 
-    Asteriod(float xCoord, float yCoord, float angle);
+    Asteriod(float angle);
     
 //    float getCooldown() {
 //        return _cooldown;
@@ -20,7 +22,8 @@ public:
 //    void decrementAsteriodCooldown();
 private:
 
-    float _cooldown;
+//    float _cooldown;
+    const float _SPEED_MULTIPLIER = 2.0f;
     
 };
 

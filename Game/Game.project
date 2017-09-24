@@ -4,8 +4,6 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="tests_player.cpp" ExcludeProjConfig="Debug"/>
-    <File Name="Arc.cpp"/>
-    <File Name="Arc.h"/>
     <File Name="ArcSegment.cpp"/>
     <File Name="ArcSegment.h"/>
     <File Name="Asteriod.cpp"/>

@@ -26,7 +26,7 @@ TEST_CASE("Check Player is instantiated at (700,400)"){
 TEST_CASE("Check player can move in anti-clockwise direction"){
 	Game newGame(5);
 	int oldx = newGame.getGameObjectsVector()[0]->getXCoord(), oldy = newGame.getGameObjectsVector()[0]->getYCoord();
-	newGame.movePlayerObject(1);
+	newGame.MovePlayerObject(1);
 	int newx = newGame.getGameObjectsVector()[0]->getXCoord(), newy = newGame.getGameObjectsVector()[0]->getYCoord();
 	CHECK(oldx > newx);
 	CHECK(oldy < newy);
@@ -36,7 +36,7 @@ TEST_CASE("Check player can move in anti-clockwise direction"){
 TEST_CASE("Check player can move in clockwise direction"){
 	Game newGame(5);
 	int oldx = newGame.getGameObjectsVector()[0]->getXCoord(), oldy = newGame.getGameObjectsVector()[0]->getYCoord();
-	newGame.movePlayerObject(-1);
+	newGame.MovePlayerObject(-1);
 	int newx = newGame.getGameObjectsVector()[0]->getXCoord(), newy = newGame.getGameObjectsVector()[0]->getYCoord();
 	CHECK(oldx > newx);
 	CHECK(oldy > newy);

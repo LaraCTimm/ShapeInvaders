@@ -1,10 +1,9 @@
-#ifndef PLAYERBULLET_H
-#define PLAYERBULLET_H
+#ifndef PLAYER_BULLET_H
+#define PLAYER_BULLET_H
 
 #include "GameObject.h"
 #include "Game.h"
 #include "Player.h"
-#include <SFML/Graphics.hpp>
 
 class PlayerBullet : public GameObject
 {

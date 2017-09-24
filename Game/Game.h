@@ -1,7 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <SFML/Graphics.hpp>
 #include "GameObject.h"
 #include "Player.h"
 #include "PlayerBullet.h"
@@ -10,15 +9,22 @@
 #include "Asteriod.h"
 #include "LaserGenerator.h"
 #include "ArcSegment.h"
+
+#include <SFML/Graphics.hpp>
+#include <ctime>
+#include <cmath>
+#include <iostream>
 #include <vector>
-#include <memory> // required for smart pointers
+#include <memory>
+
+using std::cout;
+using std::endl;
 using std::vector;
-using std::unique_ptr;
-using std::make_unique;
 using std::shared_ptr;
 using std::make_shared;
-
-using std::iterator;
+//using std::unique_ptr;
+//using std::make_unique;
+//using std::iterator;
 
 
 //////////////////////////////////////////////////////
@@ -29,16 +35,9 @@ public:
 
 static constexpr float ORIGIN_X = 400.0f;
 static constexpr float ORIGIN_Y = 400.0f;
-static constexpr float PATH_RADIUS = 300.0f;
+static constexpr float PLAYER_RADIUS = 300.0f;
 
 // Accessors and Mutators ----------------------------
-
-//vector<shared_ptr<GameObject>> getLaserPointerVector() {
-//    return _LaserPointerVector;
-//}
-
-
-
 
 vector<shared_ptr<GameObject>> getGameObjectsVector() {
     return _GameObjectsVector;
@@ -104,13 +103,13 @@ void setGeneratorFired(const bool newGeneratorFired) {
 Game(int highScore);
 
 // Create a game object
-shared_ptr<GameObject> spawnGameObject(gameObjectType type, int index);
+shared_ptr<GameObject> SpawnGameObject(gameObjectType type, int index);
 
 // Moves the player in a circular arc
-void movePlayerObject(int direction);
+void MovePlayerObject(int direction);
 
 // Moves objects that travel in a straight line
-void moveLineObject(int objectIndex);
+void MoveLineObject(int objectIndex);
 
 // Adds game object to vector be rendered
 void AddGameObject(gameObjectType type, int index);
@@ -120,11 +119,11 @@ void ObjectCleanup();
 
 void DecrementCooldowns();
 
-void SpawnGameObjects();
+void CreateGameObjects();
 
 void CheckCollisions();
 
-float generateRandomNumber(float min, float max);
+float GenerateRandomNumber(float min, float max);
 
 
 //////////////////////////////////////////////////////

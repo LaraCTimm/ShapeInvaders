@@ -1,4 +1,4 @@
-Debug/Game.cpp.o: Game.cpp \
+Debug/Game.cpp.o: Game.cpp Game.h GameObject.h \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Window.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/System.hpp \
@@ -68,8 +68,12 @@ Debug/Game.cpp.o: Game.cpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Shader.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp \
- Game.h GameObject.h Player.h PlayerBullet.h Enemy.h EnemyBullet.h \
- Asteriod.h LaserGenerator.h ArcSegment.h Arc.h
+ Player.h PlayerBullet.h Enemy.h EnemyBullet.h Asteriod.h \
+ LaserGenerator.h ArcSegment.h
+
+Game.h:
+
+GameObject.h:
 
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics.hpp:
 
@@ -209,10 +213,6 @@ C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.
 
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp:
 
-Game.h:
-
-GameObject.h:
-
 Player.h:
 
 PlayerBullet.h:
@@ -226,5 +226,3 @@ Asteriod.h:
 LaserGenerator.h:
 
 ArcSegment.h:
-
-Arc.h:

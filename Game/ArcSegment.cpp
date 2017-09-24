@@ -1,14 +1,13 @@
-#include <ArcSegment.h>
+#include "ArcSegment.h"
 
 ArcSegment::ArcSegment(float angle, int ID) : GameObject()
 {
-    _xCoord = 400;//Game::ORIGIN_X;
-	_yCoord = 400;//Game::ORIGIN_Y;
+    _xCoord = Game::ORIGIN_X;
+	_yCoord = Game::ORIGIN_Y;
     _angle = angle;
     _objectWidth = 15;
     _objectHeight = 40;
     _hitRadius = (_objectWidth + _objectHeight)/4;
-//    _bulletCooldown = 25;
     _health = 1;
     _points = 10;
     _scale = 0.2;

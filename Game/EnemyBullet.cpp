@@ -1,11 +1,5 @@
-#include <SFML/Graphics.hpp>
-#include "Game.h"
-#include "Enemy.h"
 #include "EnemyBullet.h"
 
-#include <iostream>
-using std::cout;
-using std::endl;
 
 EnemyBullet::EnemyBullet(float xCoord, float yCoord, sf::Vector2f enemyPathVector, float angle, int scaleCount) : GameObject()
 {
@@ -19,14 +13,14 @@ EnemyBullet::EnemyBullet(float xCoord, float yCoord, sf::Vector2f enemyPathVecto
     _points = 0;
     _scaleCount = scaleCount;
     _scale = 0.2;
-    _scaleFactor = (1 - _scale) / Game::PATH_RADIUS;
+    _scaleFactor = (1 - _scale) / Game::PLAYER_RADIUS;
     _scale += _scaleFactor*_scaleCount;
     _objectType = gameObjectType::EnemyBullet;
     
     const float SPEED_MULTIPLIER = 2.0f;
     
-    float vecX = cos(_angle*M_PI/90);//*Game::PATH_RADIUS;
-    float vecY = sin(_angle*M_PI/90);//*Game::PATH_RADIUS;
+    float vecX = cos(_angle*M_PI/90);//*Game::PLAYER_RADIUS;
+    float vecY = sin(_angle*M_PI/90);//*Game::PLAYER_RADIUS;
     
     vecX = -vecX;//300;
     vecY = -vecY;//300;

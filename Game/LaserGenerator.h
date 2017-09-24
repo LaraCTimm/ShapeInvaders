@@ -3,45 +3,31 @@
 
 #include "GameObject.h"
 #include "Game.h"
-#include <SFML/Graphics.hpp>
-#include <memory> // required for smart pointers
-#include "ArcSegment.h"
-#include "Arc.h"
-using std::unique_ptr;
-using std::make_unique;
-using std::shared_ptr;
-using std::make_shared;
+//#include "ArcSegment.h"
 
 class LaserGenerator : public GameObject
 {
 public:
 
-//shared_ptr<vector<ArcSegment>> getSegmentsVectorPtr()
-//{
-//    shared_ptr<vector<ArcSegment>> segmentVector_ptr{new vector<ArcSegment>(_segmentsVector)};
-//    return segmentVector_ptr;
-//}
+LaserGenerator (float degrees, int ID);
 
-//shared_ptr<Arc> getArcPtr()
-//{
-//    shared_ptr<vector<ArcSegment>> segmentVector_ptr{new vector<ArcSegment>(_segmentsVector)};
-//    return segmentVector_ptr;
-//}
-//
-//shared_ptr<LaserGenerator> getPartnerPtr()
-//{
-//    return _partner_ptr;
-//}
-int &getID()
-{
+int &getID() {
     return _ID;
 }
 
-LaserGenerator (float degrees, int ID);
+int getNumArcSegs() {
+    return _NUM_ARC_SEGS;
+}
+
+int getSeparationAngle() {
+    return _SEPARATION_ANGLE;
+}
 
 private:
 
 int _ID;
+const int _NUM_ARC_SEGS = 7;
+const int _SEPARATION_ANGLE = 4;
 
 };
 

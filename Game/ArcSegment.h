@@ -2,8 +2,7 @@
 #define ARC_SEGMENT_H
 
 #include "GameObject.h"
-//#include "Game.h"
-#include <SFML/Graphics.hpp>
+#include "Game.h"
 
 class ArcSegment : public GameObject
 {
