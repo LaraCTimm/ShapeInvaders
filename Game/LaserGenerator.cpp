@@ -1,4 +1,4 @@
-#include <LaserGenerator.h>
+#include "LaserGenerator.h"
 
 LaserGenerator::LaserGenerator (float degrees, int ID) : GameObject()
 {
