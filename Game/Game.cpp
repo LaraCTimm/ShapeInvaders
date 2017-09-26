@@ -36,7 +36,7 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             
         case gameObjectType::Asteriod:
         // tracks the position of the player
-            return shared_ptr<GameObject>(new Asteriod(90));//_GameObjectsVector[0]->getAngle()));
+            return shared_ptr<GameObject>(new Asteriod(_GameObjectsVector[0]->getAngle()));
             
         case gameObjectType::Satellite:
             break;
