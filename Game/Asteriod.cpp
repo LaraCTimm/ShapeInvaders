@@ -17,7 +17,7 @@ Asteriod::Asteriod(float angle) : GameObject()
     float vecX = cos(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
     float vecY = sin(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
     
-    _pathVector = sf::Vector2f(-vecX * _SPEED_MULTIPLIER, -vecY * _SPEED_MULTIPLIER);
+    _pathVector = sf::Vector2f(-(vecX*_SPEED_MULTIPLIER), -(vecY*_SPEED_MULTIPLIER);
     
     // Create bullet rectangle
     sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));
