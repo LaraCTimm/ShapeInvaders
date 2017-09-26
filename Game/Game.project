@@ -8,7 +8,7 @@
     <File Name="ArcSegment.h"/>
     <File Name="Asteriod.cpp"/>
     <File Name="Asteriod.h"/>
-    <File Name="doctest.h" ExcludeProjConfig="Debug"/>
+    <File Name="doctest.h" ExcludeProjConfig=""/>
     <File Name="Enemy.cpp"/>
     <File Name="Enemy.h"/>
     <File Name="EnemyBullet.cpp"/>
@@ -25,6 +25,8 @@
     <File Name="Player.h"/>
     <File Name="PlayerBullet.cpp"/>
     <File Name="PlayerBullet.h"/>
+    <File Name="MainMenu.cpp"/>
+    <File Name="MainMenu.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

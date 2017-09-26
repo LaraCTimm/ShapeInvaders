@@ -15,8 +15,8 @@ LaserGenerator::LaserGenerator (float degrees, int ID) : GameObject()
     _scaleCount = 0;
     _objectType = gameObjectType::LaserGenerator;
     
-    float vecX = cos(_angle*M_PI/90);
-    float vecY = sin(_angle*M_PI/90);
+    float vecX = cos(_angle*(M_PI/180));
+    float vecY = sin(_angle*(M_PI/180));
     
     const float SPEED_MULTIPLIER = 1.0f;
     
@@ -32,7 +32,7 @@ LaserGenerator::LaserGenerator (float degrees, int ID) : GameObject()
     rectangle.setOutlineColor(sf::Color::Black);
     rectangle.setFillColor(sf::Color::Cyan);
     rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
-    rectangle.setRotation(_angle*2);
+    rectangle.setRotation(_angle);
     rectangle.setPosition(_xCoord, _yCoord);
     setObjectShape(rectangle);
     

@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Lara
-Date                   :=24/09/2017
+Date                   :=26/09/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -63,7 +63,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
 Objects0=$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) $(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameTests.cpp$(ObjectSuffix) $(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Player.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) 
+	$(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/MainMenu.cpp$(ObjectSuffix) 
 
 
 
@@ -181,6 +181,14 @@ $(IntermediateDirectory)/PlayerBullet.cpp$(DependSuffix): PlayerBullet.cpp
 
 $(IntermediateDirectory)/PlayerBullet.cpp$(PreprocessSuffix): PlayerBullet.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/PlayerBullet.cpp$(PreprocessSuffix) PlayerBullet.cpp
+
+$(IntermediateDirectory)/MainMenu.cpp$(ObjectSuffix): MainMenu.cpp $(IntermediateDirectory)/MainMenu.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/MainMenu.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MainMenu.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/MainMenu.cpp$(DependSuffix): MainMenu.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/MainMenu.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/MainMenu.cpp$(DependSuffix) -MM MainMenu.cpp
+
+$(IntermediateDirectory)/MainMenu.cpp$(PreprocessSuffix): MainMenu.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/MainMenu.cpp$(PreprocessSuffix) MainMenu.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

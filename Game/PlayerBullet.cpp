@@ -26,7 +26,7 @@ PlayerBullet::PlayerBullet(float xCoord, float yCoord, sf::Vector2f pathVector, 
     rectangle.setOutlineColor(sf::Color::Black);
     rectangle.setFillColor(sf::Color::Red);
     rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
-    rectangle.setRotation(angle*2);
+    rectangle.setRotation(angle);
 
     
     _xCoord = xCoord + pathVector.x;

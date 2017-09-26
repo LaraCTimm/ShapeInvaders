@@ -69,6 +69,7 @@ int main()
                 }
             }
 
+            
             window.clear(sf::Color::White);
 
             // Move player on button press

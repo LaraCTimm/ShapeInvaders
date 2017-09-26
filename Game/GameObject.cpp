@@ -13,13 +13,13 @@ GameObject::GameObject()
 void GameObject::circularMove(int direction)
 {
     // control circular movement
-	_angle += direction; // positive or negative
-    float vecX = cos(_angle*M_PI/90)*Game::PLAYER_RADIUS;
-    float vecY = sin(_angle*M_PI/90)*Game::PLAYER_RADIUS;
+	_angle += 2*direction; // positive or negative
+    float vecX = cos(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
+    float vecY = sin(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
 	_xCoord = Game::ORIGIN_X + vecX;
 	_yCoord = Game::ORIGIN_Y + vecY;
 	_objectShape.setPosition(_xCoord, _yCoord);
-    _objectShape.setRotation(_angle*2);
+    _objectShape.setRotation(_angle);
     
     // setup for player bullet movement vecor
     vecX = -vecX/BULLET_SPEED_MODIFIER;
@@ -69,54 +69,35 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
             if (distance <= element->getHitRadius()+_hitRadius)
             {
                 _health = 0;
+                shared_ptr<PlayerBullet> playerBullet_ptr = std::static_pointer_cast<PlayerBullet>((*element).getptr());
+                playerBullet_ptr->setHealth(0);
+
             }
-        }
-        
-        if (element->getObjectType() == gameObjectType::Enemy && _objectType == gameObjectType::PlayerBullet)
-        {
-            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
-            if (distance <= element->getHitRadius()+_hitRadius)
-                _health = 0;
         }
         
         if (element->getObjectType() == gameObjectType::Enemy && _objectType == gameObjectType::Player)
         {
             float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
             if (distance <= element->getHitRadius()+_hitRadius)
+            {
                 _health--;
-        }
-        
-        if (element->getObjectType() == gameObjectType::Player && _objectType == gameObjectType::Enemy)
-        {
-            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
-            if (distance <= element->getHitRadius()+_hitRadius)
-                _health = 0;
+                shared_ptr<Enemy> enemy_ptr = std::static_pointer_cast<Enemy>((*element).getptr());
+                enemy_ptr->setHealth(0);
+            }   
         }
         
         if (element->getObjectType() == gameObjectType::EnemyBullet && _objectType == gameObjectType::Player)
         {
             float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
             if (distance <= element->getHitRadius()+_hitRadius)
-                _health--;
-        }
-        
-        if (element->getObjectType() == gameObjectType::Player && _objectType == gameObjectType::EnemyBullet)
-        {
-            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
-            if (distance <= element->getHitRadius()+_hitRadius)
-                _health = 0;
-        }
-        
-        if (element->getObjectType() == gameObjectType::Asteriod && _objectType == gameObjectType::Player)
-        {
-            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
-            if (distance <= element->getHitRadius()+_hitRadius)
             {
                 _health--;
+                shared_ptr<EnemyBullet> enemyBullet_ptr = std::static_pointer_cast<EnemyBullet>((*element).getptr());
+                enemyBullet_ptr->setHealth(0);
             }
         }
         
-        if ((element->getObjectType() == gameObjectType::LaserGenerator || element->getObjectType() == gameObjectType::ArcSegment) && _objectType == gameObjectType::Player)
+        if (element->getObjectType() == gameObjectType::Asteriod && _objectType == gameObjectType::Player)
         {
             float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
             if (distance <= element->getHitRadius()+_hitRadius)
@@ -130,6 +111,9 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
             float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
             if (distance <= element->getHitRadius()+_hitRadius)
             {
+                shared_ptr<Player> player_ptr = std::static_pointer_cast<Player>((*element).getptr());
+                player_ptr->setHealth(player_ptr->getHealth() - 1);
+                
                 int ID;
                 
                 // get ID of element that hit the player
@@ -200,21 +184,3 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
         }
     }
 }
-
-//void GameObject::decrementEnemyBulletCooldown()
-//{
-//    if (_bulletCooldown > 0)
-//        _bulletCooldown--;
-//}
-//
-//void Game::decrementEnemyCooldown()
-//{
-//    if (_enemyCooldown > 0)
-//        _enemyCooldown--;
-//}
-//
-//void Game::decrementAsteriodCooldown()
-//{
-//    if (_asteriodCooldown > 0)
-//        _asteriodCooldown--;
-//}

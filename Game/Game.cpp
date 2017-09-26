@@ -12,7 +12,7 @@ Game::Game(int highScore)
     _asteriodCooldown = 400;
     _laserGeneratorCooldown = 800;
     _shotFired = false;
-    _generatorFired = false;
+    //_generatorFired = false;
     srand (time(0));
 }
 
@@ -62,7 +62,7 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             float angle = GenerateRandomNumber(0, 360);
             
              // create first LaserGenerator
-            shared_ptr<GameObject> laserGen1_ptr(new LaserGenerator(angle + 1, ID));
+            shared_ptr<GameObject> laserGen1_ptr(new LaserGenerator(angle + 2, ID));
             
             shared_ptr<LaserGenerator> temp_ptr = std::static_pointer_cast<LaserGenerator>((*laserGen1_ptr).getptr());
             separationAngle = temp_ptr->getSeparationAngle();
@@ -80,7 +80,7 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             angle += separationAngle;
             
             // create second LaserGenerator
-            shared_ptr<GameObject> laserGen2_ptr(new LaserGenerator(angle - 1, ID));
+            shared_ptr<GameObject> laserGen2_ptr(new LaserGenerator(angle - 2, ID));
 
             return laserGen2_ptr;
         }
@@ -114,7 +114,7 @@ void Game::ObjectCleanup()
     for (int i = 0; i < _GameObjectsVector.size(); i++)
     {
         // all game objects use health as a cleanup flag
-        if (_GameObjectsVector[i]->getHealth() == 0)
+        if (_GameObjectsVector[i]->getHealth() <= 0)
         {
             _GameObjectsVector.erase(_GameObjectsVector.begin() + i);
             i--;
