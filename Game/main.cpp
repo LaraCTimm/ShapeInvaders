@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
+#include "MainMenu.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -14,15 +15,44 @@ int main()
                             sf::Style::Titlebar | sf::Style::Close);
     window.setVerticalSyncEnabled(true);    
     
+	MainMenu menu(window.getSize().x, window.getSize().y);
+	
     Game newGame(5);
     
 //    const float _RAND_FLOAT_MAX = 150.0f;
 //    const float _RAND_FLOAT_MIN = 75.0f;
 
-    bool playing = true;
+    bool playing = false;
+	bool menuScreen = true;
 
     while(window.isOpen())
     {
+		
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			switch(event.type)
+			{
+				case sf::Event::Closed:
+				window.close();
+				break;
+				
+			}
+		}
+		
+		while(menuScreen)
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+			{
+				menuScreen = false;
+				playing = true;
+			}
+			window.clear();
+			menu.draw(window);
+			window.display();
+		}
+		
+		
         //window.setKeyRepeatEnabled(false); // doesnt seem to work
         
     // set repeat enabled to false to not allow holding down button to spawn more than one object
@@ -120,9 +150,7 @@ int main()
         {
             window.close();
         }
-        
-        sf::Event event;
-            
+         
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
