@@ -13,13 +13,13 @@ GameObject::GameObject()
 void GameObject::circularMove(int direction)
 {
     // control circular movement
-	_angle += direction; // positive or negative
-    float vecX = cos(_angle*M_PI/90)*Game::PLAYER_RADIUS;
-    float vecY = sin(_angle*M_PI/90)*Game::PLAYER_RADIUS;
+	_angle += 2*direction; // positive or negative
+    float vecX = cos(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
+    float vecY = sin(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
 	_xCoord = Game::ORIGIN_X + vecX;
 	_yCoord = Game::ORIGIN_Y + vecY;
 	_objectShape.setPosition(_xCoord, _yCoord);
-    _objectShape.setRotation(_angle*2);
+    _objectShape.setRotation(_angle);
     
     // setup for player bullet movement vecor
     vecX = -vecX/BULLET_SPEED_MODIFIER;

@@ -36,7 +36,7 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             
         case gameObjectType::Asteriod:
         // tracks the position of the player
-            return shared_ptr<GameObject>(new Asteriod(_GameObjectsVector[0]->getAngle()));
+            return shared_ptr<GameObject>(new Asteriod(90));//_GameObjectsVector[0]->getAngle()));
             
         case gameObjectType::Satellite:
             break;
@@ -62,7 +62,7 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             float angle = GenerateRandomNumber(0, 360);
             
              // create first LaserGenerator
-            shared_ptr<GameObject> laserGen1_ptr(new LaserGenerator(angle + 1, ID));
+            shared_ptr<GameObject> laserGen1_ptr(new LaserGenerator(angle + 2, ID));
             
             shared_ptr<LaserGenerator> temp_ptr = std::static_pointer_cast<LaserGenerator>((*laserGen1_ptr).getptr());
             separationAngle = temp_ptr->getSeparationAngle();
@@ -80,7 +80,7 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             angle += separationAngle;
             
             // create second LaserGenerator
-            shared_ptr<GameObject> laserGen2_ptr(new LaserGenerator(angle - 1, ID));
+            shared_ptr<GameObject> laserGen2_ptr(new LaserGenerator(angle - 2, ID));
 
             return laserGen2_ptr;
         }

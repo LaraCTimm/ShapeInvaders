@@ -19,8 +19,8 @@ EnemyBullet::EnemyBullet(float xCoord, float yCoord, sf::Vector2f enemyPathVecto
     
     const float SPEED_MULTIPLIER = 2.0f;
     
-    float vecX = cos(_angle*M_PI/90);//*Game::PLAYER_RADIUS;
-    float vecY = sin(_angle*M_PI/90);//*Game::PLAYER_RADIUS;
+    float vecX = cos(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
+    float vecY = sin(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
     
     vecX = -vecX;//300;
     vecY = -vecY;//300;
@@ -36,7 +36,7 @@ EnemyBullet::EnemyBullet(float xCoord, float yCoord, sf::Vector2f enemyPathVecto
     rectangle.setOutlineColor(sf::Color::Black);
     rectangle.setFillColor(sf::Color::Green);
     rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
-    rectangle.setRotation(_angle*2);
+    rectangle.setRotation(_angle);
     
     _xCoord += _pathVector.x;
     _yCoord += _pathVector.y;

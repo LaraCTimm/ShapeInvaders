@@ -17,8 +17,8 @@ Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
     _scaleCount = 0;
     _objectType = gameObjectType::Enemy;
     
-    float vecX = cos(_angle*M_PI/90);
-    float vecY = sin(_angle*M_PI/90);
+    float vecX = cos(_angle*(M_PI/180));
+    float vecY = sin(_angle*(M_PI/180));
     
     vecX = -vecX;
     vecY = -vecY;
@@ -34,7 +34,7 @@ Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
     rectangle.setOutlineColor(sf::Color::Green);
     rectangle.setFillColor(sf::Color::White);
     rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
-    rectangle.setRotation(_angle*2);
+    rectangle.setRotation(_angle);
     rectangle.setPosition(_xCoord, _yCoord);
     setObjectShape(rectangle);
 

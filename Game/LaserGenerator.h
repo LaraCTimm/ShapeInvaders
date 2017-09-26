@@ -27,7 +27,7 @@ private:
 
 int _ID;
 const int _NUM_ARC_SEGS = 7;
-const int _SEPARATION_ANGLE = 4;
+const int _SEPARATION_ANGLE = 8;
 
 };
 

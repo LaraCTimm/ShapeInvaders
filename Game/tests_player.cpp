@@ -71,3 +71,8 @@ TEST_CASE("Check multiple enemies can be instantiated"){
 	newGame.AddGameObject(gameObjectType::Enemy, 1);
 	CHECK(newGame.getGameObjectsVector().size() == oldSize + 3);
 }
+
+TEST_CASE("check stuff") {
+    int x = 1;
+    CHECK(x == 1);
+}
