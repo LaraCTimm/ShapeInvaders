@@ -22,41 +22,42 @@ int main()
 //    const float _RAND_FLOAT_MAX = 150.0f;
 //    const float _RAND_FLOAT_MIN = 75.0f;
 
-    bool playing = false;
-	bool menuScreen = true;
+    //bool playing = false, menuScreen = true, endScreen = false;
+	int gameState = 1; // 1 - Opening Menu; 2 - Game; 3 - Game Over Screen
 
     while(window.isOpen())
     {
 		
 		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			switch(event.type)
-			{
-				case sf::Event::Closed:
-				window.close();
-				break;
-				
-			}
-		}
 		
-		while(menuScreen)
+		// Main menu - 'Splash screen'
+		while(gameState == 1)
 		{
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 			{
-				menuScreen = false;
-				playing = true;
+				gameState = 2;
 			}
 			window.clear();
 			menu.draw(window);
 			window.display();
 		}
 		
+		// Game over screen
+		while(gameState == 3)
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+			{
+				gameState = 2;
+			}
+			window.clear();
+			menu.draw(window);
+			window.display();
+		}
 		
         //window.setKeyRepeatEnabled(false); // doesnt seem to work
         
     // set repeat enabled to false to not allow holding down button to spawn more than one object
-        while (playing)//window.isOpen())
+        while (gameState == 2)//window.isOpen())
         {
             sf::Event event;
             
@@ -118,8 +119,7 @@ int main()
             
             if (newGame.getGameObjectsVector().size() > 0 && newGame.getGameObjectsVector()[0]->getObjectType() != gameObjectType::Player)
             {
-                playing = false;
-                
+                gameState = 3;
                 ///// DISPLAY GAME OVER HERE /////
             }
             
@@ -142,7 +142,7 @@ int main()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) 
         {
             newGame = Game(5);
-            playing = true;
+            gameState = 2;
         }
         
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) 
