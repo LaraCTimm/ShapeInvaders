@@ -87,13 +87,13 @@ void setShotFired(const bool newShotFired) {
     _shotFired = newShotFired;
 }
 
-bool getGeneratorFired() {
-    return _generatorFired;
-}
-
-void setGeneratorFired(const bool newGeneratorFired) {
-    _generatorFired = newGeneratorFired;
-}
+//bool getGeneratorFired() {
+//    return _generatorFired;
+//}
+//
+//void setGeneratorFired(const bool newGeneratorFired) {
+//    _generatorFired = newGeneratorFired;
+//}
 
 ///////// should be in other classes ////////
 
@@ -138,7 +138,7 @@ private:
     float _asteriodCooldown;
     float _laserGeneratorCooldown;
     bool _shotFired;
-    bool _generatorFired;
+    //bool _generatorFired;
 
     
 

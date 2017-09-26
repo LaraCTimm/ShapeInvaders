@@ -12,7 +12,7 @@ Game::Game(int highScore)
     _asteriodCooldown = 400;
     _laserGeneratorCooldown = 800;
     _shotFired = false;
-    _generatorFired = false;
+    //_generatorFired = false;
     srand (time(0));
 }
 
@@ -114,7 +114,7 @@ void Game::ObjectCleanup()
     for (int i = 0; i < _GameObjectsVector.size(); i++)
     {
         // all game objects use health as a cleanup flag
-        if (_GameObjectsVector[i]->getHealth() == 0)
+        if (_GameObjectsVector[i]->getHealth() <= 0)
         {
             _GameObjectsVector.erase(_GameObjectsVector.begin() + i);
             i--;
