@@ -154,4 +154,8 @@ TEST_CASE("Check enemy can move, and moves outward."){
 // Check arc Created
 // Check all same ID
 
+<<<<<<< HEAD
 // Enemy bullet cooldown only exists in enemy 
+=======
+// Enemy bullet cooldown only exists in enemy 
+>>>>>>> d2a2af611c64c2527681952682fc4b32b96b09a5
