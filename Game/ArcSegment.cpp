@@ -20,8 +20,10 @@ ArcSegment::ArcSegment(float angle, int ID) : GameObject()
     
     const float SPEED_MULTIPLIER = 1.0f;
     
-    vecX = -vecX * SPEED_MULTIPLIER;
-    vecY = -vecY * SPEED_MULTIPLIER;
+    vecX = vecX * SPEED_MULTIPLIER;
+    vecY = vecY * SPEED_MULTIPLIER;
+    _xCoord += 2*vecX;
+	_yCoord += 2*vecY;
     _pathVector = sf::Vector2f(vecX, vecY);
     
     // Create rectangle

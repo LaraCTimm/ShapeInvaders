@@ -21,9 +21,7 @@ EnemyBullet::EnemyBullet(float xCoord, float yCoord, sf::Vector2f enemyPathVecto
     
     float vecX = cos(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
     float vecY = sin(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
-    
-    vecX = -vecX;//300;
-    vecY = -vecY;//300;
+
     _pathVector = sf::Vector2f(vecX*SPEED_MULTIPLIER, vecY*SPEED_MULTIPLIER); // start position of linear path
     
     //_pathVector = sf::Vector2f(enemyPathVector.x*SPEED_MULTIPLIER, enemyPathVector.y*SPEED_MULTIPLIER);

@@ -19,11 +19,12 @@ Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
     
     float vecX = cos(_angle*(M_PI/180));
     float vecY = sin(_angle*(M_PI/180));
+    _pathVector = sf::Vector2f(vecX, vecY); 
     
-    vecX = -vecX;
-    vecY = -vecY;
-    _pathVector = sf::Vector2f(vecX, vecY); // start position of linear path
-    cout << vecX << " " << vecY << " " << angle << " Enemy" << endl;
+    _xCoord += 2*vecX;
+	_yCoord += 2*vecY;
+    
+    //cout << vecX << " " << vecY << " " << angle << " Enemy" << endl;
     
 
     // Create bullet rectangle

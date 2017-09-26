@@ -18,9 +18,6 @@ int main()
 	MainMenu menu(window.getSize().x, window.getSize().y);
 	
     Game newGame(5);
-    
-//    const float _RAND_FLOAT_MAX = 150.0f;
-//    const float _RAND_FLOAT_MIN = 75.0f;
 
     //bool playing = false, menuScreen = true, endScreen = false;
 	int gameState = 1; // 1 - Opening Menu; 2 - Game; 3 - Game Over Screen
@@ -48,6 +45,10 @@ int main()
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 			{
 				gameState = 2;
+			}
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				window.close();
 			}
 			window.clear();
 			menu.draw(window);
