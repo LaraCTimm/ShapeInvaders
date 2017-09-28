@@ -2,10 +2,10 @@
 
 MainMenu::MainMenu(float width, float height)
 {
-	if(!font.loadFromFile("EraserRegular.ttf"))
-	{
+	//if(!font.loadFromFile("EraserRegular.ttf"))
+	//{
 		//handle error
-	}
+	//}
 	text[0].setFont(font);
 	text[0].setColor(sf::Color::Cyan);
 	text[0].setString("Play");
