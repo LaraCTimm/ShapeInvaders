@@ -3,12 +3,10 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="tests_player.cpp" ExcludeProjConfig="Debug"/>
     <File Name="ArcSegment.cpp"/>
     <File Name="ArcSegment.h"/>
     <File Name="Asteriod.cpp"/>
     <File Name="Asteriod.h"/>
-    <File Name="doctest.h" ExcludeProjConfig=""/>
     <File Name="Enemy.cpp"/>
     <File Name="Enemy.h"/>
     <File Name="EnemyBullet.cpp"/>
@@ -27,6 +25,10 @@
     <File Name="PlayerBullet.h"/>
     <File Name="MainMenu.cpp"/>
     <File Name="MainMenu.h"/>
+    <File Name="doctest.h"/>
+    <File Name="tests_asteroids_lasers.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="tests_enemy.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="tests_player.cpp" ExcludeProjConfig="Debug"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

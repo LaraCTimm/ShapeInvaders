@@ -78,17 +78,29 @@ TEST_CASE("Check laser generator can be instantiated, along with its pair and ar
 	for(int a = oldSize; a < newGame.getGameObjectsVector().size()-2; a++){
 		CHECK(newGame.getGameObjectsVector()[a]->getObjectType() == gameObjectType::ArcSegment);
 	}
-	}
+}
 
 // Check all same ID
 TEST_CASE("Check laser generator can be instantiated, along with its pair and arc between the two and all have the same ID."){
 	Game newGame(5);
 	int oldSize = newGame.getGameObjectsVector().size();
 	newGame.AddGameObject(gameObjectType::LaserGenerator, 1);
-	//shared_ptr<LaserGenerator> laserGen_ptr = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-2];
-	//int laserID = laserGen_ptr->getID();
-	//CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-2]->LaserGenerator::getID() == laserID);
-	//for(int a = oldSize; a < newGame.getGameObjectsVector().size()-2; a++){
-	//	CHECK(newGame.getGameObjectsVector()[a]->getID() == laserID);
-	//}
+    
+    shared_ptr<GameObject> laserGen1 = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-2];
+	shared_ptr<LaserGenerator> laserGen1_ptr = std::static_pointer_cast<LaserGenerator>((*laserGen1).getptr());
+	int laserID1 = laserGen1_ptr->getID();
+    
+    shared_ptr<GameObject> laserGen2 = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]; //************* surely this index should -1
+    shared_ptr<LaserGenerator> laserGen2_ptr = std::static_pointer_cast<LaserGenerator>((*laserGen2).getptr());
+    int laserID2 = laserGen2_ptr->getID();
+    
+	CHECK(laserID2 == laserID1);
+    
+	for(int a = oldSize; a < newGame.getGameObjectsVector().size()-2; a++)
+    {
+        shared_ptr<GameObject> arcSeg = newGame.getGameObjectsVector()[a];
+        shared_ptr<ArcSegment> arcSeg_ptr = std::static_pointer_cast<ArcSegment>((*arcSeg).getptr());
+        int arcSegID = arcSeg_ptr->getID();
+        CHECK(arcSegID == laserID1);
 	}
+}

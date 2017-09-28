@@ -53,6 +53,7 @@ int main()
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
 				window.close();
+                return 0;
 			}
 			sf::Texture endTexture;
 			if (!endTexture.loadFromFile("endScreen.png")){}
