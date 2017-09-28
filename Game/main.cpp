@@ -34,8 +34,12 @@ int main()
 			{
 				gameState = 2;
 			}
-			window.clear();
-			menu.draw(window);
+			sf::Texture texture;
+			if (!texture.loadFromFile("mainMenu.png")){}
+			sf::Sprite background(texture);
+			window.draw(background);
+			//window.clear();
+			//menu.draw(window);
 			window.display();
 		}
 		
@@ -50,8 +54,10 @@ int main()
 			{
 				window.close();
 			}
-			window.clear();
-			menu.draw(window);
+			sf::Texture endTexture;
+			if (!endTexture.loadFromFile("endScreen.png")){}
+			sf::Sprite background(endTexture);
+			window.draw(background);
 			window.display();
 		}
 		

@@ -22,7 +22,6 @@ TEST_CASE("Check Player is instantiated at (700,400)"){
 	CHECK(newGame.getGameObjectsVector()[0]->getYCoord() == 400);
 }
 
-
 TEST_CASE("Check player can move in anti-clockwise direction"){
 	Game newGame(5);
 	int oldx = newGame.getGameObjectsVector()[0]->getXCoord(), oldy = newGame.getGameObjectsVector()[0]->getYCoord();
@@ -31,7 +30,6 @@ TEST_CASE("Check player can move in anti-clockwise direction"){
 	CHECK(oldx > newx);
 	CHECK(oldy < newy);
 }
-
 
 TEST_CASE("Check player can move in clockwise direction"){
 	Game newGame(5);
@@ -55,107 +53,3 @@ TEST_CASE("Check bullet is of type 'PlayerBullet'"){
 	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() == gameObjectType::PlayerBullet);
 }
 // Check bullet move
-
-TEST_CASE("Check enemy can be instantiated"){
-	Game newGame(5);
-	int oldSize = newGame.getGameObjectsVector().size();
-	newGame.AddGameObject(gameObjectType::Enemy, 1);
-	CHECK(newGame.getGameObjectsVector().size() == oldSize + 1);
-}
-
-TEST_CASE("Check multiple enemies can be instantiated and are all of type 'Enemy'"){
-	Game newGame(5);
-	int oldSize = newGame.getGameObjectsVector().size();
-	newGame.AddGameObject(gameObjectType::Enemy, 1);
-	newGame.AddGameObject(gameObjectType::Enemy, 1);
-	newGame.AddGameObject(gameObjectType::Enemy, 1);
-	CHECK(newGame.getGameObjectsVector().size() == oldSize + 3);
-	CHECK(newGame.getGameObjectsVector()[oldSize]->getObjectType() == gameObjectType::Enemy);
-	CHECK(newGame.getGameObjectsVector()[oldSize+1]->getObjectType() == gameObjectType::Enemy);
-	CHECK(newGame.getGameObjectsVector()[oldSize+2]->getObjectType() == gameObjectType::Enemy);
-}
-
-TEST_CASE("Check enemy can move, and moves outward."){
-	Game newGame(5);
-	int oldSize = newGame.getGameObjectsVector().size();
-	newGame.AddGameObject(gameObjectType::Enemy, 0);
-	shared_ptr<GameObject> testEnemy = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
-	auto oldX = testEnemy->getXCoord();
-	auto oldY = testEnemy->getYCoord();
-	
-	testEnemy->lineMove();
-	
-	auto testAngle = testEnemy->getAngle();
-	if (testAngle < 0) testAngle += 360;
-	if (testAngle == 0)
-	{
-		CHECK(testEnemy->getXCoord() > oldX);
-		CHECK(testEnemy->getYCoord() == oldY);
-	}
-	else if (testAngle < 90)
-	{
-		CHECK(testEnemy->getXCoord() < oldX);
-		CHECK(testEnemy->getYCoord() > oldY);
-	} 
-	else if (testAngle == 90)
-	{
-		CHECK(testEnemy->getXCoord() == oldX);
-		CHECK(testEnemy->getYCoord() > oldY);
-	}
-	else if (testAngle < 180)
-	{
-		CHECK(testEnemy->getXCoord() < oldX);
-		CHECK(testEnemy->getYCoord() > oldY);
-	}
-	else if (testAngle == 180)
-	{
-		CHECK(testEnemy->getXCoord() < oldX);
-		CHECK(testEnemy->getYCoord() == oldY);
-	}
-	else if (testAngle < 270)
-	{
-		CHECK(testEnemy->getXCoord() < oldX);
-		CHECK(testEnemy->getYCoord() < oldY);
-	}
-	else if (testAngle == 270)
-	{
-		CHECK(testEnemy->getXCoord() == oldX);
-		CHECK(testEnemy->getYCoord() < oldY);
-	}
-	else if (testAngle < 360)
-	{
-		CHECK(testEnemy->getXCoord() > oldX);
-		CHECK(testEnemy->getYCoord() < oldY);
-	}
-	
-	
-	
-	
-	
-}
-
-// Test enemy instantiation
-// Test enemy movement
-
-//TEST_CASE("Check enemy bullet can be instantiated and is of type 'EnemyBullet'"){
-//	Game newGame(5);
-//	int oldSize = newGame.getGameObjectsVector().size();
-//	newGame.AddGameObject(gameObjectType::EnemyBullet, 2);
-//	CHECK(newGame.getGameObjectsVector().size() == oldSize + 1);
-//	CHECK( newGame.getGameObjectsVector()[oldSize]->getObjectType() == gameObjectType::EnemyBullet);
-//}
-
-//TEST_CASE("Check enemy bullet can move, and moves outward."){
-//	
-//}
-
-//LaserGenerator
-// Check other laser generator Created
-// Check arc Created
-// Check all same ID
-
-<<<<<<< HEAD
-// Enemy bullet cooldown only exists in enemy 
-=======
-// Enemy bullet cooldown only exists in enemy 
->>>>>>> d2a2af611c64c2527681952682fc4b32b96b09a5
