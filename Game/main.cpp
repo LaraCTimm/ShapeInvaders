@@ -34,6 +34,11 @@ int main()
 			{
 				gameState = 2;
 			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				window.close();
+				return 0;
+			}
 			sf::Texture texture;
 			if (!texture.loadFromFile("mainMenu.png")){}
 			sf::Sprite background(texture);
@@ -53,7 +58,7 @@ int main()
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
 				window.close();
-                return 0;
+				return 0;
 			}
 			sf::Texture endTexture;
 			if (!endTexture.loadFromFile("endScreen.png")){}
@@ -74,6 +79,7 @@ int main()
                 if (event.type == sf::Event::Closed)
                 {
                     window.close();
+					return 0;
                 }
             }
 

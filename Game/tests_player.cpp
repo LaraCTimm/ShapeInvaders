@@ -2,7 +2,7 @@
 #include "Game.h"
 #include <iostream>
 
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#define DOCTEST_CONFIG_IMPLEMENT_WITHOUT_MAIN
 #include "doctest.h"
 
 
@@ -15,6 +15,8 @@ TEST_CASE("Check Game starts with a player object") {
 	Game newGame(1);
 	CHECK( newGame.getGameObjectsVector()[0]->getObjectType() == gameObjectType::Player);
 }
+
+// Player tests
 
 TEST_CASE("Check Player is instantiated at (700,400)"){
 	Game newGame(1);
@@ -40,6 +42,8 @@ TEST_CASE("Check player can move in clockwise direction"){
 	CHECK(oldy > newy);
 }
 
+// Player bullet tests
+
 TEST_CASE("Check bullet can be instantiated"){
 	Game newGame(5);
 	int oldSize = newGame.getGameObjectsVector().size();
@@ -52,4 +56,120 @@ TEST_CASE("Check bullet is of type 'PlayerBullet'"){
 	newGame.AddGameObject(gameObjectType::PlayerBullet, 1);
 	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() == gameObjectType::PlayerBullet);
 }
-// Check bullet move
+
+TEST_CASE("Check bullet movement: negative x direction"){
+	Game newGame(5);
+	newGame.getGameObjectsVector()[0]->circularMove(0);
+	newGame.AddGameObject(gameObjectType::PlayerBullet, 2);
+	shared_ptr<GameObject> testPlayerBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	auto oldX = testPlayerBullet->getXCoord();
+	auto oldY = testPlayerBullet->getYCoord();
+	
+	testPlayerBullet->lineMove();
+	CHECK(testPlayerBullet->getXCoord() < oldX);
+	CHECK(testPlayerBullet->getYCoord() == oldY);
+}
+
+TEST_CASE("Check bullet movement: first quadrant"){
+	Game newGame(5);
+	newGame.getGameObjectsVector()[0]->circularMove(315/2);
+	newGame.AddGameObject(gameObjectType::PlayerBullet, 2);
+	shared_ptr<GameObject> testPlayerBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	auto oldX = testPlayerBullet->getXCoord();
+	auto oldY = testPlayerBullet->getYCoord();
+	
+	testPlayerBullet->lineMove();
+	CHECK(testPlayerBullet->getXCoord() < oldX);
+	CHECK(testPlayerBullet->getYCoord() > oldY);
+}
+
+TEST_CASE("Check bullet movement: negative y direction"){
+	Game newGame(5);
+	newGame.getGameObjectsVector()[0]->circularMove(270/2);
+	newGame.AddGameObject(gameObjectType::PlayerBullet, 2);
+	shared_ptr<GameObject> testPlayerBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	auto oldX = testPlayerBullet->getXCoord();
+	auto oldY = testPlayerBullet->getYCoord();
+	
+	testPlayerBullet->lineMove();
+	CHECK(testPlayerBullet->getXCoord() == oldX);
+	CHECK(testPlayerBullet->getYCoord() > oldY);
+}
+
+TEST_CASE("Check bullet movement: second quadrant"){
+	Game newGame(5);
+	newGame.getGameObjectsVector()[0]->circularMove(225/2);
+	newGame.AddGameObject(gameObjectType::PlayerBullet, 2);
+	shared_ptr<GameObject> testPlayerBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	auto oldX = testPlayerBullet->getXCoord();
+	auto oldY = testPlayerBullet->getYCoord();
+	
+	testPlayerBullet->lineMove();
+	CHECK(testPlayerBullet->getXCoord() > oldX);
+	CHECK(testPlayerBullet->getYCoord() > oldY);
+}
+
+TEST_CASE("Check bullet movement: positive x direction"){
+	Game newGame(5);
+	newGame.getGameObjectsVector()[0]->circularMove(180/2);
+	newGame.AddGameObject(gameObjectType::PlayerBullet, 2);
+	shared_ptr<GameObject> testPlayerBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	auto oldX = testPlayerBullet->getXCoord();
+	auto oldY = testPlayerBullet->getYCoord();
+	
+	testPlayerBullet->lineMove();
+	CHECK(testPlayerBullet->getXCoord() > oldX);
+	CHECK(testPlayerBullet->getYCoord() == oldY);
+}
+
+TEST_CASE("Check bullet movement: third quadrant"){
+	Game newGame(5);
+	newGame.getGameObjectsVector()[0]->circularMove(135/2);
+	newGame.AddGameObject(gameObjectType::PlayerBullet, 2);
+	shared_ptr<GameObject> testPlayerBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	auto oldX = testPlayerBullet->getXCoord();
+	auto oldY = testPlayerBullet->getYCoord();
+	
+	testPlayerBullet->lineMove();
+	CHECK(testPlayerBullet->getXCoord() > oldX);
+	CHECK(testPlayerBullet->getYCoord() < oldY);
+}
+
+TEST_CASE("Check bullet movement: positive y direction"){
+	Game newGame(5);
+	newGame.getGameObjectsVector()[0]->circularMove(90/2);
+	newGame.AddGameObject(gameObjectType::PlayerBullet, 2);
+	shared_ptr<GameObject> testPlayerBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	auto oldX = testPlayerBullet->getXCoord();
+	auto oldY = testPlayerBullet->getYCoord();
+	
+	testPlayerBullet->lineMove();
+	CHECK(testPlayerBullet->getXCoord() == oldX);
+	CHECK(testPlayerBullet->getYCoord() < oldY);
+}
+
+TEST_CASE("Check bullet movement: fourth quadrant"){
+	Game newGame(5);
+	newGame.getGameObjectsVector()[0]->circularMove(45/2);
+	newGame.AddGameObject(gameObjectType::PlayerBullet, 2);
+	shared_ptr<GameObject> testPlayerBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	auto oldX = testPlayerBullet->getXCoord();
+	auto oldY = testPlayerBullet->getYCoord();
+	
+	testPlayerBullet->lineMove();
+	CHECK(testPlayerBullet->getXCoord() < oldX);
+	CHECK(testPlayerBullet->getYCoord() < oldY);
+}
+
+TEST_CASE("Check player bullet gets deleted once it reaches middle of screen"){
+	Game newGame(5);
+	newGame.AddGameObject(gameObjectType::PlayerBullet, 0);
+	shared_ptr<GameObject> testBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	
+	while(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() == gameObjectType::PlayerBullet){
+	testBullet->lineMove();
+	newGame.ObjectCleanup();
+	}
+	
+	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() != gameObjectType::PlayerBullet);
+}

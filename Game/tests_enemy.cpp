@@ -5,6 +5,8 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
+// Enemy tests
+
 TEST_CASE("Check enemy can be instantiated"){
 	Game newGame(5);
 	int oldSize = newGame.getGameObjectsVector().size();
@@ -77,6 +79,21 @@ TEST_CASE("Check enemy can move, and moves outward."){
 	}
 }
 
+TEST_CASE("Check enemy gets deleted when off screen"){
+	Game newGame(5);
+	newGame.AddGameObject(gameObjectType::Enemy, 0);
+	shared_ptr<GameObject> testEnemy = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	
+	while(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() == gameObjectType::Enemy){
+	testEnemy->lineMove();
+	newGame.ObjectCleanup();
+	}
+	
+	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() != gameObjectType::Enemy);
+}
+
+// Enemy bullet tests
+
 TEST_CASE("Check enemy bullet can be instantiated and is of type 'EnemyBullet'"){
 	Game newGame(5);
 	int oldSize = newGame.getGameObjectsVector().size();
@@ -86,6 +103,7 @@ TEST_CASE("Check enemy bullet can be instantiated and is of type 'EnemyBullet'")
 }
 
 TEST_CASE("Check enemy bullet can move, and moves outward."){
+	
 	Game newGame(5);
 	newGame.AddGameObject(gameObjectType::EnemyBullet, 2);
 	shared_ptr<GameObject> testEnemyBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
@@ -137,3 +155,18 @@ TEST_CASE("Check enemy bullet can move, and moves outward."){
 		CHECK(testEnemyBullet->getYCoord() < oldY);
 	}
 }
+
+TEST_CASE("Check enemy bullet gets deleted when off screen"){
+	Game newGame(5);
+	newGame.AddGameObject(gameObjectType::Enemy,1);
+	newGame.AddGameObject(gameObjectType::EnemyBullet, 1);
+	shared_ptr<GameObject> testEnemyBullet = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1];
+	
+	while(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() == gameObjectType::EnemyBullet){
+	testEnemyBullet->lineMove();
+	newGame.ObjectCleanup();
+	}
+	
+	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() != gameObjectType::EnemyBullet);
+}
+
