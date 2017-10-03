@@ -149,6 +149,13 @@ int main()
                 window.draw(newGame.getGameObjectsVector()[i]->getObjectShape());
             }
             
+            for (int i = 0; i < newGame.getGameObjectsVector()[0]->getHealth(); i++)
+            {
+                window.draw(newGame.getLivesVector()[i]);
+            }
+                            
+            window.draw(newGame.getCurrentScoreText());
+            
             ///////////////////
             window.display();
             // end of current frame

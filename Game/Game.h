@@ -36,6 +36,11 @@ public:
 static constexpr float ORIGIN_X = 400.0f;
 static constexpr float ORIGIN_Y = 400.0f;
 static constexpr float PLAYER_RADIUS = 300.0f;
+static constexpr float SCREEN_HEIGHT = 800.0f;
+static constexpr float SCREEN_WIDTH = 800.0f;
+static constexpr float LIFE_RECT_SIZE = 30.0f;
+
+
 
 // Accessors and Mutators ----------------------------
 
@@ -45,6 +50,10 @@ vector<shared_ptr<GameObject>> getGameObjectsVector() {
 
 void setGameObjectsVector(const vector<shared_ptr<GameObject>> newGameObjectsVector) {
     _GameObjectsVector = newGameObjectsVector;
+}
+
+vector<sf::RectangleShape> getLivesVector() {
+    return _livesVector;
 }
 
 int getScore() {
@@ -87,13 +96,9 @@ void setShotFired(const bool newShotFired) {
     _shotFired = newShotFired;
 }
 
-//bool getGeneratorFired() {
-//    return _generatorFired;
-//}
-//
-//void setGeneratorFired(const bool newGeneratorFired) {
-//    _generatorFired = newGeneratorFired;
-//}
+sf::Text getCurrentScoreText() {
+    return _currentScoreText;
+}
 
 ///////// should be in other classes ////////
 
@@ -131,15 +136,16 @@ float GenerateRandomNumber(float min, float max);
 
 private:
     vector<shared_ptr<GameObject>> _GameObjectsVector;
+    vector<sf::RectangleShape> _livesVector;
     int _score;
+    sf::Text _highScoreText;
+    sf::Text _currentScoreText;
     sf::Clock _clock;
     //int _bulletCooldown;
     float _enemyCooldown;
     float _asteriodCooldown;
     float _laserGeneratorCooldown;
     bool _shotFired;
-    //bool _generatorFired;
-
     
 
 

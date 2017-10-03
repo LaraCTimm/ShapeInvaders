@@ -12,8 +12,25 @@ Game::Game(int highScore)
     _asteriodCooldown = 400;
     _laserGeneratorCooldown = 800;
     _shotFired = false;
-    //_generatorFired = false;
     srand (time(0));
+    
+    for (int i = 0; i < obj_ptr->getHealth(); i++)
+    {
+        sf::RectangleShape lifeRect(sf::Vector2f(LIFE_RECT_SIZE, LIFE_RECT_SIZE));
+        lifeRect.setOutlineThickness(2);
+        lifeRect.setOutlineColor(sf::Color::Red);
+        lifeRect.setFillColor(sf::Color::White);
+        lifeRect.setOrigin(sf::Vector2f(LIFE_RECT_SIZE/2, LIFE_RECT_SIZE/2));
+        lifeRect.setPosition(LIFE_RECT_SIZE*1.5 + LIFE_RECT_SIZE*1.5*i, SCREEN_HEIGHT - LIFE_RECT_SIZE*1.5);
+        _livesVector.push_back(lifeRect);
+    }
+    
+    _currentScoreText.setString("Hello");
+    _currentScoreText.setCharacterSize(100);
+    _currentScoreText.setColor(sf::Color::Black);
+    //_currentScoreText.setPosition(sf::Vector2f(SCREEN_WIDTH - 100, 0 + 30));
+    
+    _currentScoreText.setPosition(sf::Vector2f(400, 400));
 }
 
 

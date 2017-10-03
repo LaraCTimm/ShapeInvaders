@@ -103,6 +103,8 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
             if (distance <= element->getHitRadius()+_hitRadius)
             {
                 _health--;
+                shared_ptr<Asteriod> asteriod_ptr = std::static_pointer_cast<Asteriod>((*element).getptr());
+                asteriod_ptr->setHealth(0);
             }
         }
         

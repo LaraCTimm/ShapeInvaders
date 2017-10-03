@@ -6,7 +6,7 @@ Player::Player() : GameObject()
     _objectWidth = 50;
     _objectHeight = 50;
     _hitRadius = (_objectWidth + _objectHeight)/4; 
-    _health = 1;
+    _health = 5;
     _points = 0;
     _scale = 1;
     _pathVector = sf::Vector2f(_BULLET_OFFSET_X, _BULLET_OFFSET_Y);
