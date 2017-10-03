@@ -56,12 +56,13 @@ vector<sf::RectangleShape> getLivesVector() {
     return _livesVector;
 }
 
-int getScore() {
+shared_ptr<int> getScore() {
     return _score;
 }
 
 void setScore(const int newScore) {
-    _score = newScore;
+    shared_ptr<int> int_ptr = make_shared<int>(newScore);
+    _score = int_ptr;
 }
 
 sf::Clock getClock() {
@@ -137,7 +138,7 @@ float GenerateRandomNumber(float min, float max);
 private:
     vector<shared_ptr<GameObject>> _GameObjectsVector;
     vector<sf::RectangleShape> _livesVector;
-    int _score;
+    shared_ptr<int> _score;
     sf::Text _highScoreText;
     sf::Text _currentScoreText;
     sf::Clock _clock;

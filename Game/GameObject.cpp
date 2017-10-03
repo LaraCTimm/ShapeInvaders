@@ -59,8 +59,10 @@ void GameObject::lineMove()
     }
 }
 
-void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
+int GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
 {
+    int pointsWon = 0;
+    
     for (auto element : objectVector)
     {
         if (element->getObjectType() == gameObjectType::PlayerBullet && _objectType == gameObjectType::Enemy)
@@ -69,6 +71,7 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
             if (distance <= element->getHitRadius()+_hitRadius)
             {
                 _health = 0;
+                pointsWon += _points;
                 shared_ptr<PlayerBullet> playerBullet_ptr = std::static_pointer_cast<PlayerBullet>((*element).getptr());
                 playerBullet_ptr->setHealth(0);
 
@@ -167,6 +170,8 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
                 
                 // delete laserGen
                 _health = 0;
+                pointsWon += _points;
+
                 
                 // find ID of hit laserGen
                 shared_ptr<LaserGenerator> laserGen_ptr = std::static_pointer_cast<LaserGenerator>((*this).getptr());
@@ -185,4 +190,5 @@ void GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
             }
         }
     }
+    return pointsWon;
 }

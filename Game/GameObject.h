@@ -47,7 +47,7 @@ public:
     
     void lineMove();
 
-    void checkCollisions(vector<shared_ptr<GameObject>> &objectVector);
+    int checkCollisions(vector<shared_ptr<GameObject>> &objectVector);
 
     //virtual ~GameObject() {}; 
     

@@ -39,6 +39,13 @@ int main()
 				window.close();
 				return 0;
 			}
+            while (window.pollEvent(event))
+            {
+                if (event.type == sf::Event::Closed)
+                {
+                    window.close();
+                }
+            }
 			sf::Texture texture;
 			if (!texture.loadFromFile("mainMenu.png")){}
 			sf::Sprite background(texture);
@@ -60,6 +67,13 @@ int main()
 				window.close();
 				return 0;
 			}
+            while (window.pollEvent(event))
+            {
+                if (event.type == sf::Event::Closed)
+                {
+                    window.close();
+                }
+            }
 			sf::Texture endTexture;
 			if (!endTexture.loadFromFile("endScreen.png")){}
 			sf::Sprite background(endTexture);
@@ -153,8 +167,38 @@ int main()
             {
                 window.draw(newGame.getLivesVector()[i]);
             }
-                            
-            window.draw(newGame.getCurrentScoreText());
+            
+//            sf::Font font;
+//            if (!font.loadFromFile("charter-bt-roman-5933e85194471.ttf"))
+//            {
+//                // error...
+//            }
+//            sf::Text score;
+//            score.setString("Hello");
+//            //charter-bt-roman-5933e85194471.ttf
+//            score.setFont(font);
+//            score.setCharacterSize(100);
+//            score.setColor(sf::Color::Black);
+//            //_currentScoreText.setPosition(sf::Vector2f(SCREEN_WIDTH - 100, 0 + 30));
+//            
+//            score.setPosition(sf::Vector2f(400, 400));
+//            window.draw(score);   
+//            std::string datString(newGame.getCurrentScoreText().getString());
+//            cout << datString << endl;
+            
+            
+            sf::Text datText(newGame.getCurrentScoreText());
+            sf::Font font;
+            if (!font.loadFromFile("charter-bt-roman.ttf"))
+            { 
+                // error...
+            }
+            datText.setFont(font);
+            
+            std::string newString = "Score: " + std::to_string(*(newGame.getScore()));
+            datText.setString(newString);
+            
+            window.draw(datText);
             
             ///////////////////
             window.display();

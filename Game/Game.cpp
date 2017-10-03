@@ -7,7 +7,7 @@ Game::Game(int highScore)
     // Player becomes first element in _GameObjectsVector
     shared_ptr<GameObject> obj_ptr = Game::SpawnGameObject(gameObjectType::Player, 0);
     _GameObjectsVector.push_back(obj_ptr);
-    _score = highScore;
+    _score = shared_ptr<int>(new int(0));
     _enemyCooldown = 10;
     _asteriodCooldown = 400;
     _laserGeneratorCooldown = 800;
@@ -25,12 +25,18 @@ Game::Game(int highScore)
         _livesVector.push_back(lifeRect);
     }
     
-    _currentScoreText.setString("Hello");
-    _currentScoreText.setCharacterSize(100);
+//    sf::Font font;
+//    if (!font.loadFromFile("charter-bt-roman.ttf"))
+//    { 
+//        // error...
+//    }
+//    _currentScoreText.setFont(font);
+    std::string newString = "Score: " + std::to_string(*_score);
+    _currentScoreText.setString(newString);
+    _currentScoreText.setCharacterSize(20);
     _currentScoreText.setColor(sf::Color::Black);
-    //_currentScoreText.setPosition(sf::Vector2f(SCREEN_WIDTH - 100, 0 + 30));
+    _currentScoreText.setPosition(sf::Vector2f(30, 30));
     
-    _currentScoreText.setPosition(sf::Vector2f(400, 400));
 }
 
 
@@ -212,7 +218,7 @@ void Game::CheckCollisions()
 {
     for (int i = 0; i < _GameObjectsVector.size(); i++)
     {
-        _GameObjectsVector[i]->checkCollisions(_GameObjectsVector);
+        *_score += _GameObjectsVector[i]->checkCollisions(_GameObjectsVector);
     }
 }
 
