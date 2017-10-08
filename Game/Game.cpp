@@ -178,20 +178,6 @@ void Game::DecrementCooldowns()
     }
 }
 
-//void Game::SpawnGameObjects()
-//{
-//    if (getEnemyCooldown() <= 0)
-//    {
-//        AddGameObject(gameObjectType::Enemy, 0);
-//        setEnemyCooldown(generateRandomNumber(75.0f, 150.0f));
-//    }
-//            
-//    if (getAsteriodCooldown() <= 0)
-//    {
-//        AddGameObject(gameObjectType::Asteriod, 0);
-//        setAsteriodCooldown(generateRandomNumber(100.0f, 150.0f));
-//    }
-//}
 
 void Game::CreateGameObjects()
 {

@@ -60,10 +60,10 @@ shared_ptr<int> getScore() {
     return _score;
 }
 
-void setScore(const int newScore) {
-    shared_ptr<int> int_ptr = make_shared<int>(newScore);
-    _score = int_ptr;
-}
+//void setScore(const int newScore) {
+//    shared_ptr<int> int_ptr(new int(newScore));
+//    _score = int_ptr;
+//}
 
 sf::Clock getClock() {
     return _clock;
