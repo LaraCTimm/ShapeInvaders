@@ -29,6 +29,8 @@
     <File Name="tests_asteroids_lasers.cpp" ExcludeProjConfig="Debug"/>
     <File Name="tests_enemy.cpp" ExcludeProjConfig="Debug"/>
     <File Name="tests_player.cpp" ExcludeProjConfig="Debug"/>
+    <File Name="FileReader.cpp"/>
+    <File Name="FileReader.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

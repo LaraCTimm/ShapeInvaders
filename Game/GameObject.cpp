@@ -45,8 +45,13 @@ void GameObject::lineMove()
     _objectShape.setSize(newSize);
     _objectShape.setOrigin(_objectShape.getSize().x/2, _objectShape.getSize().y/2);
     _hitRadius = (_objectShape.getSize().y + _objectShape.getSize().x)/4;
+    
+    checkInBounds();
+}
 
-    // Check bullet reaches screen centre
+void GameObject::checkInBounds()
+{
+        // Check bullet reaches screen centre
     if (_objectType == gameObjectType::PlayerBullet && (_xCoord >= 395 && _xCoord <= 405 && _yCoord >= 395 && _yCoord <= 405))
     {
         _health = 0;

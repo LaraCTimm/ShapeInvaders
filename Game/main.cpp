@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
+
 #include "MainMenu.h"
 #include <iostream>
 using std::cout;
@@ -11,7 +12,7 @@ using std::endl;
 int main()
 {
 	
-    sf::RenderWindow window(sf::VideoMode(800, 800, 32), "SFML Vleis Invaders",
+    sf::RenderWindow window(sf::VideoMode(800, 800, 32), "Vleis Invaders",
                             sf::Style::Titlebar | sf::Style::Close);
     window.setVerticalSyncEnabled(true);    
     
@@ -122,32 +123,16 @@ int main()
             {
                 newGame.setShotFired(false);
             }
-            
-            /////////////////// HACK
-            
-//            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !newGame.getGeneratorFired()) 
-//            {
-//                newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
-//                newGame.setGeneratorFired(true);
-//            }
-//            
-//            if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && newGame.getGeneratorFired()) 
-//            {
-//                newGame.setGeneratorFired(false);
-//            }
-//            
-//            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-//            {
-//                newGame.AddGameObject(gameObjectType::LaserGenerator, 0);
-//            }
 
             newGame.DecrementCooldowns();
             newGame.CreateGameObjects();
             newGame.CheckCollisions();
             newGame.ObjectCleanup();
             
+            
             if (newGame.getGameObjectsVector().size() > 0 && newGame.getGameObjectsVector()[0]->getObjectType() != gameObjectType::Player)
             {
+                newGame.SetNewHighScore();
                 gameState = 3;
                 ///// DISPLAY GAME OVER HERE /////
             }
@@ -186,19 +171,26 @@ int main()
 //            std::string datString(newGame.getCurrentScoreText().getString());
 //            cout << datString << endl;
             
+            newGame.CheckScores();
             
-            sf::Text datText(newGame.getCurrentScoreText());
+            sf::Text currentScore(newGame.getCurrentScoreText());
+            sf::Text highScore(newGame.getHighScoreText());
             sf::Font font;
             if (!font.loadFromFile("charter-bt-roman.ttf"))
             { 
                 // error...
             }
-            datText.setFont(font);
+            currentScore.setFont(font);
+            highScore.setFont(font);
             
-            std::string newString = "Score: " + std::to_string(*(newGame.getScore()));
-            datText.setString(newString);
+            std::string newString1 = "Score: " + std::to_string(*(newGame.getScore()));
+            currentScore.setString(newString1);
             
-            window.draw(datText);
+            std::string newString2 = "High Score: " + std::to_string(*(newGame.getHighScore()));
+            highScore.setString(newString2);
+            
+            window.draw(currentScore);
+            window.draw(highScore);
             
             ///////////////////
             window.display();

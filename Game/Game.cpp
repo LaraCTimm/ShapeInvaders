@@ -25,18 +25,21 @@ Game::Game(int highScore)
         _livesVector.push_back(lifeRect);
     }
     
-//    sf::Font font;
-//    if (!font.loadFromFile("charter-bt-roman.ttf"))
-//    { 
-//        // error...
-//    }
-//    _currentScoreText.setFont(font);
-    std::string newString = "Score: " + std::to_string(*_score);
-    _currentScoreText.setString(newString);
+    std::string scoreString = "Score: " + std::to_string(*_score);
+    _currentScoreText.setString(scoreString);
     _currentScoreText.setCharacterSize(20);
     _currentScoreText.setColor(sf::Color::Black);
     _currentScoreText.setPosition(sf::Vector2f(30, 30));
     
+    FileReader file("scores.txt");
+
+    _highScore = make_shared<int>(file.getHighScore());
+    
+    std::string highScoreString = "High Score: " + std::to_string(*_highScore);
+    _highScoreText.setString(highScoreString);
+    _highScoreText.setCharacterSize(20);
+    _highScoreText.setColor(sf::Color::Black);
+    _highScoreText.setPosition(sf::Vector2f(SCREEN_WIDTH-200, 30));
 }
 
 
@@ -213,4 +216,20 @@ float Game::GenerateRandomNumber(float min, float max)
     float randomNumber = min + float(rand())/float(RAND_MAX/(max-min));
     //cout << randomNumber << endl;
     return randomNumber;
+}
+
+void Game::CheckScores()
+{
+    if (*_score >= *_highScore)
+    {
+        *_highScore = *_score;
+    }
+    
+    SetNewHighScore(); // only necessary if you don't play till the game/over screen appears
+}
+
+void Game::SetNewHighScore()
+{
+    FileReader file("scores.txt");
+    file.setHighScore(*_highScore);
 }

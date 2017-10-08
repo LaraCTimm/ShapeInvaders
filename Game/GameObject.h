@@ -46,6 +46,8 @@ public:
     void circularMove(int direction);
     
     void lineMove();
+    
+    void checkInBounds();
 
     int checkCollisions(vector<shared_ptr<GameObject>> &objectVector);
 

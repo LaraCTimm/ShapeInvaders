@@ -9,6 +9,7 @@
 #include "Asteriod.h"
 #include "LaserGenerator.h"
 #include "ArcSegment.h"
+#include "FileReader.h"
 
 #include <SFML/Graphics.hpp>
 #include <ctime>
@@ -101,6 +102,18 @@ sf::Text getCurrentScoreText() {
     return _currentScoreText;
 }
 
+sf::Text getHighScoreText() {
+    return _highScoreText;
+}
+
+shared_ptr<int> getHighScore(){
+    return _highScore;
+}
+//
+//void setHighScore(int highScore) {
+//    _highScore = make_shared<int>(highScore);
+//}
+
 ///////// should be in other classes ////////
 
 //---------------------------------------------------
@@ -131,6 +144,10 @@ void CheckCollisions();
 
 float GenerateRandomNumber(float min, float max);
 
+void CheckScores();
+
+void SetNewHighScore();
+
 
 //////////////////////////////////////////////////////
 
@@ -139,6 +156,7 @@ private:
     vector<shared_ptr<GameObject>> _GameObjectsVector;
     vector<sf::RectangleShape> _livesVector;
     shared_ptr<int> _score;
+    shared_ptr<int> _highScore;
     sf::Text _highScoreText;
     sf::Text _currentScoreText;
     sf::Clock _clock;

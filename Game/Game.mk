@@ -62,7 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 Objects0=$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) $(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameTests.cpp$(ObjectSuffix) $(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Player.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/MainMenu.cpp$(ObjectSuffix) 
+	$(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/MainMenu.cpp$(ObjectSuffix) $(IntermediateDirectory)/FileReader.cpp$(ObjectSuffix) 
 
 
 
@@ -188,6 +188,14 @@ $(IntermediateDirectory)/MainMenu.cpp$(DependSuffix): MainMenu.cpp
 
 $(IntermediateDirectory)/MainMenu.cpp$(PreprocessSuffix): MainMenu.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/MainMenu.cpp$(PreprocessSuffix) MainMenu.cpp
+
+$(IntermediateDirectory)/FileReader.cpp$(ObjectSuffix): FileReader.cpp $(IntermediateDirectory)/FileReader.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/FileReader.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/FileReader.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/FileReader.cpp$(DependSuffix): FileReader.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/FileReader.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/FileReader.cpp$(DependSuffix) -MM FileReader.cpp
+
+$(IntermediateDirectory)/FileReader.cpp$(PreprocessSuffix): FileReader.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FileReader.cpp$(PreprocessSuffix) FileReader.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

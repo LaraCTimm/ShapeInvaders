@@ -13,7 +13,7 @@ PlayerBullet::PlayerBullet(float xCoord, float yCoord, sf::Vector2f pathVector, 
     _health = 1;
     _points = 0;
     _scale = 1;
-    _scaleFactor = -0.035; //// FIX THIS
+    _scaleFactor = -0.035;
     _scaleCount = 0;
     _objectType = gameObjectType::PlayerBullet;
     _pathVector = pathVector;
