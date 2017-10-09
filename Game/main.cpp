@@ -12,7 +12,7 @@ using std::endl;
 int main()
 {
 	
-    sf::RenderWindow window(sf::VideoMode(800, 800, 32), "Vleis Invaders",
+    sf::RenderWindow window(sf::VideoMode(800, 800, 32), "ShapeInvaders",
                             sf::Style::Titlebar | sf::Style::Close);
     window.setVerticalSyncEnabled(true);    
     
@@ -82,9 +82,7 @@ int main()
 			window.display();
 		}
 		
-        //window.setKeyRepeatEnabled(false); // doesnt seem to work
-        
-    // set repeat enabled to false to not allow holding down button to spawn more than one object
+
         while (gameState == 2)//window.isOpen())
         {
             sf::Event event;
@@ -132,7 +130,7 @@ int main()
             
             if (newGame.getGameObjectsVector().size() > 0 && newGame.getGameObjectsVector()[0]->getObjectType() != gameObjectType::Player)
             {
-                newGame.SetNewHighScore();
+                newGame.SetNewHighScore();  // probably more efficient to just do it here
                 gameState = 3;
                 ///// DISPLAY GAME OVER HERE /////
             }
@@ -153,25 +151,8 @@ int main()
                 window.draw(newGame.getLivesVector()[i]);
             }
             
-//            sf::Font font;
-//            if (!font.loadFromFile("charter-bt-roman-5933e85194471.ttf"))
-//            {
-//                // error...
-//            }
-//            sf::Text score;
-//            score.setString("Hello");
-//            //charter-bt-roman-5933e85194471.ttf
-//            score.setFont(font);
-//            score.setCharacterSize(100);
-//            score.setColor(sf::Color::Black);
-//            //_currentScoreText.setPosition(sf::Vector2f(SCREEN_WIDTH - 100, 0 + 30));
-//            
-//            score.setPosition(sf::Vector2f(400, 400));
-//            window.draw(score);   
-//            std::string datString(newGame.getCurrentScoreText().getString());
-//            cout << datString << endl;
             
-            newGame.CheckScores();
+            newGame.CheckScoreStatus();
             
             sf::Text currentScore(newGame.getCurrentScoreText());
             sf::Text highScore(newGame.getHighScoreText());

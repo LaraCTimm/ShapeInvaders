@@ -1,6 +1,7 @@
 #include "FileReader.h"
 
-FileReader::FileReader(const string& file_name): _filename{file_name}
+FileReader::FileReader(const string& file_name)
+: _filename{file_name}
 {}
 
 int FileReader::getHighScore()

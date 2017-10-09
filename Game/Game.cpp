@@ -218,7 +218,7 @@ float Game::GenerateRandomNumber(float min, float max)
     return randomNumber;
 }
 
-void Game::CheckScores()
+void Game::CheckScoreStatus()
 {
     if (*_score >= *_highScore)
     {

@@ -144,7 +144,7 @@ void CheckCollisions();
 
 float GenerateRandomNumber(float min, float max);
 
-void CheckScores();
+void CheckScoreStatus();
 
 void SetNewHighScore();
 
