@@ -2,7 +2,7 @@
 #include "Game.h"
 
 GameObject::GameObject()
-: _pathVector{0,0}
+: _pathVector{0.0f,0.0f}
 {  
     
 }
@@ -16,22 +16,21 @@ GameObject::GameObject()
 void GameObject::circularMove(int direction)
 {
     // control circular movement
-	_angle += 2*direction; // positive or negative
-    float vecX = cos(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
-    float vecY = sin(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
-	_xCoord = Game::ORIGIN_X + vecX;
-	_yCoord = Game::ORIGIN_Y + vecY;
-	//_objectShape.setPosition(_xCoord, _yCoord);
-    //_objectShape.setRotation(_angle);
-    
-    // setup for player bullet movement vecor
-    vecX = -vecX/BULLET_SPEED_MODIFIER;
-    vecY = -vecY/BULLET_SPEED_MODIFIER;
-    //_pathVector = sf::Vector2f(vecX, vecY);
-    
-    _pathVector[0] = vecX;
-    _pathVector[1] = vecY;
-
+//	_angle += 2*direction; // positive or negative
+//    float vecX = cos(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
+//    float vecY = sin(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
+//	_xCoord = Game::ORIGIN_X + vecX;
+//	_yCoord = Game::ORIGIN_Y + vecY;
+//	//_objectShape.setPosition(_xCoord, _yCoord);
+//    //_objectShape.setRotation(_angle);
+//    
+//    // setup for player bullet movement vecor
+//    vecX = -vecX/BULLET_SPEED_MODIFIER;
+//    vecY = -vecY/BULLET_SPEED_MODIFIER;
+//    //_pathVector = sf::Vector2f(vecX, vecY);
+//    
+//    _pathVector[0] = vecX;
+//    _pathVector[1] = vecY;
 }
 
 void GameObject::lineMove()
@@ -53,7 +52,7 @@ void GameObject::lineMove()
     //_objectShape.setOrigin(_objectShape.getSize().x/2, _objectShape.getSize().y/2);
     //_hitRadius = (_objectShape.getSize().y + _objectShape.getSize().x)/4;
     
-    _hitRadius = (_objectHeight+_objectWidth)/4; 
+    _hitRadius = (_objectHeight*_scale + _objectWidth*_scale)/4; 
     
     checkInBounds();
 }

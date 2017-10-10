@@ -193,8 +193,35 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             return shared_ptr<GameObject>(new Enemy(ORIGIN_X, ORIGIN_Y, GenerateRandomNumber(0, 360)));
             
         case gameObjectType::PlayerBullet:
-            return shared_ptr<GameObject>(new PlayerBullet(_GameObjectsVector[0]->getXCoord(), _GameObjectsVector[0]->getYCoord(), _GameObjectsVector[0]->getPathVector(), _GameObjectsVector[0]->getAngle()));
+        {
+            shared_ptr<Player> player_ptr = std::static_pointer_cast<Player>((*_GameObjectsVector[0]).getptr());
+            shared_ptr<GameObject> player_bullet;
             
+            if(player_ptr->getGunLevel() == 1)
+            {
+                return shared_ptr<GameObject>(new PlayerBullet(player_ptr->getXCoord(), player_ptr->getYCoord(), player_ptr->getPathVector(), player_ptr->getAngle()));
+            }
+            
+            if(player_ptr->getGunLevel() == 2)
+            {
+                shared_ptr<GameObject> playerBullet_ptr(new PlayerBullet(player_ptr->getXCoordLeft(), player_ptr->getYCoordLeft(), player_ptr->getPathVectorLeft(), player_ptr->getAngle()-Player::BULLET_OFFSET_ANGLE));
+                _GameObjectsVector.push_back(playerBullet_ptr);
+                
+                return shared_ptr<GameObject>(new PlayerBullet(player_ptr->getXCoordRight(), player_ptr->getYCoordRight(), player_ptr->getPathVectorRight(), player_ptr->getAngle()+Player::BULLET_OFFSET_ANGLE));
+            }
+            
+            if(player_ptr->getGunLevel() == 3)
+            {
+                shared_ptr<GameObject> playerBullet_ptr1(new PlayerBullet(player_ptr->getXCoord(), player_ptr->getYCoord(), player_ptr->getPathVector(), player_ptr->getAngle()));
+                shared_ptr<GameObject> playerBullet_ptr2(new PlayerBullet(player_ptr->getXCoordLeft(), player_ptr->getYCoordLeft(), player_ptr->getPathVectorLeft(), player_ptr->getAngle()-Player::BULLET_OFFSET_ANGLE));
+                _GameObjectsVector.push_back(playerBullet_ptr1);
+                _GameObjectsVector.push_back(playerBullet_ptr2);
+                
+                return shared_ptr<GameObject>(new PlayerBullet(player_ptr->getXCoordRight(), player_ptr->getYCoordRight(), player_ptr->getPathVectorRight(), player_ptr->getAngle()+Player::BULLET_OFFSET_ANGLE));
+            }
+        
+        
+        }  
         case gameObjectType::EnemyBullet:
             return shared_ptr<GameObject>(new EnemyBullet(_GameObjectsVector[index]->getXCoord(), _GameObjectsVector[index]->getYCoord(), _GameObjectsVector[index]->getPathVector(), _GameObjectsVector[index]->getAngle(), _GameObjectsVector[index]->getScaleCount()));
             
