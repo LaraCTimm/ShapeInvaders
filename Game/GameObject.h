@@ -135,24 +135,32 @@ public:
     }
 
 
-    sf::RectangleShape getObjectShape() {
-        return _objectShape;
-    }
+//    sf::RectangleShape getObjectShape() {
+//        return _objectShape;
+//    }
+////
+////    shared_ptr<sf::RectangleShape> getObjectShape() {
+////    	auto objectShape_ptr = make_shared<sf::RectangleShape>(_objectShape);
+////        return objectShape_ptr;
+////    }
 //
-//    shared_ptr<sf::RectangleShape> getObjectShape() {
-//    	auto objectShape_ptr = make_shared<sf::RectangleShape>(_objectShape);
-//        return objectShape_ptr;
+//    void setObjectShape(sf::RectangleShape newObjectShape) {
+//        _objectShape = newObjectShape;
 //    }
 
-    void setObjectShape(sf::RectangleShape newObjectShape) {
-        _objectShape = newObjectShape;
-    }
+//    sf::Vector2f getPathVector() {
+//        return _pathVector;
+//    }
+//
+//    void setPathVector(sf::Vector2f newPathVector) {
+//        _pathVector = newPathVector;
+//    }
 
-    sf::Vector2f getPathVector() {
+    vector<float> getPathVector() {
         return _pathVector;
     }
 
-    void setPathVector(sf::Vector2f newPathVector) {
+    void setPathVector(vector<float> newPathVector) {
         _pathVector = newPathVector;
     }
 
@@ -179,8 +187,9 @@ protected:
     float _scale;
     float _scaleFactor;
     int _scaleCount;    // enemy, enemy bullet
-	sf::RectangleShape _objectShape;
-    sf::Vector2f _pathVector; // not sure who exactly needs this
+	//sf::RectangleShape _objectShape;
+    //sf::Vector2f _pathVector; // not sure who exactly needs this
+    vector<float> _pathVector;
     gameObjectType _objectType;
     
 private:

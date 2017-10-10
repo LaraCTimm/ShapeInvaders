@@ -2,7 +2,10 @@
 #include "Game.h"
 
 GameObject::GameObject()
-{   }
+: _pathVector{0,0}
+{  
+    
+}
 
 //void GameObject::move(float xOffset, float yOffset)
 //{
@@ -18,20 +21,23 @@ void GameObject::circularMove(int direction)
     float vecY = sin(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
 	_xCoord = Game::ORIGIN_X + vecX;
 	_yCoord = Game::ORIGIN_Y + vecY;
-	_objectShape.setPosition(_xCoord, _yCoord);
-    _objectShape.setRotation(_angle);
+	//_objectShape.setPosition(_xCoord, _yCoord);
+    //_objectShape.setRotation(_angle);
     
     // setup for player bullet movement vecor
     vecX = -vecX/BULLET_SPEED_MODIFIER;
     vecY = -vecY/BULLET_SPEED_MODIFIER;
-    _pathVector = sf::Vector2f(vecX, vecY);
+    //_pathVector = sf::Vector2f(vecX, vecY);
+    
+    _pathVector[0] = vecX;
+    _pathVector[1] = vecY;
 
 }
 
 void GameObject::lineMove()
 {
-	_xCoord += _pathVector.x;
-	_yCoord += _pathVector.y;
+	_xCoord += _pathVector[0];
+	_yCoord += _pathVector[1];
 	//_objectShape.setPosition(_xCoord, _yCoord);
     
     _scale += _scaleFactor;

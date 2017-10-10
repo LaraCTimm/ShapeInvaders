@@ -33,7 +33,9 @@ void Game::InitialiseGame()
     _laserGeneratorCooldown = 800;
     _shotFired = false;
     _score = make_shared<int>(0);
+    cout << "OK" << endl;
     shared_ptr<GameObject> ptr(new Player());
+    cout << "OK" << endl;
     _player_ptr = ptr;
     _gameState = 1;
     _inGame = false;

@@ -9,7 +9,7 @@ class EnemyBullet : public GameObject
 {
 public:
 
-    EnemyBullet(float xCoord, float yCoord, sf::Vector2f pathVector, float angle, int scaleCount);
+    EnemyBullet(float xCoord, float yCoord, vector<float> pathVector, float angle, int scaleCount);
     
 //    float getCooldown(float newCooldown) {
 //        return _cooldown;

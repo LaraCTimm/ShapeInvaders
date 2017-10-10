@@ -9,7 +9,7 @@ class PlayerBullet : public GameObject
 {
 public:
 
-    PlayerBullet(float xCoord, float yCoord, sf::Vector2f pathVector, float angle);
+    PlayerBullet(float xCoord, float yCoord, vector<float> pathVector, float angle);
     
 private:
     

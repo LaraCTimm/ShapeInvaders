@@ -4,7 +4,7 @@
 using std::cout;
 using std::endl;
 
-PlayerBullet::PlayerBullet(float xCoord, float yCoord, sf::Vector2f pathVector, float angle) : GameObject()
+PlayerBullet::PlayerBullet(float xCoord, float yCoord, vector<float> pathVector, float angle) : GameObject()
 {
     _angle = angle;
     _objectWidth = 10;
@@ -17,24 +17,24 @@ PlayerBullet::PlayerBullet(float xCoord, float yCoord, sf::Vector2f pathVector, 
     _scaleCount = 0;
     _objectType = gameObjectType::PlayerBullet;
     _pathVector = pathVector;
-    _xCoord = xCoord + pathVector.x;
-	_yCoord = yCoord + pathVector.y;
+    _xCoord = xCoord + pathVector[0];
+	_yCoord = yCoord + pathVector[1];
 
-    // Create bullet rectangle
-    sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));
-    
-    // Set bullet attributes
-    rectangle.setOutlineThickness(2);
-    rectangle.setOutlineColor(sf::Color::Black);
-    rectangle.setFillColor(sf::Color::Red);
-    rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
-    rectangle.setRotation(angle);
-
-    
-    cout << pathVector.x << " " << pathVector.y << endl;
-    
-	rectangle.setPosition(_xCoord, _yCoord);
-    
-    setObjectShape(rectangle);
+//    // Create bullet rectangle
+//    sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));
+//    
+//    // Set bullet attributes
+//    rectangle.setOutlineThickness(2);
+//    rectangle.setOutlineColor(sf::Color::Black);
+//    rectangle.setFillColor(sf::Color::Red);
+//    rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
+//    rectangle.setRotation(angle);
+//
+//    
+//    cout << pathVector.x << " " << pathVector.y << endl;
+//    
+//	rectangle.setPosition(_xCoord, _yCoord);
+//    
+//    setObjectShape(rectangle);
     
 }
