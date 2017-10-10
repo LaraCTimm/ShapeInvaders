@@ -4,12 +4,18 @@
 #include "GameObject.h"
 #include "Game.h"
 
-
+/**
+ * @class Asteriod - represents enemy asteroid 
+ * Inherited from GameObject class
+ */
 class Asteriod : public GameObject
 {
 public:
-
-    Asteriod(float angle);
+/** 
+ * @brief Asteroid contructor
+ * @param Angle at which asteroid is instantiated & along which it moves
+ */ 
+Asteriod(float angle);
     
 //    float getCooldown() {
 //        return _cooldown;
