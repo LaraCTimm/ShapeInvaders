@@ -69,7 +69,8 @@ Debug/main.cpp.o: main.cpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp \
  Game.h GameObject.h Player.h PlayerBullet.h Enemy.h EnemyBullet.h \
- Asteriod.h LaserGenerator.h ArcSegment.h FileReader.h MainMenu.h
+ Asteriod.h LaserGenerator.h ArcSegment.h FileReader.h Interface.h \
+ keyboardInput.h
 
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics.hpp:
 
@@ -229,4 +230,6 @@ ArcSegment.h:
 
 FileReader.h:
 
-MainMenu.h:
+Interface.h:
+
+keyboardInput.h:

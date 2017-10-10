@@ -23,7 +23,8 @@ EnemyBullet::EnemyBullet(float xCoord, float yCoord, sf::Vector2f enemyPathVecto
     float vecY = sin(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
 
     _pathVector = sf::Vector2f(vecX*SPEED_MULTIPLIER, vecY*SPEED_MULTIPLIER); // start position of linear path
-    
+    _xCoord += _pathVector.x;
+    _yCoord += _pathVector.y;
     //_pathVector = sf::Vector2f(enemyPathVector.x*SPEED_MULTIPLIER, enemyPathVector.y*SPEED_MULTIPLIER);
 
     // Create bullet rectangle
@@ -36,8 +37,7 @@ EnemyBullet::EnemyBullet(float xCoord, float yCoord, sf::Vector2f enemyPathVecto
     rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
     rectangle.setRotation(_angle);
     
-    _xCoord += _pathVector.x;
-    _yCoord += _pathVector.y;
+    
     
 //    _xCoord += enemyPathVector.x;
 //	_yCoord += enemyPathVector.y; 

@@ -32,7 +32,7 @@ void GameObject::lineMove()
 {
 	_xCoord += _pathVector.x;
 	_yCoord += _pathVector.y;
-	_objectShape.setPosition(_xCoord, _yCoord);
+	//_objectShape.setPosition(_xCoord, _yCoord);
     
     _scale += _scaleFactor;
     _scaleCount++;
@@ -40,11 +40,14 @@ void GameObject::lineMove()
     if (_scale > 1 && !(_objectType == gameObjectType::LaserGenerator || _objectType == gameObjectType::ArcSegment)) {
         _scale = 1;
     }
+//    _objectWidth =_objectWidth*_scale;
+//    _objectHeight =_objectHeight*_scale;
+    //sf::Vector2f newSize(_objectWidth*_scale, _objectHeight*_scale);
+    //_objectShape.setSize(newSize);
+    //_objectShape.setOrigin(_objectShape.getSize().x/2, _objectShape.getSize().y/2);
+    //_hitRadius = (_objectShape.getSize().y + _objectShape.getSize().x)/4;
     
-    sf::Vector2f newSize(_objectWidth*_scale, _objectHeight*_scale);
-    _objectShape.setSize(newSize);
-    _objectShape.setOrigin(_objectShape.getSize().x/2, _objectShape.getSize().y/2);
-    _hitRadius = (_objectShape.getSize().y + _objectShape.getSize().x)/4;
+    _hitRadius = (_objectHeight+_objectWidth)/4; 
     
     checkInBounds();
 }

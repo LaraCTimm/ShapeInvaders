@@ -10,6 +10,8 @@
 #include "LaserGenerator.h"
 #include "ArcSegment.h"
 #include "FileReader.h"
+#include "Interface.h"
+#include "keyboardInput.h"
 
 #include <SFML/Graphics.hpp>
 #include <ctime>
@@ -98,13 +100,13 @@ void setShotFired(const bool newShotFired) {
     _shotFired = newShotFired;
 }
 
-sf::Text getCurrentScoreText() {
-    return _currentScoreText;
-}
-
-sf::Text getHighScoreText() {
-    return _highScoreText;
-}
+//sf::Text getCurrentScoreText() {
+//    return _currentScoreText;
+//}
+//
+//sf::Text getHighScoreText() {
+//    return _highScoreText;
+//}
 
 shared_ptr<int> getHighScore(){
     return _highScore;
@@ -120,6 +122,10 @@ shared_ptr<int> getHighScore(){
 
 // Constructor
 Game(int highScore);
+
+void GameLoop();
+
+void CheckGameState(vector<keyboardInput> keysPressed);
 
 // Create a game object
 shared_ptr<GameObject> SpawnGameObject(gameObjectType type, int index);
@@ -142,6 +148,12 @@ void CreateGameObjects();
 
 void CheckCollisions();
 
+void CheckGameOver();
+
+void Update(vector<keyboardInput> keysPressed);
+
+void Render();
+
 float GenerateRandomNumber(float min, float max);
 
 void CheckScoreStatus();
@@ -154,17 +166,24 @@ void SetNewHighScore();
 
 private:
     vector<shared_ptr<GameObject>> _GameObjectsVector;
+    shared_ptr<GameObject> _player_ptr;
     vector<sf::RectangleShape> _livesVector;
     shared_ptr<int> _score;
     shared_ptr<int> _highScore;
-    sf::Text _highScoreText;
-    sf::Text _currentScoreText;
+//    sf::Text _highScoreText;
+//    sf::Text _currentScoreText;
     sf::Clock _clock;
     //int _bulletCooldown;
     float _enemyCooldown;
     float _asteriodCooldown;
     float _laserGeneratorCooldown;
     bool _shotFired;
+    bool _inGame;
+    
+    Interface _interface;
+    int _gameState;
+    
+    void InitialiseGame();
     
 
 

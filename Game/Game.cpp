@@ -3,52 +3,188 @@
 
 // Pass in the previous high score from a text file
 Game::Game(int highScore)
+//: _enemyCooldown(10)
+//, _asteriodCooldown(400)
+//, _laserGeneratorCooldown(800)
+//, _shotFired(false)
+//, _score(new int(0))
+//, _player_ptr(new Player())
+//, _gameState(1)
+//, _inGame(false)
 {
-    // Player becomes first element in _GameObjectsVector
-    shared_ptr<GameObject> obj_ptr = Game::SpawnGameObject(gameObjectType::Player, 0);
-    _GameObjectsVector.push_back(obj_ptr);
-    _score = shared_ptr<int>(new int(0));
+    InitialiseGame();
+//    _GameObjectsVector.clear();
+//    _GameObjectsVector.push_back(_player_ptr);
+//
+//    srand (time(0));
+//    
+//    FileReader file("scores.txt");
+//    _highScore = make_shared<int>(file.getHighScore());
+//    
+//    _interface.CreateLivesVector(_player_ptr->getHealth(), LIFE_RECT_SIZE);
+    
+    GameLoop();
+}
+
+void Game::InitialiseGame()
+{
     _enemyCooldown = 10;
     _asteriodCooldown = 400;
     _laserGeneratorCooldown = 800;
     _shotFired = false;
+    _score = make_shared<int>(0);
+    shared_ptr<GameObject> ptr(new Player());
+    _player_ptr = ptr;
+    _gameState = 1;
+    _inGame = false;
+    
+    _GameObjectsVector.clear();
+    _GameObjectsVector.push_back(_player_ptr);
+
     srand (time(0));
     
-    for (int i = 0; i < obj_ptr->getHealth(); i++)
-    {
-        sf::RectangleShape lifeRect(sf::Vector2f(LIFE_RECT_SIZE, LIFE_RECT_SIZE));
-        lifeRect.setOutlineThickness(2);
-        lifeRect.setOutlineColor(sf::Color::Red);
-        lifeRect.setFillColor(sf::Color::White);
-        lifeRect.setOrigin(sf::Vector2f(LIFE_RECT_SIZE/2, LIFE_RECT_SIZE/2));
-        lifeRect.setPosition(LIFE_RECT_SIZE*1.5 + LIFE_RECT_SIZE*1.5*i, SCREEN_HEIGHT - LIFE_RECT_SIZE*1.5);
-        _livesVector.push_back(lifeRect);
-    }
-    
-    std::string scoreString = "Score: " + std::to_string(*_score);
-    _currentScoreText.setString(scoreString);
-    _currentScoreText.setCharacterSize(20);
-    _currentScoreText.setColor(sf::Color::Black);
-    _currentScoreText.setPosition(sf::Vector2f(30, 30));
-    
     FileReader file("scores.txt");
-
     _highScore = make_shared<int>(file.getHighScore());
     
-    std::string highScoreString = "High Score: " + std::to_string(*_highScore);
-    _highScoreText.setString(highScoreString);
-    _highScoreText.setCharacterSize(20);
-    _highScoreText.setColor(sf::Color::Black);
-    _highScoreText.setPosition(sf::Vector2f(SCREEN_WIDTH-200, 30));
+    _interface.CreateLivesVector(_player_ptr->getHealth(), LIFE_RECT_SIZE);
 }
 
+void Game::GameLoop()
+{
+    while(_interface.WindowOpen())
+    {
+        while(_gameState == 1)
+        {
+            _interface.SplashScreen();
+            _interface.ProcessGameEvents();
+
+            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
+            
+            if (!keysPressed.empty())
+            {
+                CheckGameState(keysPressed);
+            }
+        }
+                
+        while(_gameState == 2)
+        {
+            _interface.GameScreen();
+            _interface.ProcessGameEvents();
+            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
+
+            if(_interface.CheckClock())
+            {
+                Update(keysPressed);
+                Render();
+                _interface.DisplayWindow();
+                _inGame = true;
+            }
+        }
+        
+        while (_gameState == 3)
+        {
+            _interface.EndScreen();
+            _interface.ProcessGameEvents();
+            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
+            CheckGameState(keysPressed);
+        }
+    }
+}
+
+void Game::CheckGameState(vector<keyboardInput> keysPressed)
+{
+    //cout<< "HELLOOOO" << endl;
+    for (auto element: keysPressed)
+    {
+        if (element == keyboardInput::press_enter) 
+        {
+            if (_inGame)
+            {
+                InitialiseGame();
+            }
+            
+            _gameState = 2;
+        }
+        else if (element == keyboardInput::press_esc || element == keyboardInput::close_window)
+        {
+            _interface.CloseWindow();
+            _gameState = 4;
+        }
+        
+        if(_gameState == 4)
+        {
+            break;
+        }
+    }
+}
+
+void Game::Update(vector<keyboardInput> keysPressed)
+{
+    for (auto element: keysPressed)
+    {
+        switch(element)
+        {
+            case keyboardInput::press_up:
+                MovePlayerObject(-1);
+                break;
+            case keyboardInput::press_down:
+                MovePlayerObject(1);
+                break;
+            case keyboardInput::press_space:
+                if (!_shotFired) 
+                {
+                    AddGameObject(gameObjectType::PlayerBullet, 0);
+                    _shotFired = true;
+                }
+                break;
+            case keyboardInput::release_space:
+                _shotFired = false;
+                break;
+            case keyboardInput::close_window:
+                _interface.CloseWindow();
+                break;
+            default:
+                break;  
+        }
+    }
+    
+    DecrementCooldowns();
+    CreateGameObjects();
+    CheckCollisions();
+    CheckScoreStatus();
+    ObjectCleanup();
+    CheckGameOver();
+    
+    for (auto i = 0; i < _GameObjectsVector.size(); i++)
+    {
+        if (_GameObjectsVector[i]->getObjectType() != gameObjectType::Player)
+        {
+            MoveLineObject(i);
+        }
+    }
+}
+
+void Game::Render()
+{
+    for (shared_ptr<GameObject> element: _GameObjectsVector)
+    {
+        //cout << "RENDERING..." << int(element->getObjectType()) << endl;
+        _interface.RenderGameObject(element);
+    }
+    
+    //cout << "RENDERING DONE" << endl;
+    _interface.RenderText(_score, _highScore);
+    _interface.RenderLives(_player_ptr->getHealth());
+    
+    //_interface.DisplayWindow();
+}
 
 shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index) 
 {
     switch (type) 
     {
-        case gameObjectType::Player:
-            return shared_ptr<GameObject>(new Player());
+//        case gameObjectType::Player:
+//            return shared_ptr<GameObject>(new Player());
             
         case gameObjectType::Enemy:
         // enemies may spawn from a position other than the origin if further movement patterns are developed
@@ -62,7 +198,6 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             
         case gameObjectType::Asteriod:
         // tracks the position of the player
-            //cout << _GameObjectsVector[0]->getAngle() << "ANGLE" << endl;
             return shared_ptr<GameObject>(new Asteriod(_GameObjectsVector[0]->getAngle()));
             
         case gameObjectType::Satellite:
@@ -148,6 +283,16 @@ void Game::ObjectCleanup()
         }
     }
 }
+
+void Game::CheckGameOver()
+{
+    if (_GameObjectsVector.size() > 0 && _GameObjectsVector[0]->getObjectType() != gameObjectType::Player)
+    {
+        SetNewHighScore();
+        _gameState = 3;
+    }
+}
+
 
 // ??????
 

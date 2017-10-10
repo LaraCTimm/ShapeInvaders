@@ -69,7 +69,7 @@ Debug/Player.cpp.o: Player.cpp Player.h GameObject.h \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp \
  Game.h PlayerBullet.h Enemy.h EnemyBullet.h Asteriod.h LaserGenerator.h \
- ArcSegment.h
+ ArcSegment.h FileReader.h Interface.h keyboardInput.h
 
 Player.h:
 
@@ -226,3 +226,9 @@ Asteriod.h:
 LaserGenerator.h:
 
 ArcSegment.h:
+
+FileReader.h:
+
+Interface.h:
+
+keyboardInput.h:

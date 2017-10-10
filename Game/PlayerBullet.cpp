@@ -17,6 +17,8 @@ PlayerBullet::PlayerBullet(float xCoord, float yCoord, sf::Vector2f pathVector, 
     _scaleCount = 0;
     _objectType = gameObjectType::PlayerBullet;
     _pathVector = pathVector;
+    _xCoord = xCoord + pathVector.x;
+	_yCoord = yCoord + pathVector.y;
 
     // Create bullet rectangle
     sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));
@@ -29,8 +31,6 @@ PlayerBullet::PlayerBullet(float xCoord, float yCoord, sf::Vector2f pathVector, 
     rectangle.setRotation(angle);
 
     
-    _xCoord = xCoord + pathVector.x;
-	_yCoord = yCoord + pathVector.y;
     cout << pathVector.x << " " << pathVector.y << endl;
     
 	rectangle.setPosition(_xCoord, _yCoord);

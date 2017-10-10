@@ -55,6 +55,8 @@ public:
     
 
     // Accessors and Mutators ----------------------------
+    
+    
 
     float getXCoord() {
         return _xCoord;
@@ -70,6 +72,10 @@ public:
 
     void setYCoord(const float newYCoord) {
         _yCoord = newYCoord;
+    }
+    
+    float getScale() {
+        return _scale;
     }
     ////
     float getObjectHeight() {
@@ -132,11 +138,11 @@ public:
     sf::RectangleShape getObjectShape() {
         return _objectShape;
     }
-
-    //shared_ptr<sf::RectangleShape> getObjectShape() {
-    //	auto objectShape_ptr = make_shared<sf::RectangleShape>(_objectShape);
-    //    return objectShape_ptr;
-    //}
+//
+//    shared_ptr<sf::RectangleShape> getObjectShape() {
+//    	auto objectShape_ptr = make_shared<sf::RectangleShape>(_objectShape);
+//        return objectShape_ptr;
+//    }
 
     void setObjectShape(sf::RectangleShape newObjectShape) {
         _objectShape = newObjectShape;

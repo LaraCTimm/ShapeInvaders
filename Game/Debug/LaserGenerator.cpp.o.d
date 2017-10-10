@@ -70,7 +70,7 @@ Debug/LaserGenerator.cpp.o: LaserGenerator.cpp LaserGenerator.h \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp \
  Game.h Player.h PlayerBullet.h Enemy.h EnemyBullet.h Asteriod.h \
- ArcSegment.h
+ ArcSegment.h FileReader.h Interface.h keyboardInput.h
 
 LaserGenerator.h:
 
@@ -227,3 +227,9 @@ EnemyBullet.h:
 Asteriod.h:
 
 ArcSegment.h:
+
+FileReader.h:
+
+Interface.h:
+
+keyboardInput.h:

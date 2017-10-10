@@ -23,9 +23,6 @@ Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
     
     _xCoord += 2*vecX;
 	_yCoord += 2*vecY;
-    
-    //cout << vecX << " " << vecY << " " << angle << " Enemy" << endl;
-    
 
     // Create bullet rectangle
     sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));
@@ -41,11 +38,6 @@ Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
 
 }
 
-//void Enemy::decrementEnemyCooldown() 
-//{
-//    if (_cooldown > 0)
-//        _cooldown--;
-//}
 
 void Enemy::decrementEnemyBulletCooldown() 
 {
