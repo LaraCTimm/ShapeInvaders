@@ -34,6 +34,8 @@
     <File Name="Interface.cpp"/>
     <File Name="Interface.h"/>
     <File Name="keyboardInput.h"/>
+    <File Name="Satellite.h"/>
+    <File Name="Satellite.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

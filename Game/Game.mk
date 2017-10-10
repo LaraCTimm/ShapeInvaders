@@ -62,7 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 Objects0=$(IntermediateDirectory)/ArcSegment.cpp$(ObjectSuffix) $(IntermediateDirectory)/Asteriod.cpp$(ObjectSuffix) $(IntermediateDirectory)/Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameTests.cpp$(ObjectSuffix) $(IntermediateDirectory)/LaserGenerator.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Player.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/MainMenu.cpp$(ObjectSuffix) $(IntermediateDirectory)/FileReader.cpp$(ObjectSuffix) $(IntermediateDirectory)/Interface.cpp$(ObjectSuffix) 
+	$(IntermediateDirectory)/PlayerBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/MainMenu.cpp$(ObjectSuffix) $(IntermediateDirectory)/FileReader.cpp$(ObjectSuffix) $(IntermediateDirectory)/Interface.cpp$(ObjectSuffix) $(IntermediateDirectory)/Satellite.cpp$(ObjectSuffix) 
 
 
 
@@ -204,6 +204,14 @@ $(IntermediateDirectory)/Interface.cpp$(DependSuffix): Interface.cpp
 
 $(IntermediateDirectory)/Interface.cpp$(PreprocessSuffix): Interface.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Interface.cpp$(PreprocessSuffix) Interface.cpp
+
+$(IntermediateDirectory)/Satellite.cpp$(ObjectSuffix): Satellite.cpp $(IntermediateDirectory)/Satellite.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/Satellite.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Satellite.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Satellite.cpp$(DependSuffix): Satellite.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Satellite.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Satellite.cpp$(DependSuffix) -MM Satellite.cpp
+
+$(IntermediateDirectory)/Satellite.cpp$(PreprocessSuffix): Satellite.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Satellite.cpp$(PreprocessSuffix) Satellite.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

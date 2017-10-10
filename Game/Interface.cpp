@@ -249,6 +249,12 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
         fillColor = sf::Color::Cyan;
         break;
         
+    case gameObjectType::Satellite:
+        outlineThickness = 2.0f;
+        outlineColor = sf::Color::Black;
+        fillColor = sf::Color::Magenta;
+        break;
+        
     default:
         break;
     }
@@ -300,7 +306,7 @@ void Interface::RenderLives(const int numPlayerLives)
 
 bool Interface::CheckClock()
 {
-    if(_clock.getElapsedTime().asMilliseconds() >= 1000/100)
+    if(_clock.getElapsedTime().asMilliseconds() >= 1000/75)
     {
         _clock.restart();
         return true;

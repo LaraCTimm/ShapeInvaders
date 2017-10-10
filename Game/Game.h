@@ -9,6 +9,7 @@
 #include "Asteriod.h"
 #include "LaserGenerator.h"
 #include "ArcSegment.h"
+#include "Satellite.h"
 #include "FileReader.h"
 #include "Interface.h"
 #include "keyboardInput.h"
@@ -42,6 +43,7 @@ static constexpr float PLAYER_RADIUS = 300.0f;
 static constexpr float SCREEN_HEIGHT = 800.0f;
 static constexpr float SCREEN_WIDTH = 800.0f;
 static constexpr float LIFE_RECT_SIZE = 30.0f;
+static constexpr float SATTELITE_DEVIATION = 20.0f;
 
 
 
@@ -177,6 +179,7 @@ private:
     float _enemyCooldown;
     float _asteriodCooldown;
     float _laserGeneratorCooldown;
+    float _satelliteCooldown;
     bool _shotFired;
     bool _inGame;
     

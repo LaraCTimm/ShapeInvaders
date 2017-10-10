@@ -31,11 +31,10 @@ void Game::InitialiseGame()
     _enemyCooldown = 10;
     _asteriodCooldown = 400;
     _laserGeneratorCooldown = 800;
+    _satelliteCooldown = 200;
     _shotFired = false;
     _score = make_shared<int>(0);
-    cout << "OK" << endl;
     shared_ptr<GameObject> ptr(new Player());
-    cout << "OK" << endl;
     _player_ptr = ptr;
     _gameState = 1;
     _inGame = false;
@@ -159,9 +158,13 @@ void Game::Update(vector<keyboardInput> keysPressed)
     
     for (auto i = 0; i < _GameObjectsVector.size(); i++)
     {
-        if (_GameObjectsVector[i]->getObjectType() != gameObjectType::Player)
+        if (_GameObjectsVector[i]->getObjectType() != gameObjectType::Player && _GameObjectsVector[i]->getObjectType() != gameObjectType::Satellite)
         {
             MoveLineObject(i);
+        }
+        else if(_GameObjectsVector[i]->getObjectType() == gameObjectType::Satellite)
+        {
+            _GameObjectsVector[i]->circularMove(1);
         }
     }
 }
@@ -185,9 +188,6 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
 {
     switch (type) 
     {
-//        case gameObjectType::Player:
-//            return shared_ptr<GameObject>(new Player());
-            
         case gameObjectType::Enemy:
         // enemies may spawn from a position other than the origin if further movement patterns are developed
             return shared_ptr<GameObject>(new Enemy(ORIGIN_X, ORIGIN_Y, GenerateRandomNumber(0, 360)));
@@ -230,7 +230,27 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             return shared_ptr<GameObject>(new Asteriod(_GameObjectsVector[0]->getAngle()));
             
         case gameObjectType::Satellite:
-            break;
+        {
+            int ID = 0;
+            for(auto element : _GameObjectsVector)
+            {
+                if(element->getObjectType() == gameObjectType::Satellite)
+                {
+                    shared_ptr<Satellite> satellite_ptr = std::static_pointer_cast<Satellite>((*element).getptr());
+                    
+                    if(satellite_ptr->getID() > ID) {
+                        ID = satellite_ptr->getID();
+                    }
+                }
+            }
+            ID++;
+            
+            shared_ptr<GameObject> satellite_ptr1(new Satellite(_GameObjectsVector[0]->getAngle(), ID));
+            shared_ptr<GameObject> satellite_ptr2(new Satellite(_GameObjectsVector[0]->getAngle() + SATTELITE_DEVIATION, ID));
+            _GameObjectsVector.push_back(satellite_ptr1);
+            _GameObjectsVector.push_back(satellite_ptr2);
+            return shared_ptr<GameObject>(new Satellite(_GameObjectsVector[0]->getAngle() - SATTELITE_DEVIATION, ID));
+        }
         case gameObjectType::LaserGenerator:
         {
             int ID = 0;
@@ -281,7 +301,6 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
     }
     return shared_ptr<GameObject>();
 } 
-
 
 
 void Game::MovePlayerObject(int direction)
@@ -340,6 +359,30 @@ void Game::DecrementCooldowns()
                 enemy_ptr->setBulletCooldown(GenerateRandomNumber(100,200));
             }
         }
+        
+        if (_GameObjectsVector[i]->getObjectType() == gameObjectType::Satellite)
+        {
+            shared_ptr<Satellite> satellite_ptr = std::static_pointer_cast<Satellite>((*_GameObjectsVector[i]).getptr());
+          
+            cout << satellite_ptr->getAngle() << " = " << satellite_ptr->getGyrateAngle() << endl;
+          
+            float triggerAngle = satellite_ptr->getAngle() + 180;
+          
+            if(triggerAngle > 360)
+            {
+                triggerAngle -= 360;
+            }
+            else if(triggerAngle < 0)
+            {
+                triggerAngle += 360;
+            }
+          
+            if (satellite_ptr->getShotCharged() && (triggerAngle > (satellite_ptr->getGyrateAngle() - 5)) && (triggerAngle < (satellite_ptr->getGyrateAngle() + 5)))
+            {
+                AddGameObject(gameObjectType::EnemyBullet, i);
+                satellite_ptr->setShotCharged(false);
+            }
+        }
     }
     
     if (_enemyCooldown > 0) {
@@ -352,6 +395,10 @@ void Game::DecrementCooldowns()
     
      if (_laserGeneratorCooldown > 0) {
         _laserGeneratorCooldown--;
+    }
+    
+    if (_satelliteCooldown > 0) {
+        _satelliteCooldown--;
     }
 }
 
@@ -374,6 +421,12 @@ void Game::CreateGameObjects()
     {
         AddGameObject(gameObjectType::LaserGenerator, 0);
         _laserGeneratorCooldown = GenerateRandomNumber(350.0f, 400.0f);
+    }
+    
+    if (_satelliteCooldown <= 0)
+    {
+        AddGameObject(gameObjectType::Satellite, 0);
+        _satelliteCooldown = GenerateRandomNumber(500.0f, 750.0f);
     }
 }
 

@@ -70,6 +70,7 @@ public:
     
     void circularMove(int direction) override;
     
+    void UpgradeGun();
     
     
 private:
