@@ -4,6 +4,11 @@
 #include "GameObject.h"
 #include "Game.h"
 
+/**
+* Player class - represents the Player.
+* Inherits from GameObject class.
+*/
+
 class Player : public GameObject
 {
 public:
