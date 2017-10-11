@@ -1,8 +1,7 @@
 #include "Interface.h"
 
 Interface::Interface()
-: _window(sf::VideoMode(800,800), "Shape[]Invaders", sf::Style::Titlebar | sf::Style::Close)
-//, _isPlaying(true)
+: _window(sf::VideoMode(SCREEN_HEIGHT, SCREEN_WIDTH), "Shape Invaders", sf::Style::Titlebar | sf::Style::Close)
 , _shotFired(false)
 {
     _clock.restart();
@@ -24,7 +23,7 @@ void Interface::CreateLivesVector(const int numPlayerLives, float rectSize)
     for (int i = 0; i < numPlayerLives; i++)
     {
         sf::RectangleShape lifeRect(sf::Vector2f(rectSize, rectSize));
-        lifeRect.setOutlineThickness(4);
+        lifeRect.setOutlineThickness(3);
         lifeRect.setOutlineColor(sf::Color::Red);
         lifeRect.setFillColor(sf::Color::White);
         lifeRect.setOrigin(sf::Vector2f(rectSize/2, rectSize/2));
@@ -45,7 +44,7 @@ bool Interface::WindowOpen()
     return open;
 }
 
-vector<keyboardInput> Interface::GetGameEvents()
+vector<keyboardInput> Interface::GetGameEventsVector()
 {
     return _gameEventVector;
 }
@@ -53,8 +52,8 @@ vector<keyboardInput> Interface::GetGameEvents()
 void Interface::ProcessGameEvents()
 {
     _gameEventVector.clear();
-    sf::Event event;
     
+    sf::Event event;
     while (_window.pollEvent(event))
     {
         if (event.type == sf::Event::Closed)
@@ -93,58 +92,6 @@ void Interface::ProcessGameEvents()
         _gameEventVector.push_back(keyboardInput::release_space);
     }
 }
-    
-    
-//    while(_window.pollEvent(event))
-//    {
-//        switch(event.type)
-//        {
-//            case sf::Event::KeyPressed:
-//                switch(event.key.code)
-//                {
-//                    case sf::Keyboard::Up:
-//                    case sf::Keyboard::Left:
-//                        _gameEventVector.push_back(keyboardInput::press_up);
-//                        break;
-//                    case sf::Keyboard::Down:
-//                    case sf::Keyboard::Right:
-//                        _gameEventVector.push_back(keyboardInput::press_down);
-//                        break;
-//                    case sf::Keyboard::Return:
-//                        _gameEventVector.push_back(keyboardInput::press_enter);
-//                        break;
-//                    case sf::Keyboard::Escape:
-//                        _gameEventVector.push_back(keyboardInput::press_esc);
-//                        break;
-//                    case sf::Keyboard::Space:
-//                        _gameEventVector.push_back(keyboardInput::press_space);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            case sf::Event::KeyReleased:
-////                switch(event.key.code)
-////                {
-////                    case sf::Keyboard::Space:
-////                        _gameEventVector.push_back(keyboardInput::release_space);
-////                        break;
-////                    default:
-////                        break;
-////                }
-//                if(event.key.code == sf::Keyboard::Space)
-//                {
-//                    _gameEventVector.push_back(keyboardInput::release_space);
-//                }
-//            case sf::Event::Closed:
-//                cout << "DEFINITELY NOT OK" << endl;
-//                _gameEventVector.push_back(keyboardInput::close_window);
-//                break;
-//            default:
-//                break;
-                
-//        }
-//    }
-//}
 
 
 void Interface::SplashScreen()
@@ -155,10 +102,6 @@ void Interface::SplashScreen()
     _window.display();
 }
 
-bool Interface::End()
-{
-    
-}
 
 void Interface::GameScreen()
 {
@@ -186,7 +129,7 @@ void Interface::DisplayWindow()
 
 void Interface::RenderGameObject(shared_ptr<GameObject> object)
 {
-    //ClearWindow();
+    sf::RectangleShape _rect;
     
     float xCoord = object->getXCoord();
     float yCoord = object->getYCoord();
@@ -198,12 +141,7 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
     float outlineThickness;
     sf::Color outlineColor;
     sf::Color fillColor;
-    
-    _rect.setSize(sf::Vector2f(scale*width, scale*height));
-    _rect.setOrigin(sf::Vector2f(scale*width/2, scale*height/2));
-    _rect.setRotation(angle);
-    _rect.setPosition(sf::Vector2f(xCoord, yCoord));
-    
+
     switch (object->getObjectType())
     {
     
@@ -259,6 +197,10 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
         break;
     }
     
+    _rect.setSize(sf::Vector2f(scale*width, scale*height));
+    _rect.setOrigin(sf::Vector2f(scale*width/2, scale*height/2));
+    _rect.setRotation(angle);
+    _rect.setPosition(sf::Vector2f(xCoord, yCoord));
     _rect.setOutlineThickness(outlineThickness);
     _rect.setOutlineColor(outlineColor);
     _rect.setFillColor(fillColor);
@@ -292,14 +234,11 @@ void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score )
 }
 
 void Interface::RenderLives(const int numPlayerLives)
-{
-    //CreateLivesVector(numPlayerLives, rectSize);
-    
+{    
     for (auto i = 0; i < numPlayerLives; i++)
     {
         _window.draw(_livesVector[i]);
     }
-    
 }
 
 bool Interface::CheckClock()

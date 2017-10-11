@@ -19,28 +19,19 @@ public:
 	 */
 	Enemy(float xCoord, float yCoord, float angle);
 
-//    void decrementEnemyCooldown();
     /**
      * @brief Decrements enemy bullet cooldown if non-zero
      */
     void decrementEnemyBulletCooldown();
-    
-    //////////////////////////
-    
-//    float getCooldown() {
-//        return _cooldown;
-//    }
-//    
-//    void setCooldown(float newCooldown) {
-//        _cooldown = newCooldown;
-//    }
+
     /**
-     * @brief Function which gets bullet cooldown
+     * @brief Function which gets the bullet cooldown
      * @return Bullet cooldown 
      */
     float getBulletCooldown() {
         return _bulletCooldown;
     }
+    
     /**
      * @brief Assigns new bullet cooldown to cooldown variable
      * @param newBulletCooldown - new value to be assigned to bullet cooldown variable
@@ -51,7 +42,6 @@ public:
 
 private:
 
-    //float _cooldown;
     float _bulletCooldown;
     
 };

@@ -1,4 +1,4 @@
-Debug/Game_main.cpp.o: Game/main.cpp \
+Debug/Game_main.cpp.o: Game/main.cpp Game/Game.h Game/GameObject.h \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Window.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/System.hpp \
@@ -68,10 +68,13 @@ Debug/Game_main.cpp.o: Game/main.cpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Shader.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp \
  C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp \
- Game/Game.h Game/GameObject.h Game/Player.h Game/PlayerBullet.h \
- Game/Enemy.h Game/EnemyBullet.h Game/Asteriod.h Game/LaserGenerator.h \
- Game/ArcSegment.h Game/Satellite.h Game/FileReader.h Game/Interface.h \
- Game/keyboardInput.h
+ Game/Player.h Game/PlayerBullet.h Game/Enemy.h Game/EnemyBullet.h \
+ Game/Asteriod.h Game/LaserGenerator.h Game/ArcSegment.h Game/Satellite.h \
+ Game/FileReader.h Game/Interface.h Game/keyboardInput.h
+
+Game/Game.h:
+
+Game/GameObject.h:
 
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics.hpp:
 
@@ -210,10 +213,6 @@ C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Shader.
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Sprite.hpp:
 
 C:\Users\l_tim\Desktop\StevesDownloads\win-64\sfml\include/SFML/Graphics/Text.hpp:
-
-Game/Game.h:
-
-Game/GameObject.h:
 
 Game/Player.h:
 

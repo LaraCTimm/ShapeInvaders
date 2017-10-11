@@ -39,10 +39,7 @@ public:
     static constexpr float BULLET_SPEED_MODIFIER = 20.0f;
     // Constructor
     GameObject();
-
-//    void move(float xOffset, float yOffset);
-
-    // Move object by calculating new co-ords and setting position
+    
     virtual void circularMove(int direction);
     
     void lineMove();
@@ -50,11 +47,6 @@ public:
     void checkInBounds();
 
     int checkCollisions(vector<shared_ptr<GameObject>> &objectVector);
-
-    //virtual ~GameObject() {}; 
-    
-
-    // Accessors and Mutators ----------------------------
     
     
 
@@ -134,34 +126,20 @@ public:
         _scaleCount = newScaleCount;
     }
 
-
-//    sf::RectangleShape getObjectShape() {
-//        return _objectShape;
-//    }
-////
-////    shared_ptr<sf::RectangleShape> getObjectShape() {
-////    	auto objectShape_ptr = make_shared<sf::RectangleShape>(_objectShape);
-////        return objectShape_ptr;
-////    }
-//
-//    void setObjectShape(sf::RectangleShape newObjectShape) {
-//        _objectShape = newObjectShape;
-//    }
-
-//    sf::Vector2f getPathVector() {
-//        return _pathVector;
-//    }
-//
-//    void setPathVector(sf::Vector2f newPathVector) {
-//        _pathVector = newPathVector;
-//    }
-
     vector<float> getPathVector() {
         return _pathVector;
     }
 
     void setPathVector(vector<float> newPathVector) {
         _pathVector = newPathVector;
+    }
+    
+    vector<float> getShapeProperties() {
+        return _shapeProperties;
+    }
+    
+    void setShapeProperties(vector<float> shapeProperties) {
+        _shapeProperties = shapeProperties;
     }
 
     gameObjectType getObjectType() {
@@ -183,13 +161,12 @@ protected:
 	float _angle;
     float _hitRadius;
     int _health;
-    int _points;        // enemy, laser gen, satellites
+    int _points;        
     float _scale;
     float _scaleFactor;
-    int _scaleCount;    // enemy, enemy bullet
-	//sf::RectangleShape _objectShape;
-    //sf::Vector2f _pathVector; // not sure who exactly needs this
+    int _scaleCount;    
     vector<float> _pathVector;
+    vector<float> _shapeProperties;
     gameObjectType _objectType;
     
 private:

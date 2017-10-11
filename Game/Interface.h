@@ -22,23 +22,18 @@ class Interface
 {
 public:
 
-static constexpr float SCREEN_HEIGHT = 800.0f;
-static constexpr float SCREEN_WIDTH = 800.0f;
-
     Interface();
     
     int CloseWindow();
     
     bool WindowOpen();
-    
-    vector<keyboardInput> GetGameEvents();
-    
+        
     void ProcessGameEvents();
     
+    vector<keyboardInput> GetGameEventsVector();
+    
     void SplashScreen();
-    
-    bool End();
-    
+        
     void GameScreen();
 
     void EndScreen();
@@ -56,18 +51,18 @@ static constexpr float SCREEN_WIDTH = 800.0f;
     bool CheckClock();
     
 private:
+
+    static constexpr float SCREEN_HEIGHT = 800.0f;
+    static constexpr float SCREEN_WIDTH = 800.0f;
+    
     vector<keyboardInput> _gameEventVector;
     sf::RenderWindow _window;
     sf::Texture _startTexture;
     sf::Texture _endTexture;
     sf::Font _font;
     vector<sf::RectangleShape> _livesVector;
-    sf::RectangleShape _rect;
     sf::Clock _clock;
-    //keyboardInput _keyboard;
-    
     bool _shotFired;
-    //bool _isPlaying;
     
     void LoadFiles();
     void ClearWindow();

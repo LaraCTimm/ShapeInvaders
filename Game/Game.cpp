@@ -1,28 +1,8 @@
 #include "Game.h"
 
-
-// Pass in the previous high score from a text file
 Game::Game(int highScore)
-//: _enemyCooldown(10)
-//, _asteriodCooldown(400)
-//, _laserGeneratorCooldown(800)
-//, _shotFired(false)
-//, _score(new int(0))
-//, _player_ptr(new Player())
-//, _gameState(1)
-//, _inGame(false)
 {
     InitialiseGame();
-//    _GameObjectsVector.clear();
-//    _GameObjectsVector.push_back(_player_ptr);
-//
-//    srand (time(0));
-//    
-//    FileReader file("scores.txt");
-//    _highScore = make_shared<int>(file.getHighScore());
-//    
-//    _interface.CreateLivesVector(_player_ptr->getHealth(), LIFE_RECT_SIZE);
-    
     GameLoop();
 }
 
@@ -31,7 +11,7 @@ void Game::InitialiseGame()
     _enemyCooldown = 10;
     _asteriodCooldown = 400;
     _laserGeneratorCooldown = 800;
-    _satelliteCooldown = 200;
+    _satelliteCooldown = 1500;
     _shotFired = false;
     _score = make_shared<int>(0);
     shared_ptr<GameObject> ptr(new Player());
@@ -58,11 +38,9 @@ void Game::GameLoop()
         {
             _interface.SplashScreen();
             _interface.ProcessGameEvents();
-
-            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
+            vector<keyboardInput> keysPressed = _interface.GetGameEventsVector();
             
-            if (!keysPressed.empty())
-            {
+            if (!keysPressed.empty()) {
                 CheckGameState(keysPressed);
             }
         }
@@ -71,7 +49,7 @@ void Game::GameLoop()
         {
             _interface.GameScreen();
             _interface.ProcessGameEvents();
-            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
+            vector<keyboardInput> keysPressed = _interface.GetGameEventsVector();
 
             if(_interface.CheckClock())
             {
@@ -86,15 +64,17 @@ void Game::GameLoop()
         {
             _interface.EndScreen();
             _interface.ProcessGameEvents();
-            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
-            CheckGameState(keysPressed);
+            vector<keyboardInput> keysPressed = _interface.GetGameEventsVector();
+            
+            if (!keysPressed.empty()) {
+                CheckGameState(keysPressed);
+            }        
         }
     }
 }
 
 void Game::CheckGameState(vector<keyboardInput> keysPressed)
 {
-    //cout<< "HELLOOOO" << endl;
     for (auto element: keysPressed)
     {
         if (element == keyboardInput::press_enter) 
@@ -103,7 +83,6 @@ void Game::CheckGameState(vector<keyboardInput> keysPressed)
             {
                 InitialiseGame();
             }
-            
             _gameState = 2;
         }
         else if (element == keyboardInput::press_esc || element == keyboardInput::close_window)
@@ -128,9 +107,11 @@ void Game::Update(vector<keyboardInput> keysPressed)
             case keyboardInput::press_up:
                 MovePlayerObject(-1);
                 break;
+                
             case keyboardInput::press_down:
                 MovePlayerObject(1);
                 break;
+                
             case keyboardInput::press_space:
                 if (!_shotFired) 
                 {
@@ -138,12 +119,15 @@ void Game::Update(vector<keyboardInput> keysPressed)
                     _shotFired = true;
                 }
                 break;
+                
             case keyboardInput::release_space:
                 _shotFired = false;
                 break;
+                
             case keyboardInput::close_window:
                 _interface.CloseWindow();
                 break;
+                
             default:
                 break;  
         }
@@ -173,15 +157,12 @@ void Game::Render()
 {
     for (shared_ptr<GameObject> element: _GameObjectsVector)
     {
-        //cout << "RENDERING..." << int(element->getObjectType()) << endl;
         _interface.RenderGameObject(element);
     }
     
-    //cout << "RENDERING DONE" << endl;
     _interface.RenderText(_score, _highScore);
     _interface.RenderLives(_player_ptr->getHealth());
     
-    //_interface.DisplayWindow();
 }
 
 shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index) 
@@ -189,13 +170,11 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
     switch (type) 
     {
         case gameObjectType::Enemy:
-        // enemies may spawn from a position other than the origin if further movement patterns are developed
             return shared_ptr<GameObject>(new Enemy(ORIGIN_X, ORIGIN_Y, GenerateRandomNumber(0, 360)));
             
         case gameObjectType::PlayerBullet:
         {
             shared_ptr<Player> player_ptr = std::static_pointer_cast<Player>((*_GameObjectsVector[0]).getptr());
-            shared_ptr<GameObject> player_bullet;
             
             if(player_ptr->getGunLevel() == 1)
             {
@@ -204,29 +183,27 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             
             if(player_ptr->getGunLevel() == 2)
             {
-                shared_ptr<GameObject> playerBullet_ptr(new PlayerBullet(player_ptr->getXCoordLeft(), player_ptr->getYCoordLeft(), player_ptr->getPathVectorLeft(), player_ptr->getAngle()-Player::BULLET_OFFSET_ANGLE));
+                shared_ptr<GameObject> playerBullet_ptr(new PlayerBullet(player_ptr->getXCoordLeft(), player_ptr->getYCoordLeft(), player_ptr->getPathVectorLeft(), player_ptr->getAngle() - Player::BULLET_OFFSET_ANGLE));
                 _GameObjectsVector.push_back(playerBullet_ptr);
                 
-                return shared_ptr<GameObject>(new PlayerBullet(player_ptr->getXCoordRight(), player_ptr->getYCoordRight(), player_ptr->getPathVectorRight(), player_ptr->getAngle()+Player::BULLET_OFFSET_ANGLE));
+                return shared_ptr<GameObject>(new PlayerBullet(player_ptr->getXCoordRight(), player_ptr->getYCoordRight(), player_ptr->getPathVectorRight(), player_ptr->getAngle() + Player::BULLET_OFFSET_ANGLE));
             }
             
             if(player_ptr->getGunLevel() == 3)
             {
                 shared_ptr<GameObject> playerBullet_ptr1(new PlayerBullet(player_ptr->getXCoord(), player_ptr->getYCoord(), player_ptr->getPathVector(), player_ptr->getAngle()));
-                shared_ptr<GameObject> playerBullet_ptr2(new PlayerBullet(player_ptr->getXCoordLeft(), player_ptr->getYCoordLeft(), player_ptr->getPathVectorLeft(), player_ptr->getAngle()-Player::BULLET_OFFSET_ANGLE));
+                shared_ptr<GameObject> playerBullet_ptr2(new PlayerBullet(player_ptr->getXCoordLeft(), player_ptr->getYCoordLeft(), player_ptr->getPathVectorLeft(), player_ptr->getAngle() - Player::BULLET_OFFSET_ANGLE));
                 _GameObjectsVector.push_back(playerBullet_ptr1);
                 _GameObjectsVector.push_back(playerBullet_ptr2);
                 
-                return shared_ptr<GameObject>(new PlayerBullet(player_ptr->getXCoordRight(), player_ptr->getYCoordRight(), player_ptr->getPathVectorRight(), player_ptr->getAngle()+Player::BULLET_OFFSET_ANGLE));
+                return shared_ptr<GameObject>(new PlayerBullet(player_ptr->getXCoordRight(), player_ptr->getYCoordRight(), player_ptr->getPathVectorRight(), player_ptr->getAngle() + Player::BULLET_OFFSET_ANGLE));
             }
-        
-        
-        }  
+        } 
+ 
         case gameObjectType::EnemyBullet:
             return shared_ptr<GameObject>(new EnemyBullet(_GameObjectsVector[index]->getXCoord(), _GameObjectsVector[index]->getYCoord(), _GameObjectsVector[index]->getPathVector(), _GameObjectsVector[index]->getAngle(), _GameObjectsVector[index]->getScaleCount()));
             
         case gameObjectType::Asteriod:
-        // tracks the position of the player
             return shared_ptr<GameObject>(new Asteriod(_GameObjectsVector[0]->getAngle()));
             
         case gameObjectType::Satellite:
@@ -246,24 +223,25 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             ID++;
             
             shared_ptr<GameObject> satellite_ptr1(new Satellite(_GameObjectsVector[0]->getAngle(), ID));
-            shared_ptr<GameObject> satellite_ptr2(new Satellite(_GameObjectsVector[0]->getAngle() + SATTELITE_DEVIATION, ID));
+            shared_ptr<GameObject> satellite_ptr2(new Satellite(_GameObjectsVector[0]->getAngle() + Satellite::SATELLITE_DEVIATION, ID));
             _GameObjectsVector.push_back(satellite_ptr1);
             _GameObjectsVector.push_back(satellite_ptr2);
-            return shared_ptr<GameObject>(new Satellite(_GameObjectsVector[0]->getAngle() - SATTELITE_DEVIATION, ID));
+            return shared_ptr<GameObject>(new Satellite(_GameObjectsVector[0]->getAngle() - Satellite::SATELLITE_DEVIATION, ID));
         }
+        
         case gameObjectType::LaserGenerator:
         {
             int ID = 0;
-            int separationAngle = 0;
+            int separationAngle = LaserGenerator::SEPARATION_ANGLE;
             
-            // give new LaserGenerator/ArcSegment objects a unique ID
             for(auto element : _GameObjectsVector)
             {
                 if(element->getObjectType() == gameObjectType::LaserGenerator)
                 {
                     shared_ptr<LaserGenerator> laserGen_ptr = std::static_pointer_cast<LaserGenerator>((*element).getptr());
                     
-                    if(laserGen_ptr->getID() > ID) {
+                    if(laserGen_ptr->getID() > ID) 
+                    {
                         ID = laserGen_ptr->getID();
                     }
                 }
@@ -272,28 +250,19 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             
             float angle = GenerateRandomNumber(0, 360);
             
-             // create first LaserGenerator
             shared_ptr<GameObject> laserGen1_ptr(new LaserGenerator(angle + 2, ID));
             
-            shared_ptr<LaserGenerator> temp_ptr = std::static_pointer_cast<LaserGenerator>((*laserGen1_ptr).getptr());
-            separationAngle = temp_ptr->getSeparationAngle();
-            
-            // create ArcSegments
-            for(int i = 0; i < temp_ptr->getNumArcSegs(); i++)
+            for(int i = 0; i < LaserGenerator::NUM_ARC_SEGS; i++)
             {
                 angle += separationAngle;
                 shared_ptr<GameObject> arcSeg_ptr(new ArcSegment(angle, ID));
                 _GameObjectsVector.push_back(arcSeg_ptr);
             }
-
             _GameObjectsVector.push_back(laserGen1_ptr);
             
             angle += separationAngle;
             
-            // create second LaserGenerator
-            shared_ptr<GameObject> laserGen2_ptr(new LaserGenerator(angle - 2, ID));
-
-            return laserGen2_ptr;
+            return shared_ptr<GameObject>(new LaserGenerator(angle - 2, ID));
         }
         
         default:
@@ -323,7 +292,6 @@ void Game::ObjectCleanup()
 {
     for (int i = 0; i < _GameObjectsVector.size(); i++)
     {
-        // all game objects use health as a cleanup flag
         if (_GameObjectsVector[i]->getHealth() <= 0)
         {
             _GameObjectsVector.erase(_GameObjectsVector.begin() + i);
@@ -340,9 +308,6 @@ void Game::CheckGameOver()
         _gameState = 3;
     }
 }
-
-
-// ??????
 
 void Game::DecrementCooldowns()
 {
@@ -363,17 +328,12 @@ void Game::DecrementCooldowns()
         if (_GameObjectsVector[i]->getObjectType() == gameObjectType::Satellite)
         {
             shared_ptr<Satellite> satellite_ptr = std::static_pointer_cast<Satellite>((*_GameObjectsVector[i]).getptr());
-          
-            cout << satellite_ptr->getAngle() << " = " << satellite_ptr->getGyrateAngle() << endl;
-          
             float triggerAngle = satellite_ptr->getAngle() + 180;
           
-            if(triggerAngle > 360)
-            {
+            if(triggerAngle > 360)  {
                 triggerAngle -= 360;
             }
-            else if(triggerAngle < 0)
-            {
+            else if(triggerAngle < 0)   {
                 triggerAngle += 360;
             }
           
@@ -441,7 +401,6 @@ void Game::CheckCollisions()
 float Game::GenerateRandomNumber(float min, float max)
 {
     float randomNumber = min + float(rand())/float(RAND_MAX/(max-min));
-    //cout << randomNumber << endl;
     return randomNumber;
 }
 
@@ -452,7 +411,7 @@ void Game::CheckScoreStatus()
         *_highScore = *_score;
     }
     
-    SetNewHighScore(); // only necessary if you don't play till the game/over screen appears
+    SetNewHighScore(); 
 }
 
 void Game::SetNewHighScore()

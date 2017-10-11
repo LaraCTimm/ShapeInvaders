@@ -8,6 +8,8 @@ class Satellite : public GameObject
 {
 public:
 
+    static constexpr float SATELLITE_DEVIATION = 20.0f;
+
     float getGyrateAngle() {
         return _gyrateAngle;
     }

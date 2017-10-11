@@ -11,6 +11,10 @@
 class LaserGenerator : public GameObject
 {
 public:
+
+    static constexpr int NUM_ARC_SEGS = 7;
+    static constexpr int SEPARATION_ANGLE = 8;
+    
 /**
  * @brief Laser generator constructor
  * @param degrees - angle at which generator is instantiated and along which it moves
@@ -24,26 +28,24 @@ LaserGenerator (float degrees, int ID);
 int &getID() {
     return _ID;
 }
-/**
- * @brief gets number of arc segments between laser generator pairs
- * @return number of arc segments
- */
-int getNumArcSegs() {
-    return _NUM_ARC_SEGS;
-}
-/**
- * @brief Gets angle of separation between laser generator pair
- * @return angle of separation
- */
-int getSeparationAngle() {
-    return _SEPARATION_ANGLE;
-}
+///**
+// * @brief gets number of arc segments between laser generator pairs
+// * @return number of arc segments
+// */
+//int getNumArcSegs() {
+//    return _NUM_ARC_SEGS;
+//}
+///**
+// * @brief Gets angle of separation between laser generator pair
+// * @return angle of separation
+// */
+//int getSeparationAngle() {
+//    return _SEPARATION_ANGLE;
+//}
 
 private:
 
 int _ID;
-const int _NUM_ARC_SEGS = 7;
-const int _SEPARATION_ANGLE = 8;
 
 };
 

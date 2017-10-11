@@ -19,25 +19,12 @@ Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
     
     float vecX = cos(_angle*(M_PI/180));
     float vecY = sin(_angle*(M_PI/180));
-    //_pathVector = sf::Vector2f(vecX, vecY); 
+    
     _pathVector[0] = vecX;
     _pathVector[1] = vecY;
     
     _xCoord += 2*vecX;
-	_yCoord += 2*vecY;
-
-    // Create bullet rectangle
-//    sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));
-//    
-//    // Set bullet attributes
-//    rectangle.setOutlineThickness(2);
-//    rectangle.setOutlineColor(sf::Color::Green);
-//    rectangle.setFillColor(sf::Color::White);
-//    rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
-//    rectangle.setRotation(_angle);
-//    rectangle.setPosition(_xCoord, _yCoord);
-//    setObjectShape(rectangle);
-
+    _yCoord += 2*vecY;
 }
 
 

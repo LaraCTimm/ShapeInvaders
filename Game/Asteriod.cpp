@@ -14,30 +14,9 @@ Asteriod::Asteriod(float angle) : GameObject()
     _scaleCount = 0;
     _objectType = gameObjectType::Asteriod;
     
-    float vecX = cos(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
-    float vecY = sin(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
+    float vecX = cos(_angle*(M_PI/180));
+    float vecY = sin(_angle*(M_PI/180)); 
     
-    //_pathVector = sf::Vector2f(vecX*_SPEED_MULTIPLIER, vecY*_SPEED_MULTIPLIER);
     _pathVector[0] = vecX*_SPEED_MULTIPLIER;
     _pathVector[1] = vecY*_SPEED_MULTIPLIER;
-    
-    // Create bullet rectangle
-//    sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));
-//    
-//    // Set bullet attributes
-//    rectangle.setOutlineThickness(2);
-//    rectangle.setOutlineColor(sf::Color::Red);
-//    rectangle.setFillColor(sf::Color::Black);
-//    rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
-//    rectangle.setRotation(_angle);
-//    rectangle.setPosition(_xCoord, _yCoord);
-//    setObjectShape(rectangle);
-
-    //cout << _pathVector.x << " " << _pathVector.y << endl;
 }
-
-//void Asteriod::decrementAsteriodCooldown() 
-//{
-//    if (_cooldown > 0)
-//        _cooldown--;
-//}

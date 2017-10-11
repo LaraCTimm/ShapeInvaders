@@ -17,26 +17,16 @@ public:
 	 * @brief Enemy bullet constructor
 	 * @param xCoord - x-coordinate at which bullet is to be instantiated
 	 * @param yCoord - y-coordinate at which bullet is to be instantiated
-	 * @param pathVector - vector along which bullet is to move
+	 * @param pathVector - vector along which bullet is to move. Set by respective Enemy object
 	 * @param angle - angle at which bullet is to be instantiated and along which it moves
-	 * @param scaleCount - ~~~~~Pls help, La~~~~~~~~~~~~
+	 * @param scaleCount - enables the bullet to be spawned at the correct scale depending on how far along the vector the Enemy is.
 	 */
 	EnemyBullet(float xCoord, float yCoord, vector<float> pathVector, float angle, int scaleCount);
     
-//    float getCooldown(float newCooldown) {
-//        return _cooldown;
-//    }
-//    
-//    void setCooldown(float newCooldown) {
-//        _cooldown = newCooldown;
-//    }
-//    
-//    void decrementEnemyBulletCooldown();
-    
-private:
+private: 
 
-//    float _cooldown;
-    
+    const float SPEED_MULTIPLIER = 2.0f;
+
 };
 
 #endif

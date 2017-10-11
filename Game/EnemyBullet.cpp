@@ -17,42 +17,13 @@ EnemyBullet::EnemyBullet(float xCoord, float yCoord, vector<float> enemyPathVect
     _scale += _scaleFactor*_scaleCount;
     _objectType = gameObjectType::EnemyBullet;
     
-    const float SPEED_MULTIPLIER = 2.0f;
-    
-    float vecX = cos(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
-    float vecY = sin(_angle*(M_PI/180));//*Game::PLAYER_RADIUS;
+    float vecX = cos(_angle*(M_PI/180));
+    float vecY = sin(_angle*(M_PI/180));
 
     _pathVector[0] = vecX*SPEED_MULTIPLIER;
-    _pathVector[1] = vecY*SPEED_MULTIPLIER; // start position of linear path
+    _pathVector[1] = vecY*SPEED_MULTIPLIER;
+    
     _xCoord += _pathVector[0];
     _yCoord += _pathVector[1];
-    //_pathVector = sf::Vector2f(vecX*SPEED_MULTIPLIER, vecY*SPEED_MULTIPLIER);
 
-    // Create bullet rectangle
-//    sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));
-//    
-//    // Set bullet attributes
-//    rectangle.setOutlineThickness(2);
-//    rectangle.setOutlineColor(sf::Color::Black);
-//    rectangle.setFillColor(sf::Color::Green);
-//    rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
-//    rectangle.setRotation(_angle);
-//    
-//    
-//    
-////    _xCoord += enemyPathVector.x;
-////	_yCoord += enemyPathVector.y; 
-//
-////    cout << enemyPathVector.x << " " << enemyPathVector.y << endl;
-//    
-//	rectangle.setPosition(_xCoord, _yCoord);
-    
-//    setObjectShape(rectangle);
-    
 }
-
-//EnemyBullet::void decrementEnemyBulletCooldown() 
-//{
-//    if (_cooldown > 0)
-//        _cooldown--;
-//}
