@@ -2,7 +2,7 @@
 #include "Game.h"
 
 GameObject::GameObject()
-: _pathVector{0,0}
+: _pathVector{0.0f,0.0f}
 {  
     
 }
@@ -14,25 +14,7 @@ GameObject::GameObject()
 
 
 void GameObject::circularMove(int direction)
-{
-    // control circular movement
-	_angle += 2*direction; // positive or negative
-    float vecX = cos(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
-    float vecY = sin(_angle*(M_PI/180))*Game::PLAYER_RADIUS;
-	_xCoord = Game::ORIGIN_X + vecX;
-	_yCoord = Game::ORIGIN_Y + vecY;
-	//_objectShape.setPosition(_xCoord, _yCoord);
-    //_objectShape.setRotation(_angle);
-    
-    // setup for player bullet movement vecor
-    vecX = -vecX/BULLET_SPEED_MODIFIER;
-    vecY = -vecY/BULLET_SPEED_MODIFIER;
-    //_pathVector = sf::Vector2f(vecX, vecY);
-    
-    _pathVector[0] = vecX;
-    _pathVector[1] = vecY;
-
-}
+{   }
 
 void GameObject::lineMove()
 {
@@ -53,7 +35,7 @@ void GameObject::lineMove()
     //_objectShape.setOrigin(_objectShape.getSize().x/2, _objectShape.getSize().y/2);
     //_hitRadius = (_objectShape.getSize().y + _objectShape.getSize().x)/4;
     
-    _hitRadius = (_objectHeight+_objectWidth)/4; 
+    _hitRadius = (_objectHeight*_scale + _objectWidth*_scale)/4; 
     
     checkInBounds();
 }
@@ -122,6 +104,24 @@ int GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
                 _health--;
                 shared_ptr<Asteriod> asteriod_ptr = std::static_pointer_cast<Asteriod>((*element).getptr());
                 asteriod_ptr->setHealth(0);
+            }
+        }
+        
+        if (element->getObjectType() == gameObjectType::Asteriod && _objectType == gameObjectType::PlayerBullet)
+        {
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
+            {
+                _health = 0;
+            }
+        }
+        
+        if (element->getObjectType() == gameObjectType::ArcSegment && _objectType == gameObjectType::PlayerBullet)
+        {
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
+            {
+                _health = 0;
             }
         }
         
@@ -200,6 +200,42 @@ int GameObject::checkCollisions(vector<shared_ptr<GameObject>> &objectVector)
                     {
                         objectVector[i]->setHealth(0);
                     }
+                }
+            }
+        }
+        
+        if (element->getObjectType() == gameObjectType::Satellite && _objectType == gameObjectType::PlayerBullet)
+        {
+            float distance = sqrt(pow(element->getXCoord()-_xCoord,2) + pow(element->getYCoord()-_yCoord,2));
+            if (distance <= element->getHitRadius()+_hitRadius)
+            {
+                _health = 0;
+                shared_ptr<Satellite> satellite_ptr = std::static_pointer_cast<Satellite>((*element).getptr());
+                
+                satellite_ptr->setHealth(0);
+                pointsWon += _points;
+                
+                int ID = satellite_ptr->getID();
+                int tempID;
+                bool IDmatch = false;
+                
+                for (int i = 0; i < objectVector.size(); i++)
+                { 
+                    if (objectVector[i]->getObjectType() == gameObjectType::Satellite)
+                    {
+                        shared_ptr<Satellite> satellite_ptr2 = std::static_pointer_cast<Satellite>((*objectVector[i]).getptr());
+                        tempID = satellite_ptr2->getID();
+                        if (ID == tempID && satellite_ptr2->getHealth() > 0)
+                        {
+                            IDmatch = true;
+                        }
+                    }
+                }
+                
+                if (!IDmatch)
+                {
+                    shared_ptr<Player> player_ptr = std::static_pointer_cast<Player>((*objectVector[0]).getptr());
+                    player_ptr->UpgradeGun();
                 }
             }
         }

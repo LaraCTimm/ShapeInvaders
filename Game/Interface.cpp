@@ -11,11 +11,11 @@ Interface::Interface()
 
 void Interface::LoadFiles()
 {
-    if(!_startTexture.loadFromFile("mainMenu.png"))
+    if(!_startTexture.loadFromFile("mainMenu_new.png"))
         throw FileNotFound();
     if(!_endTexture.loadFromFile("endScreen.png"))
         throw FileNotFound();
-    if(!_font.loadFromFile("charter-bt-roman.ttf"))
+    if(!_font.loadFromFile("BADABB__.ttf"))
         throw FileNotFound();
 }
 
@@ -24,11 +24,11 @@ void Interface::CreateLivesVector(const int numPlayerLives, float rectSize)
     for (int i = 0; i < numPlayerLives; i++)
     {
         sf::RectangleShape lifeRect(sf::Vector2f(rectSize, rectSize));
-        lifeRect.setOutlineThickness(2);
+        lifeRect.setOutlineThickness(4);
         lifeRect.setOutlineColor(sf::Color::Red);
         lifeRect.setFillColor(sf::Color::White);
         lifeRect.setOrigin(sf::Vector2f(rectSize/2, rectSize/2));
-        lifeRect.setPosition(rectSize*1.5 + rectSize*1.5*i, SCREEN_HEIGHT - rectSize*1.5);
+        lifeRect.setPosition(rectSize*1.5 + rectSize*1.75*i, SCREEN_HEIGHT - rectSize*1.5);
         _livesVector.push_back(lifeRect);
     }
 }
@@ -214,39 +214,45 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
         break;
         
     case gameObjectType::PlayerBullet:
-        outlineThickness = 2.0f;
+        outlineThickness = 3.0f;
         outlineColor = sf::Color::Black;
         fillColor = sf::Color::Red;
         break;
         
     case gameObjectType::Enemy:
-        outlineThickness = 2.0f;
+        outlineThickness = 3.0f;
         outlineColor = sf::Color::Green;
         fillColor = sf::Color::White;
         break;
         
     case gameObjectType::EnemyBullet:
-        outlineThickness = 2.0f;
+        outlineThickness = 3.0f;
         outlineColor = sf::Color::Black;
         fillColor = sf::Color::Green;
         break;
         
     case gameObjectType::Asteriod:
-        outlineThickness = 2.0f;
+        outlineThickness = 3.0f;
         outlineColor = sf::Color::Red;
         fillColor = sf::Color::Black;
         break;
         
     case gameObjectType::ArcSegment:
-        outlineThickness = 2.0f;
+        outlineThickness = 3.0f;
         outlineColor = sf::Color::Black;
         fillColor = sf::Color::White;
         break;
         
     case gameObjectType::LaserGenerator:
-        outlineThickness = 2.0f;
+        outlineThickness = 3.0f;
         outlineColor = sf::Color::Black;
         fillColor = sf::Color::Cyan;
+        break;
+        
+    case gameObjectType::Satellite:
+        outlineThickness = 3.0f;
+        outlineColor = sf::Color::Black;
+        fillColor = sf::Color::Magenta;
         break;
         
     default:
@@ -258,9 +264,7 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
     _rect.setFillColor(fillColor);
     
     _window.draw(_rect);
-    
-    //_window.display();
-    
+        
 }
 
 void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score )
@@ -270,16 +274,16 @@ void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score )
     
     std::string scoreString = "Score: " + std::to_string(*score);
     _currentScoreText.setString(scoreString);
-    _currentScoreText.setCharacterSize(20);
+    _currentScoreText.setCharacterSize(40);
     _currentScoreText.setColor(sf::Color::Black);
     _currentScoreText.setPosition(sf::Vector2f(30, 30));
     _currentScoreText.setFont(_font);
     
     std::string highScoreString = "High Score: " + std::to_string(*high_score);
     _highScoreText.setString(highScoreString);
-    _highScoreText.setCharacterSize(20);
+    _highScoreText.setCharacterSize(40);
     _highScoreText.setColor(sf::Color::Black);
-    _highScoreText.setPosition(sf::Vector2f(SCREEN_WIDTH-200, 30));
+    _highScoreText.setPosition(sf::Vector2f(SCREEN_WIDTH-300, 30));
     _highScoreText.setFont(_font);
     
     _window.draw(_currentScoreText);
@@ -300,7 +304,7 @@ void Interface::RenderLives(const int numPlayerLives)
 
 bool Interface::CheckClock()
 {
-    if(_clock.getElapsedTime().asMilliseconds() >= 1000/100)
+    if(_clock.getElapsedTime().asMilliseconds() >= 1000/75)
     {
         _clock.restart();
         return true;

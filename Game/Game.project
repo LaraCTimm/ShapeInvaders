@@ -25,7 +25,7 @@
     <File Name="PlayerBullet.h"/>
     <File Name="MainMenu.cpp"/>
     <File Name="MainMenu.h"/>
-    <File Name="doctest.h"/>
+    <File Name="doctest.h" ExcludeProjConfig="Debug"/>
     <File Name="tests_asteroids_lasers.cpp" ExcludeProjConfig="Debug"/>
     <File Name="tests_enemy.cpp" ExcludeProjConfig="Debug"/>
     <File Name="tests_player.cpp" ExcludeProjConfig="Debug"/>
@@ -33,7 +33,9 @@
     <File Name="FileReader.h"/>
     <File Name="Interface.cpp"/>
     <File Name="Interface.h"/>
-    <File Name="keyboardInput.h"/>
+    <File Name="Satellite.cpp"/>
+    <File Name="Satellite.h"/>
+    <File Name="KeyboardInput.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

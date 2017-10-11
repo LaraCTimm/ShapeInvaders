@@ -33,17 +33,17 @@ enum class gameObjectType
 
 class GameObject : public std::enable_shared_from_this<GameObject>
 {
-    static constexpr float BULLET_SPEED_MODIFIER = 20.0f;
     
 public:
 
+    static constexpr float BULLET_SPEED_MODIFIER = 20.0f;
     // Constructor
     GameObject();
 
 //    void move(float xOffset, float yOffset);
 
     // Move object by calculating new co-ords and setting position
-    void circularMove(int direction);
+    virtual void circularMove(int direction);
     
     void lineMove();
     
