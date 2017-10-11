@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="SFMLTest" Database="" Version="10.0.0">
   <Project Name="SFMLTestProject" Path="SFMLTestProject/SFMLTestProject.project" Active="No"/>
-  <Project Name="Game" Path="Game/Game.project" Active="Yes"/>
+  <Project Name="ShapeInvaders" Path="ShapeInvaders.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
       <Project Name="SFMLTestProject" ConfigName="Debug"/>
       <Project Name="Game" ConfigName="Debug"/>
+      <Project Name="ShapeInvaders" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="SFMLTestProject" ConfigName="Release"/>
       <Project Name="Game" ConfigName="Release"/>
+      <Project Name="ShapeInvaders" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

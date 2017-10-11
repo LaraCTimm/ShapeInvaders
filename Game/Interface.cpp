@@ -250,11 +250,7 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
         break;
         
     case gameObjectType::Satellite:
-<<<<<<< HEAD
-        outlineThickness = 3.0f;
-=======
         outlineThickness = 2.0f;
->>>>>>> b7c92ee5e0e86235255ad858c9e64b35fb6c001e
         outlineColor = sf::Color::Black;
         fillColor = sf::Color::Magenta;
         break;
