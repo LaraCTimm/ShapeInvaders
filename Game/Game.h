@@ -183,7 +183,7 @@ private:
     bool _shotFired;
     bool _inGame;
     
-    Interface _interface;
+//    Interface _interface;
     int _gameState;
     
     void InitialiseGame();

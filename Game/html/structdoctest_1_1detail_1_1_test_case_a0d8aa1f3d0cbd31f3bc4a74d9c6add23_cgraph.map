@@ -1,0 +1,16 @@
+<map id="doctest::detail::TestCase::TestCase" name="doctest::detail::TestCase::TestCase">
+<area shape="rect" id="node2" href="$namespacedoctest.html#a1b991961770bb0a7eb605074d8435ee2" title="doctest::operator\&lt;" alt="" coords="245,5,373,32"/>
+<area shape="rect" id="node4" href="$namespacedoctest_1_1detail.html#a00f99edefb8490a8e2602d58c96431f4" title="doctest::detail::regTest" alt="" coords="231,56,386,83"/>
+<area shape="rect" id="node5" href="$namespacedoctest_1_1detail.html#ae79cb8df06d35468dd0ba9f04c85802c" title="doctest::detail::setTest\lSuite" alt="" coords="231,107,386,149"/>
+<area shape="rect" id="node6" href="$namespacedoctest_1_1detail.html#a5c05089d37d7ecf54a7950d8dd0fb055" title="doctest::detail::addFailed\lAssert" alt="" coords="225,173,393,214"/>
+<area shape="rect" id="node7" href="$namespacedoctest_1_1detail.html#a797b2430f665abcf94a802e38c729f86" title="doctest::detail::logTest\lStart" alt="" coords="231,238,386,279"/>
+<area shape="rect" id="node8" href="$namespacedoctest_1_1detail.html#a4121e54ff1ac78299cb06738fe18f95d" title="doctest::detail::logTestEnd" alt="" coords="220,304,397,331"/>
+<area shape="rect" id="node9" href="$namespacedoctest_1_1detail.html#a0dca3bacec7a2875d063f5d753cd7059" title="doctest::detail::logTest\lException" alt="" coords="231,355,386,397"/>
+<area shape="rect" id="node10" href="$namespacedoctest_1_1detail.html#aea304073354e8529012a4ee2ec7cc756" title="doctest::detail::logAssert" alt="" coords="225,421,392,448"/>
+<area shape="rect" id="node11" href="$namespacedoctest_1_1detail.html#a5a57dc9c78200ee2f75a98f5f757a5c4" title="doctest::detail::logAssert\lThrows" alt="" coords="225,473,392,514"/>
+<area shape="rect" id="node12" href="$namespacedoctest_1_1detail.html#ac46d445f9145b99919e03a49cf06a5ba" title="doctest::detail::logAssert\lThrowsAs" alt="" coords="225,538,392,579"/>
+<area shape="rect" id="node13" href="$namespacedoctest_1_1detail.html#ac9561bb55f01d98582b62fb42bc3cd24" title="doctest::detail::logAssert\lNothrow" alt="" coords="225,603,392,645"/>
+<area shape="rect" id="node14" href="$namespacedoctest_1_1detail.html#a013828c4e677241cc26aeea33f762710" title="doctest::detail::isDebugger\lActive" alt="" coords="220,669,397,710"/>
+<area shape="rect" id="node15" href="$namespacedoctest_1_1detail.html#a0bd24d2f7f5d3a5de34ded21f859bd54" title="doctest::detail::writeTo\lDebugConsole" alt="" coords="232,734,385,775"/>
+<area shape="rect" id="node3" href="$classdoctest_1_1_string.html#aef87d1f106d32d8c31af87335b44164d" title="doctest::String::compare" alt="" coords="445,5,611,32"/>
+</map>

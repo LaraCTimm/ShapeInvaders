@@ -1,0 +1,5 @@
+<map id="doctest::detail::ResultBuilder" name="doctest::detail::ResultBuilder">
+<area shape="rect" id="node2" href="$structdoctest_1_1detail_1_1_result.html" title="{doctest::detail::Result\n|+ m_passed\l|+ ~Result()\l+ Result()\l+ Result()\l+ operator=()\l+ operator bool()\l+ operator &amp;()\l+ operator^()\l+ operator\|()\l+ operator &amp;&amp;()\l+ operator\|\|()\land 17 more...\l}" alt="" coords="169,461,318,685"/>
+<area shape="rect" id="node3" href="$classdoctest_1_1_string.html" title="{doctest::String\n|+ buf\l|+ String()\l+ String()\l+ String()\l+ ~String()\l+ operator=()\l+ operator+=()\l+ operator+()\l+ isOnStack()\l+ operator[]()\l+ operator[]()\land 6 more...\l}" alt="" coords="26,175,133,399"/>
+<area shape="rect" id="node4" title="OCLINT avoid private static members. " alt="" coords="10,5,149,112"/>
+</map>

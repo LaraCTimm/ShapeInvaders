@@ -11,19 +11,9 @@ public:
 
     EnemyBullet(float xCoord, float yCoord, vector<float> pathVector, float angle, int scaleCount);
     
-//    float getCooldown(float newCooldown) {
-//        return _cooldown;
-//    }
-//    
-//    void setCooldown(float newCooldown) {
-//        _cooldown = newCooldown;
-//    }
-//    
-//    void decrementEnemyBulletCooldown();
     
 private:
 
-//    float _cooldown;
     
 };
 

@@ -1,0 +1,12 @@
+<map id="doctest::String::compare" name="doctest::String::compare">
+<area shape="rect" id="node2" href="$namespacedoctest.html#a8b7143d14de60632b916b4f64b70a80a" title="doctest::operator==" alt="" coords="219,45,355,72"/>
+<area shape="rect" id="node5" href="$namespacedoctest.html#adf7fc63c6dd217094f23abb39360c13a" title="doctest::operator!=" alt="" coords="221,96,352,123"/>
+<area shape="rect" id="node6" href="$namespacedoctest.html#a1b991961770bb0a7eb605074d8435ee2" title="doctest::operator\&lt;" alt="" coords="223,147,351,173"/>
+<area shape="rect" id="node9" href="$namespacedoctest.html#a1cb6c3e2693095fb8432db9f803c8083" title="doctest::operator\&gt;" alt="" coords="223,197,351,224"/>
+<area shape="rect" id="node10" href="$namespacedoctest.html#aede609a4c54099610c93449a325d0518" title="doctest::operator\&lt;=" alt="" coords="219,248,355,275"/>
+<area shape="rect" id="node11" href="$namespacedoctest.html#aaa7f3cf88f5351370810693c845c903c" title="doctest::operator\&gt;=" alt="" coords="219,299,355,325"/>
+<area shape="rect" id="node3" href="$classdoctest_1_1_approx.html#a3c036afc04f64b824f5fdce85c852ecb" title="doctest::Approx::Approx" alt="" coords="417,5,579,32"/>
+<area shape="rect" id="node4" href="$classdoctest_1_1_approx.html#a2ea11e0039a323f5d31b6f206815429d" title="doctest::Approx::operator!=" alt="" coords="408,56,588,83"/>
+<area shape="rect" id="node7" href="$structdoctest_1_1detail_1_1_subcase_signature.html#a403ad09bc4cea517792ecffe3e2a1c1f" title="doctest::detail::Subcase\lSignature::SubcaseSignature" alt="" coords="403,129,593,170"/>
+<area shape="rect" id="node8" href="$structdoctest_1_1detail_1_1_test_case.html#a0d8aa1f3d0cbd31f3bc4a74d9c6add23" title="doctest::detail::TestCase\l::TestCase" alt="" coords="415,194,581,235"/>
+</map>

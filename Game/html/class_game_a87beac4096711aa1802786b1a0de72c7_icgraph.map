@@ -1,0 +1,8 @@
+<map id="Game::SpawnGameObject" name="Game::SpawnGameObject">
+<area shape="rect" id="node2" href="$class_game.html#a5177cc57be0046eed29e87435b15034e" title="Game::Game" alt="" coords="261,5,361,32"/>
+<area shape="rect" id="node3" href="$class_game.html#a0cba1b2b1c2ad4922b3b5e051cd13bdc" title="Game::getCurrentScoreText" alt="" coords="679,107,863,133"/>
+<area shape="rect" id="node4" href="$class_game.html#a3c63ad376fdc05d012e20cbd2a95a835" title="Game::AddGameObject" alt="" coords="231,157,392,184"/>
+<area shape="rect" id="node5" href="$class_game.html#a1997bafd283d568cff4fc22d398343fe" title="Game::DecrementCooldowns" alt="" coords="440,157,631,184"/>
+<area shape="rect" id="node6" href="$class_game.html#ae6d1ab79411b280f18815109fc3b208d" title="Game::CreateGameObjects" alt="" coords="444,208,627,235"/>
+<area shape="rect" id="node7" href="$tests__asteroids__lasers_8cpp.html#a9aed8f5e32d527fb4d25e30e1c4a3715" title="TEST_CASE" alt="" coords="487,259,584,285"/>
+</map>

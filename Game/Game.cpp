@@ -3,27 +3,9 @@
 
 // Pass in the previous high score from a text file
 Game::Game(int highScore)
-//: _enemyCooldown(10)
-//, _asteriodCooldown(400)
-//, _laserGeneratorCooldown(800)
-//, _shotFired(false)
-//, _score(new int(0))
-//, _player_ptr(new Player())
-//, _gameState(1)
-//, _inGame(false)
 {
     InitialiseGame();
-//    _GameObjectsVector.clear();
-//    _GameObjectsVector.push_back(_player_ptr);
-//
-//    srand (time(0));
-//    
-//    FileReader file("scores.txt");
-//    _highScore = make_shared<int>(file.getHighScore());
-//    
-//    _interface.CreateLivesVector(_player_ptr->getHealth(), LIFE_RECT_SIZE);
-    
-    GameLoop();
+//    GameLoop();
 }
 
 void Game::InitialiseGame()
@@ -47,108 +29,108 @@ void Game::InitialiseGame()
     FileReader file("scores.txt");
     _highScore = make_shared<int>(file.getHighScore());
     
-    _interface.CreateLivesVector(_player_ptr->getHealth(), LIFE_RECT_SIZE);
+//    _interface.CreateLivesVector(_player_ptr->getHealth(), LIFE_RECT_SIZE);
 }
 
 void Game::GameLoop()
 {
-    while(_interface.WindowOpen())
-    {
-        while(_gameState == 1)
-        {
-            _interface.SplashScreen();
-            _interface.ProcessGameEvents();
-
-            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
-            
-            if (!keysPressed.empty())
-            {
-                CheckGameState(keysPressed);
-            }
-        }
-                
-        while(_gameState == 2)
-        {
-            _interface.GameScreen();
-            _interface.ProcessGameEvents();
-            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
-
-            if(_interface.CheckClock())
-            {
-                Update(keysPressed);
-                Render();
-                _interface.DisplayWindow();
-                _inGame = true;
-            }
-        }
-        
-        while (_gameState == 3)
-        {
-            _interface.EndScreen();
-            _interface.ProcessGameEvents();
-            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
-            CheckGameState(keysPressed);
-        }
-    }
+//    while(_interface.WindowOpen())
+//    {
+//        while(_gameState == 1)
+//        {
+//            _interface.SplashScreen();
+//            _interface.ProcessGameEvents();
+//
+//            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
+//            
+//            if (!keysPressed.empty())
+//            {
+//                CheckGameState(keysPressed);
+//            }
+//        }
+//                
+//        while(_gameState == 2)
+//        {
+//            _interface.GameScreen();
+//            _interface.ProcessGameEvents();
+//            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
+//
+//            if(_interface.CheckClock())
+//            {
+//                Update(keysPressed);
+//                Render();
+//                _interface.DisplayWindow();
+//                _inGame = true;
+//            }
+//        }
+//        
+//        while (_gameState == 3)
+//        {
+//            _interface.EndScreen();
+//            _interface.ProcessGameEvents();
+//            vector<keyboardInput> keysPressed = _interface.GetGameEvents();
+//            CheckGameState(keysPressed);
+//        }
+//    }
 }
 
 void Game::CheckGameState(vector<keyboardInput> keysPressed)
 {
-    //cout<< "HELLOOOO" << endl;
-    for (auto element: keysPressed)
-    {
-        if (element == keyboardInput::press_enter) 
-        {
-            if (_inGame)
-            {
-                InitialiseGame();
-            }
-            
-            _gameState = 2;
-        }
-        else if (element == keyboardInput::press_esc || element == keyboardInput::close_window)
-        {
-            _interface.CloseWindow();
-            _gameState = 4;
-        }
-        
-        if(_gameState == 4)
-        {
-            break;
-        }
-    }
+//    //cout<< "HELLOOOO" << endl;
+//    for (auto element: keysPressed)
+//    {
+//        if (element == keyboardInput::press_enter) 
+//        {
+//            if (_inGame)
+//            {
+//                InitialiseGame();
+//            }
+//            
+//            _gameState = 2;
+//        }
+//        else if (element == keyboardInput::press_esc || element == keyboardInput::close_window)
+//        {
+//            _interface.CloseWindow();
+//            _gameState = 4;
+//        }
+//        
+//        if(_gameState == 4)
+//        {
+//            break;
+//        }
+//    }
 }
 
 void Game::Update(vector<keyboardInput> keysPressed)
 {
-    for (auto element: keysPressed)
-    {
-        switch(element)
-        {
-            case keyboardInput::press_up:
-                MovePlayerObject(-1);
-                break;
-            case keyboardInput::press_down:
-                MovePlayerObject(1);
-                break;
-            case keyboardInput::press_space:
-                if (!_shotFired) 
-                {
-                    AddGameObject(gameObjectType::PlayerBullet, 0);
-                    _shotFired = true;
-                }
-                break;
-            case keyboardInput::release_space:
-                _shotFired = false;
-                break;
-            case keyboardInput::close_window:
-                _interface.CloseWindow();
-                break;
-            default:
-                break;  
-        }
-    }
-    
+//    for (auto element: keysPressed)
+//    {
+//        switch(element)
+//        {
+//            case keyboardInput::press_up:
+//                MovePlayerObject(-1);
+//                break;
+//            case keyboardInput::press_down:
+//                MovePlayerObject(1);
+//                break;
+//            case keyboardInput::press_space:
+//                if (!_shotFired) 
+//                {
+//                    AddGameObject(gameObjectType::PlayerBullet, 0);
+//                    _shotFired = true;
+//                }
+//                break;
+//            case keyboardInput::release_space:
+//                _shotFired = false;
+//                break;
+//            case keyboardInput::close_window:
+//                _interface.CloseWindow();
+//                break;
+//            default:
+//                break;  
+//        }
+//    }
+//    
     DecrementCooldowns();
     CreateGameObjects();
     CheckCollisions();
@@ -171,16 +153,16 @@ void Game::Update(vector<keyboardInput> keysPressed)
 
 void Game::Render()
 {
-    for (shared_ptr<GameObject> element: _GameObjectsVector)
-    {
-        //cout << "RENDERING..." << int(element->getObjectType()) << endl;
-        _interface.RenderGameObject(element);
-    }
-    
-    //cout << "RENDERING DONE" << endl;
-    _interface.RenderText(_score, _highScore);
-    _interface.RenderLives(_player_ptr->getHealth());
-    
+//    for (shared_ptr<GameObject> element: _GameObjectsVector)
+//    {
+//        //cout << "RENDERING..." << int(element->getObjectType()) << endl;
+//        _interface.RenderGameObject(element);
+//    }
+//    
+//    //cout << "RENDERING DONE" << endl;
+//    _interface.RenderText(_score, _highScore);
+//    _interface.RenderLives(_player_ptr->getHealth());
+//    
     //_interface.DisplayWindow();
 }
 
