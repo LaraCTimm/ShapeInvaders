@@ -33,9 +33,15 @@
     <File Name="FileReader.h"/>
     <File Name="Interface.cpp"/>
     <File Name="Interface.h"/>
+<<<<<<< HEAD
     <File Name="Satellite.cpp"/>
     <File Name="Satellite.h"/>
     <File Name="KeyboardInput.h"/>
+=======
+    <File Name="keyboardInput.h"/>
+    <File Name="Satellite.h"/>
+    <File Name="Satellite.cpp"/>
+>>>>>>> b7c92ee5e0e86235255ad858c9e64b35fb6c001e
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
