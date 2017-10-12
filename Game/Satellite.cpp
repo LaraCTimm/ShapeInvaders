@@ -5,7 +5,7 @@ Satellite::Satellite(float offsetAngle, int ID) : GameObject()
     _angle = offsetAngle;
     _objectWidth = 15;
     _objectHeight = 15;
-    _hitRadius = (_objectWidth+3 + _objectHeight+3)/4; 
+    _hitRadius = (_objectWidth+4 + _objectHeight+4)/4; 
     _health = 5;
     _points = 30;
     _scale = 1;

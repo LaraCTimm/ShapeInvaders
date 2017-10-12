@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(int highScore)
+Game::Game(int integer)
 {
     InitialiseGame();
     GameLoop();

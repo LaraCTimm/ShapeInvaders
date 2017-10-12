@@ -7,8 +7,8 @@ using std::endl;
 PlayerBullet::PlayerBullet(float xCoord, float yCoord, vector<float> pathVector, float angle) : GameObject()
 {
     _angle = angle;
-    _objectWidth = 10;
-    _objectHeight = 10;
+    _objectWidth = 9;
+    _objectHeight = 9;
     _hitRadius = (_objectWidth + _objectHeight)/4;
     _health = 1;
     _points = 0;

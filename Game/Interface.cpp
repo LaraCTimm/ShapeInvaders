@@ -37,10 +37,9 @@ void Interface::CreateLivesVector(const int numPlayerLives, float rectSize)
     }
 }
 
-int Interface::CloseWindow()
+void Interface::CloseWindow()
 {
     _window.close();
-    return 0;
 }
 
 bool Interface::WindowOpen()
@@ -115,7 +114,7 @@ void Interface::GameScreen()
     sf::Sprite background(_gameTexture);
     _frameCounter++;
     
-    if (_frameCounter%300 == 0)
+    if (_frameCounter%200 == 0)
     {
         _frameCounter = 0;
         if (_rectSourceSprite.left == 12000) {
@@ -264,17 +263,12 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
     _rect.setOutlineThickness(outlineThickness);
     _rect.setOutlineColor(outlineColor);
     _rect.setFillColor(fillColor);
-    
-//    if (object->getObjectType() == gameObjectType::Asteriod)
-//        _window.draw(_hexagon);
-//    else if (object->getObjectType() == gameObjectType::Satellite)
-//        _window.draw(_triangle);
-//    else 
-        _window.draw(_rect);
+
+    _window.draw(_rect);
         
 }
 
-void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score )
+void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score)
 {   
     sf::Text _currentScoreText;
     sf::Text _highScoreText;
@@ -316,7 +310,6 @@ bool Interface::CheckClock()
 {
     if(_clock.getElapsedTime().asMilliseconds() >= 1000/75)
     {
-        //cout << _clock.getElapsedTime().asMilliseconds() << endl;
         _clock.restart();
         return true;
     }

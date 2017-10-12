@@ -33,8 +33,7 @@ Player::Player() : GameObject()
 
 void Player::circularMove(int direction)
 {
-    // control circular movement
-	_angle += 2*direction; // positive or negative
+	_angle += 2*direction;
     
     if(_angle > 360)
     {
