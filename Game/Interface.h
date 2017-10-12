@@ -22,6 +22,9 @@ class Interface
 {
 public:
 
+    static constexpr int NUM_FRAMES = 8;
+
+
     Interface();
     
     int CloseWindow();
@@ -58,11 +61,15 @@ private:
     vector<keyboardInput> _gameEventVector;
     sf::RenderWindow _window;
     sf::Texture _startTexture;
+    sf::Texture _gameTexture;
     sf::Texture _endTexture;
+    sf::IntRect _rectSourceSprite;
     sf::Font _font;
     vector<sf::RectangleShape> _livesVector;
     sf::Clock _clock;
     bool _shotFired;
+    int _frameCounter;
+    int _playerLivesCounter;
     
     void LoadFiles();
     void ClearWindow();

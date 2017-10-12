@@ -36,6 +36,15 @@ int main()
             }
         }
         
+        float radius = 50;
+        sf::CircleShape circle(radius,3);
+        circle.setOrigin(radius, radius);
+        circle.setPosition(100,100);
+        sf::RectangleShape rectangle1(sf::Vector2f(50,50));
+        rectangle1.setOrigin(sf::Vector2f(25,25));
+        rectangle1.setFillColor(sf::Color(255,0,65));
+        rectangle1.setPosition(sf::Vector2f(100, 100));
+        
         if (clock.getElapsedTime().asSeconds() > 0.4f)
         {
             if (rectSourceSprite.left == 3150)
@@ -50,6 +59,10 @@ int main()
         
         window.clear(sf::Color::Black);
         window.draw(rectangle);
+        
+        window.draw(circle);
+        window.draw(rectangle1);
+
         window.display();
     }
 }

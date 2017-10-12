@@ -19,22 +19,5 @@ PlayerBullet::PlayerBullet(float xCoord, float yCoord, vector<float> pathVector,
     _pathVector = pathVector;
     _xCoord = xCoord + pathVector[0];
 	_yCoord = yCoord + pathVector[1];
-
-//    // Create bullet rectangle
-//    sf::RectangleShape rectangle(sf::Vector2f(_scale*_objectWidth, _scale*_objectHeight));
-//    
-//    // Set bullet attributes
-//    rectangle.setOutlineThickness(2);
-//    rectangle.setOutlineColor(sf::Color::Black);
-//    rectangle.setFillColor(sf::Color::Red);
-//    rectangle.setOrigin(sf::Vector2f(_scale*_objectWidth/2, _scale*_objectHeight/2));
-//    rectangle.setRotation(angle);
-//
-//    
-//    cout << pathVector.x << " " << pathVector.y << endl;
-//    
-//	rectangle.setPosition(_xCoord, _yCoord);
-//    
-//    setObjectShape(rectangle);
     
 }

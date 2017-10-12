@@ -5,8 +5,8 @@ Asteriod::Asteriod(float angle) : GameObject()
     _xCoord = Game::ORIGIN_X;
 	_yCoord = Game::ORIGIN_Y;
     _angle = angle;
-    _objectWidth = 35;
-    _objectHeight = 35;
+    _objectWidth = 15;
+    _objectHeight = 15;
     _hitRadius = (_objectWidth + _objectHeight)/4;
     _health = 1;
     _scale = 0.2;
