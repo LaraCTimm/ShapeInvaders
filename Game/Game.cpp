@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(int highScore)
+Game::Game(int integer)
 {
     InitialiseGame();
     GameLoop();
@@ -46,8 +46,9 @@ void Game::GameLoop()
         }
                 
         while(_gameState == 2)
-        {
+        {   
             _interface.GameScreen();
+            
             _interface.ProcessGameEvents();
             vector<keyboardInput> keysPressed = _interface.GetGameEventsVector();
 
@@ -386,7 +387,7 @@ void Game::CreateGameObjects()
     if (_satelliteCooldown <= 0)
     {
         AddGameObject(gameObjectType::Satellite, 0);
-        _satelliteCooldown = GenerateRandomNumber(500.0f, 750.0f);
+        _satelliteCooldown = GenerateRandomNumber(1000.0f, 1500.0f);
     }
 }
 

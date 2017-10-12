@@ -6,7 +6,7 @@ ArcSegment::ArcSegment(float angle, int ID) : GameObject()
 	_yCoord = Game::ORIGIN_Y;
     _angle = angle;
     _ID = ID;
-    _objectWidth = 10;
+    _objectWidth = 7;
     _objectHeight = 40;
     _hitRadius = (_objectWidth + _objectHeight)/4;
     _health = 1;

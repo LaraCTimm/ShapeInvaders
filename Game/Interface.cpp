@@ -3,6 +3,8 @@
 Interface::Interface()
 : _window(sf::VideoMode(SCREEN_HEIGHT, SCREEN_WIDTH), "Shape Invaders", sf::Style::Titlebar | sf::Style::Close)
 , _shotFired(false)
+, _rectSourceSprite(0,0,800,800)
+, _frameCounter(0)
 {
     _clock.restart();
     LoadFiles();
@@ -12,6 +14,8 @@ void Interface::LoadFiles()
 {
     if(!_startTexture.loadFromFile("mainMenu_new.png"))
         throw FileNotFound();
+    if(!_gameTexture.loadFromFile("backgroundSprite16.png"))
+        throw FileNotFound();
     if(!_endTexture.loadFromFile("endScreen.png"))
         throw FileNotFound();
     if(!_font.loadFromFile("BADABB__.ttf"))
@@ -20,22 +24,22 @@ void Interface::LoadFiles()
 
 void Interface::CreateLivesVector(const int numPlayerLives, float rectSize)
 {
+    _playerLivesCounter = numPlayerLives;
     for (int i = 0; i < numPlayerLives; i++)
     {
         sf::RectangleShape lifeRect(sf::Vector2f(rectSize, rectSize));
         lifeRect.setOutlineThickness(3);
-        lifeRect.setOutlineColor(sf::Color::Red);
-        lifeRect.setFillColor(sf::Color::White);
+        lifeRect.setOutlineColor(sf::Color::Blue);
+        lifeRect.setFillColor(sf::Color::Black);
         lifeRect.setOrigin(sf::Vector2f(rectSize/2, rectSize/2));
         lifeRect.setPosition(rectSize*1.5 + rectSize*1.75*i, SCREEN_HEIGHT - rectSize*1.5);
         _livesVector.push_back(lifeRect);
     }
 }
 
-int Interface::CloseWindow()
+void Interface::CloseWindow()
 {
     _window.close();
-    return 0;
 }
 
 bool Interface::WindowOpen()
@@ -105,7 +109,25 @@ void Interface::SplashScreen()
 
 void Interface::GameScreen()
 {
-    ClearWindow();
+    //ClearWindow();
+    _window.clear(sf::Color::Black);
+    sf::Sprite background(_gameTexture);
+    _frameCounter++;
+    
+    if (_frameCounter%200 == 0)
+    {
+        _frameCounter = 0;
+        if (_rectSourceSprite.left == 12000) {
+            _rectSourceSprite.left = 0;
+        }
+        else {
+            _rectSourceSprite.left += 800;
+        }
+    }
+    
+    background.setTextureRect(_rectSourceSprite);
+    _window.draw(background);
+
 }
 
 void Interface::EndScreen()
@@ -130,7 +152,10 @@ void Interface::DisplayWindow()
 void Interface::RenderGameObject(shared_ptr<GameObject> object)
 {
     sf::RectangleShape _rect;
+    sf::CircleShape _hexagon;
+    sf::CircleShape _triangle;
     
+
     float xCoord = object->getXCoord();
     float yCoord = object->getYCoord();
     float height = object->getObjectHeight();
@@ -141,58 +166,92 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
     float outlineThickness;
     sf::Color outlineColor;
     sf::Color fillColor;
-
+    
+    
     switch (object->getObjectType())
     {
     
     case gameObjectType::Player:
+    {
+        sf::RectangleShape _rect;
         outlineThickness = 3.0f;
-        outlineColor = sf::Color::Blue;
-        fillColor = sf::Color::White;
+        outlineColor = sf::Color(24,0,255);
+        fillColor = sf::Color(24,0,255);
         break;
-        
+    }
     case gameObjectType::PlayerBullet:
+    {
+        sf::RectangleShape _rect;
         outlineThickness = 3.0f;
-        outlineColor = sf::Color::Black;
-        fillColor = sf::Color::Red;
+        outlineColor = sf::Color(255,38,0);
+        fillColor = sf::Color(255,38,0);
         break;
-        
+    }    
     case gameObjectType::Enemy:
+    {
+        sf::RectangleShape _rect;
         outlineThickness = 3.0f;
-        outlineColor = sf::Color::Green;
+        outlineColor = sf::Color(0,255,65);
+        fillColor = sf::Color(0,255,65);
+        break;
+    }    
+    case gameObjectType::EnemyBullet:
+    {
+        sf::RectangleShape _rect;
+        outlineThickness = 3.0f;
+        outlineColor = sf::Color::White;
         fillColor = sf::Color::White;
         break;
-        
-    case gameObjectType::EnemyBullet:
-        outlineThickness = 3.0f;
-        outlineColor = sf::Color::Black;
-        fillColor = sf::Color::Green;
-        break;
-        
+    }    
     case gameObjectType::Asteriod:
+    {
+        float hexRaduis = height*2/3;
+        sf::CircleShape _hexagon(hexRaduis, 6);
+        _hexagon.setOrigin(sf::Vector2f(hexRaduis,hexRaduis));
+        _hexagon.setRotation(angle);
+        _hexagon.setPosition(sf::Vector2f(xCoord, yCoord));
         outlineThickness = 3.0f;
         outlineColor = sf::Color::Red;
-        fillColor = sf::Color::Black;
+        fillColor = sf::Color::Red;
+        _hexagon.setOutlineThickness(outlineThickness);
+        _hexagon.setOutlineColor(outlineColor);
+        _hexagon.setFillColor(fillColor);
+        _window.draw(_hexagon);
         break;
+    }
         
     case gameObjectType::ArcSegment:
+    {
+        sf::RectangleShape _rect;
         outlineThickness = 3.0f;
-        outlineColor = sf::Color::Black;
-        fillColor = sf::Color::White;
+        outlineColor = sf::Color(255,255,50);
+        fillColor = sf::Color(255,255,50);
         break;
-        
+    }    
     case gameObjectType::LaserGenerator:
+    {
+        sf::RectangleShape _rect;
         outlineThickness = 3.0f;
-        outlineColor = sf::Color::Black;
-        fillColor = sf::Color::Cyan;
+        outlineColor = sf::Color(255,52,0);
+        fillColor = sf::Color(255,52,0);
         break;
-        
+    }    
     case gameObjectType::Satellite:
+    {
+        float triRaduis = height+5;//*2/3;
+        sf::CircleShape _triangle(triRaduis, 3);
+        _triangle.setOrigin(sf::Vector2f(triRaduis,triRaduis));
+        _triangle.setRotation(angle+90);
+        _triangle.setPosition(sf::Vector2f(xCoord, yCoord));
         outlineThickness = 2.0f;
-        outlineColor = sf::Color::Black;
-        fillColor = sf::Color::Magenta;
+        outlineColor = sf::Color(182,0,255);
+        fillColor = sf::Color(182,0,255);    
+        _triangle.setOutlineThickness(outlineThickness);
+        _triangle.setFillColor(outlineColor);
+        _triangle.setOutlineColor(fillColor);
+        _window.draw(_triangle);
         break;
-        
+    }    
     default:
         break;
     }
@@ -204,12 +263,12 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
     _rect.setOutlineThickness(outlineThickness);
     _rect.setOutlineColor(outlineColor);
     _rect.setFillColor(fillColor);
-    
+
     _window.draw(_rect);
         
 }
 
-void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score )
+void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score)
 {   
     sf::Text _currentScoreText;
     sf::Text _highScoreText;
@@ -217,14 +276,14 @@ void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score )
     std::string scoreString = "Score: " + std::to_string(*score);
     _currentScoreText.setString(scoreString);
     _currentScoreText.setCharacterSize(40);
-    _currentScoreText.setColor(sf::Color::Black);
+    _currentScoreText.setColor(sf::Color::White);
     _currentScoreText.setPosition(sf::Vector2f(30, 30));
     _currentScoreText.setFont(_font);
     
     std::string highScoreString = "High Score: " + std::to_string(*high_score);
     _highScoreText.setString(highScoreString);
     _highScoreText.setCharacterSize(40);
-    _highScoreText.setColor(sf::Color::Black);
+    _highScoreText.setColor(sf::Color::White);
     _highScoreText.setPosition(sf::Vector2f(SCREEN_WIDTH-300, 30));
     _highScoreText.setFont(_font);
     
@@ -234,11 +293,17 @@ void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score )
 }
 
 void Interface::RenderLives(const int numPlayerLives)
-{    
+{   
+//    if(numPlayerLives < _playerLivesCounter) {
+//        _window.clear(sf::Color::Red);
+//        _playerLivesCounter = numPlayerLives;
+//    }
+        
     for (auto i = 0; i < numPlayerLives; i++)
     {
         _window.draw(_livesVector[i]);
     }
+    
 }
 
 bool Interface::CheckClock()

@@ -7,7 +7,7 @@ EnemyBullet::EnemyBullet(float xCoord, float yCoord, vector<float> enemyPathVect
 	_yCoord = yCoord;
     _angle = angle;
     _objectWidth = 20;
-    _objectHeight = 20;
+    _objectHeight = 5;
     _hitRadius = (_objectWidth + _objectHeight)/4;
     _health = 1;
     _points = 0;

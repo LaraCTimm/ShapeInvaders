@@ -15,11 +15,11 @@ int main()
     rectangle.setPosition(0, 0);
     
     sf::Texture texture;
-    texture.loadFromFile("C:/Users/l_tim/Google Drive/1 Electrical 3rd Year/Sofware_II/SFMLTest/Reference images and ideas/vertex_Spritesheet.png");
+    texture.loadFromFile("backgroundSprite.png");
 //    sf::Sprite sprite;
 //    sprite.setTexture(texture);
     rectangle.setTexture(&texture);
-    sf::IntRect rectSourceSprite(0, 0, 800,800);
+    sf::IntRect rectSourceSprite(0, 0, 450,450);
     rectangle.setTextureRect(rectSourceSprite);
     
     sf::Clock clock;
@@ -36,12 +36,21 @@ int main()
             }
         }
         
-        if (clock.getElapsedTime().asSeconds() > 0.1f)
+        float radius = 50;
+        sf::CircleShape circle(radius,3);
+        circle.setOrigin(radius, radius);
+        circle.setPosition(100,100);
+        sf::RectangleShape rectangle1(sf::Vector2f(50,50));
+        rectangle1.setOrigin(sf::Vector2f(25,25));
+        rectangle1.setFillColor(sf::Color(255,0,65));
+        rectangle1.setPosition(sf::Vector2f(100, 100));
+        
+        if (clock.getElapsedTime().asSeconds() > 0.4f)
         {
-            if (rectSourceSprite.left == 5600)
+            if (rectSourceSprite.left == 3150)
                 rectSourceSprite.left = 0;
             else
-                 rectSourceSprite.left += 800;
+                 rectSourceSprite.left += 450;
                  
             rectangle.setTextureRect(rectSourceSprite);
             clock.restart();
@@ -50,6 +59,10 @@ int main()
         
         window.clear(sf::Color::Black);
         window.draw(rectangle);
+        
+        window.draw(circle);
+        window.draw(rectangle1);
+
         window.display();
     }
 }
