@@ -183,8 +183,8 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
     {
         sf::RectangleShape _rect;
         outlineThickness = 3.0f;
-        outlineColor = sf::Color(255,38,0);
-        fillColor = sf::Color(255,38,0);
+        outlineColor = sf::Color(255,0,255);
+        fillColor = sf::Color(255,0,255);
         break;
     }    
     case gameObjectType::Enemy:

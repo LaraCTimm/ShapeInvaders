@@ -97,7 +97,8 @@ public:
     
     /**
      * @brief Renders the visual representation of the number of lives the play has remaining.
-     * @param numPlayerLives - integer value representing the current number of lives that the player has.
+     * @param numPlayerLives - integer value representing the current number of lives that the 
+     * player has.
      */
     void RenderLives(const int numPlayerLives);
     /**
@@ -108,7 +109,8 @@ public:
     void CreateLivesVector(const int numPlayerLives, float rectSize);
     /**
      * @brief Function responsible for setting the frame rate of the game.
-     * Using the SFML clock, this function returns true if it is the correct time to render a new frame.
+     * Using the SFML clock, this function returns true if it is the correct time to 
+     * render a new frame.
      * @return bool indicating if it is time to render the next frame of the game.
      */
     bool CheckClock();

@@ -99,7 +99,7 @@ TEST_CASE("Check enemy bullet can be instantiated and is of type 'EnemyBullet'")
 	int oldSize = newGame.getGameObjectsVector().size();
 	newGame.AddGameObject(gameObjectType::EnemyBullet, 2);
 	CHECK(newGame.getGameObjectsVector().size() == oldSize + 1);
-	CHECK( newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() == gameObjectType::EnemyBullet);
+	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() == gameObjectType::EnemyBullet);
 }
 
 TEST_CASE("Check enemy bullet can move, and moves outward."){

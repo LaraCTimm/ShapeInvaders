@@ -273,6 +273,15 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
 } 
 
 
+
+void Game::AddGameObject(gameObjectType type, int index)
+{
+    shared_ptr<GameObject> object_ptr = Game::SpawnGameObject(type, index);
+    _GameObjectsVector.push_back(object_ptr);
+}
+
+
+
 void Game::MovePlayerObject(int direction)
 {
 	_GameObjectsVector[0]->circularMove(direction);
@@ -283,32 +292,6 @@ void Game::MoveLineObject(int objectIndex)
     _GameObjectsVector[objectIndex]->lineMove();
 }
 
-void Game::AddGameObject(gameObjectType type, int index)
-{
-    shared_ptr<GameObject> object_ptr = Game::SpawnGameObject(type, index);
-    _GameObjectsVector.push_back(object_ptr);
-}
-
-void Game::ObjectCleanup() 
-{
-    for (int i = 0; i < _GameObjectsVector.size(); i++)
-    {
-        if (_GameObjectsVector[i]->getHealth() <= 0)
-        {
-            _GameObjectsVector.erase(_GameObjectsVector.begin() + i);
-            i--;
-        }
-    }
-}
-
-void Game::CheckGameOver()
-{
-    if (_GameObjectsVector.size() > 0 && _GameObjectsVector[0]->getObjectType() != gameObjectType::Player)
-    {
-        SetNewHighScore();
-        _gameState = 3;
-    }
-}
 
 void Game::DecrementCooldowns()
 {
@@ -396,6 +379,28 @@ void Game::CheckCollisions()
     for (int i = 0; i < _GameObjectsVector.size(); i++)
     {
         *_score += _GameObjectsVector[i]->checkCollisions(_GameObjectsVector);
+    }
+}
+
+
+void Game::ObjectCleanup() 
+{
+    for (int i = 0; i < _GameObjectsVector.size(); i++)
+    {
+        if (_GameObjectsVector[i]->getHealth() <= 0)
+        {
+            _GameObjectsVector.erase(_GameObjectsVector.begin() + i);
+            i--;
+        }
+    }
+}
+
+void Game::CheckGameOver()
+{
+    if (_GameObjectsVector.size() > 0 && _GameObjectsVector[0]->getObjectType() != gameObjectType::Player)
+    {
+        SetNewHighScore();
+        _gameState = 3;
     }
 }
 
