@@ -16,6 +16,7 @@ PlayerBullet::PlayerBullet(float xCoord, float yCoord, vector<float> pathVector,
     _scaleFactor = -0.035;
     _scaleCount = 0;
     _objectType = gameObjectType::PlayerBullet;
+    _shapeProperties = {3.0, 255, 0, 255};
     _pathVector = pathVector;
     _xCoord = xCoord + pathVector[0];
 	_yCoord = yCoord + pathVector[1];

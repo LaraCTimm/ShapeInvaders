@@ -162,93 +162,52 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
     float width = object->getObjectWidth();
     float scale = object->getScale();
     float angle = object->getAngle();
-    
-    float outlineThickness;
-    sf::Color outlineColor;
-    sf::Color fillColor;
+    vector<float> props = object->getShapeProperties();
+    float outlineThickness = props[0];
+    sf::Color colour(props[1], props[2], props[3]);
+    sf::Color outlineColor = colour;
+    sf::Color fillColor = colour;
     
     
     switch (object->getObjectType())
     {
     
     case gameObjectType::Player:
-    {
-        sf::RectangleShape _rect;
-        outlineThickness = 3.0f;
-        outlineColor = sf::Color(24,0,255);
-        fillColor = sf::Color(24,0,255);
-        break;
-    }
     case gameObjectType::PlayerBullet:
-    {
-        sf::RectangleShape _rect;
-        outlineThickness = 3.0f;
-        outlineColor = sf::Color(255,0,255);
-        fillColor = sf::Color(255,0,255);
-        break;
-    }    
     case gameObjectType::Enemy:
-    {
-        sf::RectangleShape _rect;
-        outlineThickness = 3.0f;
-        outlineColor = sf::Color(0,255,65);
-        fillColor = sf::Color(0,255,65);
-        break;
-    }    
     case gameObjectType::EnemyBullet:
+    case gameObjectType::ArcSegment:
+    case gameObjectType::LaserGenerator:
     {
         sf::RectangleShape _rect;
-        outlineThickness = 3.0f;
-        outlineColor = sf::Color::White;
-        fillColor = sf::Color::White;
         break;
-    }    
+    }  
     case gameObjectType::Asteriod:
     {
-        float hexRaduis = height*2/3;
+        float hexRaduis = height*scale;
         sf::CircleShape _hexagon(hexRaduis, 6);
         _hexagon.setOrigin(sf::Vector2f(hexRaduis,hexRaduis));
         _hexagon.setRotation(angle);
         _hexagon.setPosition(sf::Vector2f(xCoord, yCoord));
-        outlineThickness = 3.0f;
-        outlineColor = sf::Color::Red;
-        fillColor = sf::Color::Red;
         _hexagon.setOutlineThickness(outlineThickness);
         _hexagon.setOutlineColor(outlineColor);
         _hexagon.setFillColor(fillColor);
         _window.draw(_hexagon);
         break;
     }
-        
-    case gameObjectType::ArcSegment:
-    {
-        sf::RectangleShape _rect;
-        outlineThickness = 3.0f;
-        outlineColor = sf::Color(255,255,50);
-        fillColor = sf::Color(255,255,50);
-        break;
-    }    
-    case gameObjectType::LaserGenerator:
-    {
-        sf::RectangleShape _rect;
-        outlineThickness = 3.0f;
-        outlineColor = sf::Color(255,52,0);
-        fillColor = sf::Color(255,52,0);
-        break;
-    }    
+
     case gameObjectType::Satellite:
     {
-        float triRaduis = height+5;//*2/3;
+        float triRaduis = (height + 5)*scale;
         sf::CircleShape _triangle(triRaduis, 3);
         _triangle.setOrigin(sf::Vector2f(triRaduis,triRaduis));
         _triangle.setRotation(angle+90);
         _triangle.setPosition(sf::Vector2f(xCoord, yCoord));
-        outlineThickness = 2.0f;
-        outlineColor = sf::Color(182,0,255);
-        fillColor = sf::Color(182,0,255);    
+         outlineColor = sf::Color(182,0,255);
+         fillColor = sf::Color(182,0,255);    
         _triangle.setOutlineThickness(outlineThickness);
-        _triangle.setFillColor(outlineColor);
         _triangle.setOutlineColor(fillColor);
+        _triangle.setFillColor(outlineColor);
         _window.draw(_triangle);
         break;
     }    

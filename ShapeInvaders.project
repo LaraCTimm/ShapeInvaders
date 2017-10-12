@@ -108,7 +108,6 @@
     <File Name="Game/FileReader.cpp"/>
     <File Name="Game/Game.cpp"/>
     <File Name="Game/GameObject.cpp"/>
-    <File Name="Game/GameTests.cpp"/>
     <File Name="Game/Interface.cpp"/>
     <File Name="Game/LaserGenerator.cpp"/>
     <File Name="Game/main.cpp"/>

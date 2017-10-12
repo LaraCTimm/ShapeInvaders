@@ -12,6 +12,8 @@ Satellite::Satellite(float offsetAngle, int ID) : GameObject()
     _scaleCount = 10;
     _ID = ID;
     _shotCharged = false;
+    _shapeProperties = {2.0, 182, 0, 255};
+
     
     _pathVector[0] = _BULLET_OFFSET_X;
     _pathVector[1] = _BULLET_OFFSET_Y;

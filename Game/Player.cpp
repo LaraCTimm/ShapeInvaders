@@ -10,6 +10,8 @@ Player::Player() : GameObject()
     _points = 0;
     _scale = 1;
     _gunLevel = 1;
+    _shapeProperties = {3.0, 24, 0, 255};
+
     
     _pathVectorLeft = {0.0f,0.0f};
     _pathVectorRight = {0.0f,0.0f};

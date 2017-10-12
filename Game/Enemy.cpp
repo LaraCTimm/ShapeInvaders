@@ -16,6 +16,8 @@ Enemy::Enemy(float xCoord, float yCoord, float angle) : GameObject()
     _scaleFactor = (1 - _scale) / Game::PLAYER_RADIUS;
     _scaleCount = 0;
     _objectType = gameObjectType::Enemy;
+    _shapeProperties = {3.0, 0, 255, 65};
+
     
     float vecX = cos(_angle*(M_PI/180));
     float vecY = sin(_angle*(M_PI/180));

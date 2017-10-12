@@ -61,8 +61,8 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ##
 ## User defined environment variables
 ##
-Objects0=$(IntermediateDirectory)/Game_ArcSegment.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Asteriod.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_FileReader.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_GameObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_GameTests.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Interface.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_LaserGenerator.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/Game_main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Player.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_PlayerBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Satellite.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/Game_ArcSegment.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Asteriod.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Enemy.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_EnemyBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_FileReader.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_GameObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Interface.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_LaserGenerator.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_main.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/Game_Player.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_PlayerBullet.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game_Satellite.cpp$(ObjectSuffix) 
 
 
 
@@ -148,14 +148,6 @@ $(IntermediateDirectory)/Game_GameObject.cpp$(DependSuffix): Game/GameObject.cpp
 
 $(IntermediateDirectory)/Game_GameObject.cpp$(PreprocessSuffix): Game/GameObject.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Game_GameObject.cpp$(PreprocessSuffix) Game/GameObject.cpp
-
-$(IntermediateDirectory)/Game_GameTests.cpp$(ObjectSuffix): Game/GameTests.cpp $(IntermediateDirectory)/Game_GameTests.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/GameTests.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Game_GameTests.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Game_GameTests.cpp$(DependSuffix): Game/GameTests.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Game_GameTests.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Game_GameTests.cpp$(DependSuffix) -MM Game/GameTests.cpp
-
-$(IntermediateDirectory)/Game_GameTests.cpp$(PreprocessSuffix): Game/GameTests.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Game_GameTests.cpp$(PreprocessSuffix) Game/GameTests.cpp
 
 $(IntermediateDirectory)/Game_Interface.cpp$(ObjectSuffix): Game/Interface.cpp $(IntermediateDirectory)/Game_Interface.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/Game/Interface.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Game_Interface.cpp$(ObjectSuffix) $(IncludePath)

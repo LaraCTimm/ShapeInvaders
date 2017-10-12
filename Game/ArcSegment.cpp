@@ -15,6 +15,8 @@ ArcSegment::ArcSegment(float angle, int ID) : GameObject()
     _scaleFactor = (1 - _scale) / 275;
     _scaleCount = 0;
     _objectType = gameObjectType::ArcSegment;
+    _shapeProperties = {3.0, 255, 255, 50};
+
     
     float vecX = cos(_angle*(M_PI/180));
     float vecY = sin(_angle*(M_PI/180));

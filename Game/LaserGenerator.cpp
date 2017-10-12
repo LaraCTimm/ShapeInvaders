@@ -14,6 +14,8 @@ LaserGenerator::LaserGenerator (float degrees, int ID) : GameObject()
     _scaleFactor = (1 - _scale) / Game::PLAYER_RADIUS;
     _scaleCount = 0;
     _objectType = gameObjectType::LaserGenerator;
+    _shapeProperties = {3.0, 255, 52, 0};
+
     
     float vecX = cos(_angle*(M_PI/180));
     float vecY = sin(_angle*(M_PI/180));

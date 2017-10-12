@@ -16,6 +16,8 @@ EnemyBullet::EnemyBullet(float xCoord, float yCoord, vector<float> enemyPathVect
     _scaleFactor = (1 - _scale) / Game::PLAYER_RADIUS;
     _scale += _scaleFactor*_scaleCount;
     _objectType = gameObjectType::EnemyBullet;
+    _shapeProperties = {3.0, 255, 255, 255};
+
     
     float vecX = cos(_angle*(M_PI/180));
     float vecY = sin(_angle*(M_PI/180));
