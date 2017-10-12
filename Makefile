@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ ShapeInvaders - Debug ]----------"
-	@"$(MAKE)" -f  "ShapeInvaders.mk"
+	@echo "----------Building project:[ SFMLTestProject - Debug ]----------"
+	@cd "SFMLTestProject" && "$(MAKE)" -f  "SFMLTestProject.mk"
 clean:
-	@echo "----------Cleaning project:[ ShapeInvaders - Debug ]----------"
-	@"$(MAKE)" -f  "ShapeInvaders.mk" clean
+	@echo "----------Cleaning project:[ SFMLTestProject - Debug ]----------"
+	@cd "SFMLTestProject" && "$(MAKE)" -f  "SFMLTestProject.mk" clean

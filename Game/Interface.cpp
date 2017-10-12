@@ -105,7 +105,8 @@ void Interface::SplashScreen()
 
 void Interface::GameScreen()
 {
-    ClearWindow();
+    //ClearWindow();
+    _window.clear(sf::Color::Black);
 }
 
 void Interface::EndScreen()

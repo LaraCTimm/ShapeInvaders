@@ -5,15 +5,15 @@
 ## Debug
 ProjectName            :=SFMLTestProject
 ConfigurationName      :=Debug
-WorkspacePath          :=C:/Users/l_tim/Documents/SFMLTest
-ProjectPath            :=C:/Users/l_tim/Documents/SFMLTest/SFMLTestProject
+WorkspacePath          :=C:/Users/l_tim/Documents/VleisInvaders
+ProjectPath            :=C:/Users/l_tim/Documents/VleisInvaders/SFMLTestProject
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Lara
-Date                   :=21/09/2017
+Date                   :=12/10/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -61,7 +61,6 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=C:\Program Files\CodeLite
 Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
 
 
@@ -94,7 +93,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/SFMLTest/SFMLTestProject/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/l_tim/Documents/VleisInvaders/SFMLTestProject/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 

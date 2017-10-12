@@ -15,11 +15,11 @@ int main()
     rectangle.setPosition(0, 0);
     
     sf::Texture texture;
-    texture.loadFromFile("C:/Users/l_tim/Google Drive/1 Electrical 3rd Year/Sofware_II/SFMLTest/Reference images and ideas/vertex_Spritesheet.png");
+    texture.loadFromFile("backgroundSprite.png");
 //    sf::Sprite sprite;
 //    sprite.setTexture(texture);
     rectangle.setTexture(&texture);
-    sf::IntRect rectSourceSprite(0, 0, 800,800);
+    sf::IntRect rectSourceSprite(0, 0, 450,450);
     rectangle.setTextureRect(rectSourceSprite);
     
     sf::Clock clock;
@@ -36,12 +36,12 @@ int main()
             }
         }
         
-        if (clock.getElapsedTime().asSeconds() > 0.1f)
+        if (clock.getElapsedTime().asSeconds() > 0.4f)
         {
-            if (rectSourceSprite.left == 5600)
+            if (rectSourceSprite.left == 3150)
                 rectSourceSprite.left = 0;
             else
-                 rectSourceSprite.left += 800;
+                 rectSourceSprite.left += 450;
                  
             rectangle.setTextureRect(rectSourceSprite);
             clock.restart();

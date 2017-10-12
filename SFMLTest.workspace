@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="SFMLTest" Database="" Version="10.0.0">
-  <Project Name="SFMLTestProject" Path="SFMLTestProject/SFMLTestProject.project" Active="No"/>
-  <Project Name="ShapeInvaders" Path="ShapeInvaders.project" Active="Yes"/>
+  <Project Name="SFMLTestProject" Path="SFMLTestProject/SFMLTestProject.project" Active="Yes"/>
+  <Project Name="ShapeInvaders" Path="ShapeInvaders.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
