@@ -5,8 +5,11 @@ Interface::Interface()
 , _shotFired(false)
 , _rectSourceSprite(0,0,800,800)
 , _frameCounter(0)
+, _damaged(0)
+, _frameRate(60)
 {
     _clock.restart();
+    _speedUpClock.restart();
     LoadFiles();
 }
 
@@ -35,6 +38,10 @@ void Interface::CreateLivesVector(const int numPlayerLives, float rectSize)
         lifeRect.setPosition(rectSize*1.5 + rectSize*1.75*i, SCREEN_HEIGHT - rectSize*1.5);
         _livesVector.push_back(lifeRect);
     }
+    
+    _frameRate = 60;
+    _speedUpClock.restart();
+    _damaged = 0;
 }
 
 void Interface::CloseWindow()
@@ -263,9 +270,20 @@ void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score)
 
 void Interface::RenderLives(shared_ptr<int> numPlayerLives)
 {   
+    cout << *numPlayerLives << " ? " << _playerLivesCounter << endl;
     if(*numPlayerLives < _playerLivesCounter) {
-        _window.clear(sf::Color::Red);
+        _damaged++;
         _playerLivesCounter = *numPlayerLives;
+    }
+    
+    if(_damaged > 0)
+    {
+        _damaged++;
+        _window.clear(sf::Color::Red);
+        
+        if(_damaged > 3) {
+            _damaged = 0;
+        }
     }
         
     for (auto i = 0; i < *numPlayerLives; i++)
@@ -277,9 +295,16 @@ void Interface::RenderLives(shared_ptr<int> numPlayerLives)
 
 bool Interface::CheckClock()
 {
-    if(_clock.getElapsedTime().asMilliseconds() >= 1000/75)
+    if(_clock.getElapsedTime().asMilliseconds() >= 1000/_frameRate)
     {
         _clock.restart();
+        
+        if(_speedUpClock.getElapsedTime().asSeconds() >= 5)
+        {
+            _frameRate += 5;
+            _speedUpClock.restart();
+        }
+        
         return true;
     }
     

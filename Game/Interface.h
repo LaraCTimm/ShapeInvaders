@@ -114,9 +114,12 @@ private:
     sf::Font _font;
     vector<sf::RectangleShape> _livesVector;
     sf::Clock _clock;
+    sf::Clock _speedUpClock;
     bool _shotFired;
     int _frameCounter;
     int _playerLivesCounter;
+    int _damaged;
+    float _frameRate;
     
     /**
      * @brief Loads files for use in the game.
