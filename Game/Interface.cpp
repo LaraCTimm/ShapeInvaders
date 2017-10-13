@@ -103,13 +103,12 @@ void Interface::SplashScreen()
     sf::Sprite background(_startTexture);
     ClearWindow();
     _window.draw(background);
-    _window.display();
+    DisplayWindow();
 }
 
 
 void Interface::GameScreen()
 {
-    //ClearWindow();
     _window.clear(sf::Color::Black);
     sf::Sprite background(_gameTexture);
     _frameCounter++;
@@ -135,12 +134,23 @@ void Interface::EndScreen()
     sf::Sprite background(_endTexture);
     ClearWindow();
     _window.draw(background);
-    _window.display();
+    DisplayWindow();
 }
 
 void Interface::ClearWindow()
 {
     _window.clear(sf::Color::White);
+}
+
+void Interface::Render(vector<shared_ptr<GameObject>> object_vector, const shared_ptr<int> score , const shared_ptr<int> high_score, shared_ptr<int> numPlayerLives)
+{
+    for(shared_ptr<GameObject> element: object_vector)
+    {
+        RenderGameObject(element);
+    }
+    RenderText(score, high_score);
+    RenderLives(numPlayerLives);
+    DisplayWindow();
 }
 
 void Interface::DisplayWindow()
@@ -162,9 +172,9 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
     float width = object->getObjectWidth();
     float scale = object->getScale();
     float angle = object->getAngle();
-    vector<float> props = object->getShapeProperties();
-    float outlineThickness = props[0];
-    sf::Color colour(props[1], props[2], props[3]);
+    vector<float> properties = object->getShapeProperties();
+    float outlineThickness = properties[0];
+    sf::Color colour(properties[1], properties[2], properties[3]);
     sf::Color outlineColor = colour;
     sf::Color fillColor = colour;
     
@@ -251,14 +261,14 @@ void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score)
     
 }
 
-void Interface::RenderLives(const int numPlayerLives)
+void Interface::RenderLives(shared_ptr<int> numPlayerLives)
 {   
-//    if(numPlayerLives < _playerLivesCounter) {
-//        _window.clear(sf::Color::Red);
-//        _playerLivesCounter = numPlayerLives;
-//    }
+    if(*numPlayerLives < _playerLivesCounter) {
+        _window.clear(sf::Color::Red);
+        _playerLivesCounter = *numPlayerLives;
+    }
         
-    for (auto i = 0; i < numPlayerLives; i++)
+    for (auto i = 0; i < *numPlayerLives; i++)
     {
         _window.draw(_livesVector[i]);
     }

@@ -48,7 +48,6 @@ void Game::GameLoop()
         while(_gameState == 2)
         {   
             _interface.GameScreen();
-            
             _interface.ProcessGameEvents();
             vector<keyboardInput> keysPressed = _interface.GetGameEventsVector();
 
@@ -56,7 +55,6 @@ void Game::GameLoop()
             {
                 Update(keysPressed);
                 Render();
-                _interface.DisplayWindow();
                 _inGame = true;
             }
         }
@@ -156,14 +154,7 @@ void Game::Update(vector<keyboardInput> keysPressed)
 
 void Game::Render()
 {
-    for (shared_ptr<GameObject> element: _GameObjectsVector)
-    {
-        _interface.RenderGameObject(element);
-    }
-    
-    _interface.RenderText(_score, _highScore);
-    _interface.RenderLives(_player_ptr->getHealth());
-    
+    _interface.Render(_GameObjectsVector, _score, _highScore, make_shared<int>(_player_ptr->getHealth()));    
 }
 
 shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index) 

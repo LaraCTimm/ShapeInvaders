@@ -76,31 +76,16 @@ public:
      * @brief Renders the game over screen when the game is lost. 
      */
     void EndScreen();
-    /**
-     * @brief Allows rendered objects to be displayed on the screen.
-     */
-    void DisplayWindow();
-    /**
-     * @brief Renders each game object on the screen.
-     * All game objects contained within the GameObjectsVector at the current 
-     * time are rendered to the screen according to their type.
-     * @param object - a shared pointer to the game object to be rendered.
-     */
-    void RenderGameObject(shared_ptr<GameObject> object);
     
     /**
-     * @brief Renders the current and high scores to the window.
-     * @param score -  integer value representing the current score that the player has achieved.
-     * @param high_score - integer value representing the largest high score ever recorded.
+     * @brief Renders all objects required in the current frame.
+     * @param object_vector - vector of pointers to existing game objects.
+     * @param score - current score of the player.
+     * @param high_score - highest score achieved in the game so far.
+     * @param numPlayerLives - integer number of player lives remaining.
      */
-    void RenderText(const shared_ptr<int> score , const shared_ptr<int> high_score );
+    void Render(vector<shared_ptr<GameObject>> object_vector, const shared_ptr<int> score , const shared_ptr<int> high_score, shared_ptr<int> numPlayerLives);
     
-    /**
-     * @brief Renders the visual representation of the number of lives the play has remaining.
-     * @param numPlayerLives - integer value representing the current number of lives that the 
-     * player has.
-     */
-    void RenderLives(const int numPlayerLives);
     /**
      * @brief Generates the vector of lives for the player on game start.
      * @param numPlayerLives - integer number of lives that the player starts the game with.
@@ -133,8 +118,41 @@ private:
     int _frameCounter;
     int _playerLivesCounter;
     
+    /**
+     * @brief Loads files for use in the game.
+     */
     void LoadFiles();
+    /**
+     * @brief Clears the window of all drawables.
+     */
     void ClearWindow();
+    
+    /**
+     * @brief Renders each game object on the screen.
+     * All game objects contained within the GameObjectsVector at the current 
+     * time are rendered to the screen according to their type.
+     * @param object - a shared pointer to the game object to be rendered.
+     */
+    void RenderGameObject(shared_ptr<GameObject> object);
+    
+    /**
+     * @brief Renders the current and high scores to the window.
+     * @param score -  integer value representing the current score that the player has achieved.
+     * @param high_score - integer value representing the largest high score ever recorded.
+     */
+    void RenderText(const shared_ptr<int> score , const shared_ptr<int> high_score);
+    
+    /**
+     * @brief Renders the visual representation of the number of lives the play has remaining.
+     * @param numPlayerLives - integer value representing the current number of lives that the 
+     * player has.
+     */
+    void RenderLives(shared_ptr<int> numPlayerLives);
+    
+    /**
+     * @brief Allows rendered objects to be displayed on the screen.
+     */
+    void DisplayWindow();
     
 };
 
