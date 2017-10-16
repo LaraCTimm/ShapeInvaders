@@ -96,7 +96,7 @@ Contained within the following sections are...
 
 Shape Invaders, modelled on the arcade game Gyruss, is a C++14 developed computer game rendered using SFML~2.3.2. The game features a player character who moves around the circumference of a large circle. The player is capable of shooting at enemies, who spawn at the centre of the screen and travel outwards. The game is inhabited by a variety of enemies who are generated at random time intervals and at random angles. When colliding with an enemy or enemy bullet, the player looses a life. The player starts with five lives and the game ends when all of the players lives are depleted. Game speed increases with increasing time in game. As a result the objective of the game is to get the highest possible score rather than to destroy a limited number of enemies.
 
-\subsection{Requirements}
+\subsection{Requirements}\label{functionlity_requirements}
 
 The game contains the following basic functionality:
 
@@ -131,7 +131,7 @@ The final product must run on the Windows platform and be coded using the SFML 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CODE STRUCTURE AND IMPLEMENTATION}
 
-On consideration of the design objectives in Section~\ref{probDef}, and in an attempt to code using good coding practises, the separation of layers principle was a pivotal design consideration. The remainder of this section describes the structure of the implemented code.
+On consideration of the design objectives in Section~\ref{probDef} and in an attempt to code using good coding practises, the separation of layers principle was a pivotal design consideration. The remainder of this section describes the structure of the implemented code.
 
 The code is separated into three distinct layers: the data layer, application logic layer and presentation layer. This was done in an attempt to implement the separation of concerns principle which will allow for decoupling of dependencies between classes. Communication between layers is carried out using object conversations, ensuring that only the necessary information is exposed to the other layers.
 
@@ -267,18 +267,20 @@ The playing game-state proceeds in the following way. The \texttt{Interface} det
 
 \subsection{Game Input Polling}
 
+User inputs are detected by the \texttt{Interface} using SFML event polling. The \texttt{ProcessGameEvents()} function populates a vector with \texttt{keyboardInputs} corresponding to specific keys pressed or released. In this way, only the vector of enumerations need be passed from the presentation layer to the application logic layer, allowing the logic layer to not have any dependencies of the SFML library.
 
+User inputs include \texttt{Player} movement and the firing of \texttt{PlayerBullets}. By polling for both the press and the release of the fire key, a single bullet per keyboard input can be instantiated using boolean logic. When in the splashscreen and end-screen states, the \texttt{Interface} polls for start game and exit user input.
 
 \subsection{Collision Detection}
 
-Polling for object collisions is handled by the \texttt{Game} class through the \texttt{CheckCollisions()} function. In this function, each element in the vector containing all existing \texttt{GameObjects} is checked against every other existing \texttt{GameObject} to see if a collision has occurred. A collision is identified as the distance between the objects' origins being less than the sum of their hit radii. If a collision occurs between the player and a destroyable object, the players life is decremented and the objects health is set to zero. If a collision occurs between the player and a non-destroyable object, only the players life is decremented.
+Object collisions are handled by the \texttt{Game} class through the \texttt{CheckCollisions()} function. In this function, each element in the vector containing all existing \texttt{GameObjects} is checked against every other existing \texttt{GameObject} to see if a collision has occurred. A collision is identified as the distance between the objects' origins being less than the sum of their hit radii. If a collision occurs between the player and a destroyable object, the players life is decremented and the objects health is set to zero. If a collision occurs between the player and a non-destroyable object, only the players life is decremented.
 
 This is a computationally intensive algorithm with complexity of $\cal{O}$($n^{2}$). Ideally a less taxing algorithm would have been used to improve the computation time of the game (see Section~\ref{code_improvements}). Figure~\ref{fig:collisions} demonstrates the collision relationships that exist between all game objects.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\columnwidth]{collisions.png}
-	\caption{Illustration of the collision relationships that exist between game objects. Arrowheads indicate damage dealt.}
+	\caption{Illustration of the collision relationships that exist between game objects. Arrowheads indicate damage taken.}
 	\raggedright
 	\label{fig:collisions}
 \end{figure}
@@ -297,7 +299,11 @@ This is a computationally intensive algorithm with complexity of $\cal{O}$($n^{2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CRITICAL EVALUATION}
 
-\subsection{Game Functionality}
+\subsection{Functionality}
+
+The game meets the functionality requirements of the brief set out in Section~\ref{functionlity_requirements}. Also the level of functionality meets the requirement to be rated within the excellent tier; namely, basic functionality, three minor features and two major features have been implemented (see Section~\ref{functionlity_requirements} for specifics). The group members' intention was to implement better graphics, rather than simple SFML shapes. Due to time constraints, simple shapes, identifiable by their specific shape and colour, are used . It must be noted that enemies do scale depending on their proximity to the circle's circumference.
+
+
 
 \subsection{Code Structure and Implemented Design}
 
