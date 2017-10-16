@@ -263,8 +263,6 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
     return shared_ptr<GameObject>();
 } 
 
-
-
 void Game::AddGameObject(gameObjectType type, int index)
 {
     shared_ptr<GameObject> object_ptr = Game::SpawnGameObject(type, index);

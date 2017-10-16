@@ -1,7 +1,7 @@
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
-class Game; // not entirely sure why doing this fixed things, but hey
+class Game; 
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
@@ -32,7 +32,10 @@ enum class gameObjectType
 };
 
 /**
- * @class GameObject - Base class from which all game objects are derived.
+ * @class GameObject 
+ * 
+ * @brief Base class from which all game objects are derived.
+ * 
  * The game object class handles the movement and deletion of all game objects.
  * The inheritance of this class alows shared pointes to GameObjects to be created.
  * This allows for static pointer casting for access of dervied class functions.
@@ -52,6 +55,7 @@ public:
 
     /**
      * @brief Virtual function which enables circular movement of game objects. 
+     * 
      * Circular movement involves game objects moving around the circumference of a circle
      * on one dierction or the other.
      * @param direction - integer direction which is either positive or negative 1.
@@ -60,6 +64,7 @@ public:
     
     /**
      * @brief Function enabling game objects to move linearly.
+     * 
      * Object movement is defined by a path vector. Objects move radially outwards 
      * from the circle's centre or radially inwards towards the circle's centre.
      */
@@ -67,6 +72,7 @@ public:
     
     /**
      * @brief Flags all game objects which are out of counds for cleanup.
+     * 
      * If game objects travel off the screen, or if they reach the centre of the
      * screen they are flagged to be deleted.
      */
@@ -74,6 +80,7 @@ public:
 
     /**
      * @brief Performs collision detection, flags objects for deletion.
+     * 
      * A collision is detected when the distance between two objects is smaller than 
      * the sum of their hit radii. The approriate amount of health is deducted from
      * game objects upon their collision with other game objects.
@@ -98,10 +105,6 @@ public:
     float getXCoord() {
         return _xCoord;
     }
-//
-//    void setXCoord(const float newXCoord) {
-//        _xCoord = newXCoord;
-//    }
 
     /**
      * @brief Returns the y-coordinate of the GameObjects's position.
@@ -110,10 +113,6 @@ public:
     float getYCoord() {
         return _yCoord;
     }
-//
-//    void setYCoord(const float newYCoord) {
-//        _yCoord = newYCoord;
-//    }
     
     /**
      * @brief Returns the scale of the GameObject.
@@ -131,10 +130,6 @@ public:
         return _objectHeight;
     }
 
-//    void setObjectHeight(const float newHeight) {
-//        _objectHeight = newHeight;
-//    }
-
     /**
      * @brief Returns the width of the GameObject.
      * @return Float width value.
@@ -143,10 +138,6 @@ public:
         return _objectWidth;
     }
 
-//    void setObjectWidth(const float newWidth) {
-//        _objectWidth = newWidth;
-//    }
-
     /**
      * @brief Returns the angle of the GameObject.
      * @return Float angle value.
@@ -154,10 +145,6 @@ public:
     float getAngle() {
         return _angle;
     }
-//
-//    void setAngle(const float newAngle) {
-//        _angle = newAngle;
-//    }
 
     /**
      * @brief Returns the hit-radius of the GameObject.
@@ -166,10 +153,6 @@ public:
     float getHitRadius() {
         return _hitRadius;
     }
-
-//    void setHitRadius(const float newHitRadius) {
-//        _hitRadius = newHitRadius;
-//    }
     
     /**
      * @brief Returns the remaining health of the GameObject.
@@ -195,12 +178,9 @@ public:
         return _points;
     }
 
-//    void setPoints(const int newPoints) {
-//        _points = newPoints;
-//    }
-
     /**
      * @brief Returns the scale-count value of the GameObject.
+     * 
      * The scale count parameter keeps track of the position of a GameObject which
      * moves linearly, enabling a bullet to be fired from that GameObject which
      * is correctly scaled.
@@ -209,23 +189,16 @@ public:
     int getScaleCount() {
         return _scaleCount;
     }
-
-//    void setScaleCount(const int newScaleCount) {
-//        _scaleCount = newScaleCount;
-//    }
     
     /**
      * @brief Returns the vector path vector of the GameObject.
+     * 
      * The path vector defines the path of linear movement of a GameObject.
      * @return Vector of two floats defining the GameObject's path vector.
      */
     vector<float> getPathVector() {
         return _pathVector;
     }
-
-//    void setPathVector(vector<float> newPathVector) {
-//        _pathVector = newPathVector;
-//    }
 
     /**
      * @brief Returns an enumeration indicating the GameObject's type.
@@ -237,6 +210,7 @@ public:
     
     /**
      * @brief Returns the vector of shape properties of the GameObject.
+     * 
      * The shape properties vector provides the Interface class with the information
      * it needs to render the GameObject as desired.
      * @return Vector of floats defining the GameObject's shape properties.
@@ -246,6 +220,7 @@ public:
     }
      /**
       * @brief Enables the shape properties of a GameObject to be set.
+      * 
       * The properties of a GameObject may change in accordance with interactions 
       * within the logic layer of the game, and thus must able to be set.
       * @param shapeProperties - vector containing the new shape properties being defined.

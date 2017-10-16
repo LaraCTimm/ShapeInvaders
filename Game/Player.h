@@ -5,7 +5,9 @@
 #include "Game.h"
 
 /**
- * @class Player - represents the player object.
+ * @class Player
+ * @brief Represents the player object.
+ * 
  * Inherited from the GameObject Class.
  */
 
@@ -22,6 +24,7 @@ public:
     
     /**
      * @brief Function which controls circular movenent of the player.
+     * 
      * Player moves on the circumference of a large circle in one of two directions.
      * @param direction - integer direction which is either positive or negative 1.
      */
@@ -29,6 +32,7 @@ public:
     
     /**
      * @brief Allows the players gun to be upgraded.
+     * 
      * Upon destroying three satillites the player gets a gun upgrade. An extra bullet 
      * is added which makes firing much more effective.
      */
@@ -102,6 +106,7 @@ private:
     
     /**
      * @brief Sets up path vectors for multiple bullets.
+     * 
      * When the players gun is upgraded, alternate path vectors are required for
      * the additional bullets to travel along. 
      */

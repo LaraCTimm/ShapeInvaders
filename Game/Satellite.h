@@ -6,7 +6,9 @@
 
 /**
  * @class Satellite
- * @brief Represents a satellite object. Inherited from the GameObject Class.
+ * @brief Represents a satellite object. 
+ * 
+ * Inherited from the GameObject Class.
  */
 
 class Satellite : public GameObject

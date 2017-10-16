@@ -5,7 +5,9 @@
 #include "Game.h"
 
 /**
- * @class LaserGenerator - represents single laser generator in pair.
+ * @class LaserGenerator
+ * @brief Represents single laser generator in pair.
+ * 
  * Inherited from GameObject class.
  */
 class LaserGenerator : public GameObject

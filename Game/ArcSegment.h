@@ -5,7 +5,9 @@
 #include "Game.h"
 
 /**
- * @class ArcSegment - represents segments making up arc between laser generator pair
+ * @class ArcSegment 
+ * @brief Represents segments making up arc between laser generator pair.
+ * 
  * Inherits from GameObject class
  */
 class ArcSegment : public GameObject

@@ -9,29 +9,26 @@
 #include <vector>
 #include <list>
 #include <iostream>
-
-using std::cout;
-using std::endl;
 using std::vector;
-using std::list;
 
 /**
- * @class FileNotFound
- * @brief Throws and error if the files which are trying to be loaded cannot be found 
- */
-class FileNotFound
-{   };
+* @class FileNotFound 
+* @brief Throws and error if the files which are trying to be loaded cannot be found.
+*/
+class FileNotFound{};
 
 /**
  * @class Interface
- * @breif Class which handles all interface functionality and makes use of SFML 2.3.2.
+ * @brief Class which handles all interface functionality and makes use of SFML 2.3.2.
+ * 
  * Interface deals predominantly with rendering the game to the window and handling user inputs.
  */
 class Interface
 {
-public:
+public:	
     /**
      * @brief Defailt Constructor.
+     * 
      * Creates a new window and initialises private variables
      */
     Interface();
@@ -49,6 +46,7 @@ public:
     
     /**
      * @brief Detects a user inputs during the game.
+     * 
      * This function allows separation of the logic and interface layers by 
      * converting SFML inputs to a vector of enums to be passed back to the
      * Game class.
@@ -57,6 +55,7 @@ public:
     
     /**
      * @brief Passes the Game class a vector of detected user inputs.
+     * 
      * All detected inputs of a relevnt type are added to a vector of keyboard inputs.
      * @return vector of Enums containing the representation of user keyboard inputs.
      */
@@ -94,6 +93,7 @@ public:
     void CreateLivesVector(const int numPlayerLives, float rectSize);
     /**
      * @brief Function responsible for setting the frame rate of the game.
+     * 
      * Using the SFML clock, this function returns true if it is the correct time to 
      * render a new frame.
      * @return bool indicating if it is time to render the next frame of the game.
@@ -132,6 +132,7 @@ private:
     
     /**
      * @brief Renders each game object on the screen.
+     * 
      * All game objects contained within the GameObjectsVector at the current 
      * time are rendered to the screen according to their type.
      * @param object - a shared pointer to the game object to be rendered.
