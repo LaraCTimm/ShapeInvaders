@@ -25,17 +25,11 @@ public:
 	 */
 	EnemyBullet(float xCoord, float yCoord, vector<float> pathVector, float angle, int scaleCount);
     
-<<<<<<< HEAD
-    
-private:
 
-    
-=======
 private: 
 
     const float SPEED_MULTIPLIER = 2.0f;
 
->>>>>>> master
 };
 
 #endif

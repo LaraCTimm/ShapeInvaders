@@ -48,11 +48,6 @@ TEST_CASE("Check player is instantiated at start with 5 lives"){
 	CHECK(lives==5);
 }
 
-/*~~~~~~~~~~~~~~~~ TESTS TO ADD ~~~~~~~~~~~~~~~~
-player:
-player gets destroyed after loosing all lives
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 // Player bullet tests
 
 TEST_CASE("Check bullet can be instantiated"){
