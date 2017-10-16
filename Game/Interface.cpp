@@ -270,7 +270,6 @@ void Interface::RenderText(shared_ptr<int> score, shared_ptr<int> high_score)
 
 void Interface::RenderLives(shared_ptr<int> numPlayerLives)
 {   
-    cout << *numPlayerLives << " ? " << _playerLivesCounter << endl;
     if(*numPlayerLives < _playerLivesCounter) {
         _damaged++;
         _playerLivesCounter = *numPlayerLives;
@@ -299,9 +298,9 @@ bool Interface::CheckClock()
     {
         _clock.restart();
         
-        if(_speedUpClock.getElapsedTime().asSeconds() >= 5)
+        if(_speedUpClock.getElapsedTime().asSeconds() >= 2)
         {
-            _frameRate += 5;
+            _frameRate += 2;
             _speedUpClock.restart();
         }
         

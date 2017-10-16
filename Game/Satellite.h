@@ -5,8 +5,8 @@
 #include "Game.h"
 
 /**
- * @class Satellite - represents a satellite object.
- * @brief Inherited from the GameObject Class.
+ * @class Satellite
+ * @brief Represents a satellite object. Inherited from the GameObject Class.
  */
 
 class Satellite : public GameObject

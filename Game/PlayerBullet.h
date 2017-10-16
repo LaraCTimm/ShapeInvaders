@@ -5,6 +5,12 @@
 #include "Game.h"
 #include "Player.h"
 
+/**
+ * @class PlayerBullet
+ * @brief Represents the player's bullet object. 
+ * Inherited from the GameObject Class.
+ */
+
 class PlayerBullet : public GameObject
 {
 public:
