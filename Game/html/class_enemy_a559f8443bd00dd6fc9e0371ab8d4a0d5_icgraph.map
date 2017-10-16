@@ -1,0 +1,4 @@
+<map id="Enemy::decrementEnemyBulletCooldown" name="Enemy::decrementEnemyBulletCooldown">
+<area shape="rect" id="node2" href="$class_game.html#a1997bafd283d568cff4fc22d398343fe" title="Game::DecrementCooldowns" alt="" coords="260,13,451,39"/>
+<area shape="rect" id="node3" href="$class_game.html#a0cba1b2b1c2ad4922b3b5e051cd13bdc" title="Game::getCurrentScoreText" alt="" coords="499,13,683,39"/>
+</map>

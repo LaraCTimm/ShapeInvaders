@@ -1,0 +1,9 @@
+<map id="GameObject::setObjectShape" name="GameObject::setObjectShape">
+<area shape="rect" id="node2" href="$class_arc_segment.html#aaca60bedcf5d6f736f29a33ce69b86fb" title="ArcSegment::ArcSegment" alt="" coords="266,5,441,32"/>
+<area shape="rect" id="node3" href="$class_asteriod.html#a1460d80669db56abed3f40c13d5e0e7e" title="Asteriod::Asteriod" alt="" coords="290,56,417,83"/>
+<area shape="rect" id="node4" href="$class_enemy.html#ad74550deef8eefecb92989dcf2891224" title="Enemy::Enemy" alt="" coords="297,107,409,133"/>
+<area shape="rect" id="node5" href="$class_enemy_bullet.html#a559a6d80be167e6ddb18dcbc774acb55" title="EnemyBullet::EnemyBullet" alt="" coords="264,157,443,184"/>
+<area shape="rect" id="node6" href="$class_laser_generator.html#ad0d661e615a3217cb56a9201dfd03adb" title="LaserGenerator::LaserGenerator" alt="" coords="249,208,457,235"/>
+<area shape="rect" id="node7" href="$class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8" title="Player::Player" alt="" coords="301,259,405,285"/>
+<area shape="rect" id="node8" href="$class_player_bullet.html#a172c32e07faf77fbac5f763b194cb7fe" title="PlayerBullet::PlayerBullet" alt="" coords="268,309,439,336"/>
+</map>

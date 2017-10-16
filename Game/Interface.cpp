@@ -227,6 +227,7 @@ void Interface::RenderGameObject(shared_ptr<GameObject> object)
         _triangle.setFillColor(outlineColor);
         _window.draw(_triangle);
         break;
+
     }    
     default:
         break;
@@ -294,7 +295,9 @@ void Interface::RenderLives(shared_ptr<int> numPlayerLives)
 
 bool Interface::CheckClock()
 {
+
     if(_clock.getElapsedTime().asMilliseconds() >= 1000/_frameRate)
+
     {
         _clock.restart();
         

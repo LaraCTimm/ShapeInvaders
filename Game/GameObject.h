@@ -47,6 +47,7 @@ class GameObject : public std::enable_shared_from_this<GameObject>
 public:
 
     static constexpr float BULLET_SPEED_MODIFIER = 20.0f;
+
     
     /**
      * @brief GameObject constructor.

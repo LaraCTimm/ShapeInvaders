@@ -21,7 +21,7 @@ public:
      * @brief Player constructor.
      */
     Player();
-    
+   
     /**
      * @brief Function which controls circular movenent of the player.
      * 

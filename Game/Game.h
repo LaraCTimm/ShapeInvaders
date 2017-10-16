@@ -103,6 +103,7 @@ public:
     vector<shared_ptr<GameObject>> getGameObjectsVector() {
         return _GameObjectsVector;
     }
+
     /**
      * @brief Accessor for the current player score.
      * @return Shared pointer to integer score.
@@ -131,7 +132,10 @@ private:
     float _satelliteCooldown;
     bool _shotFired;
     bool _inGame;
+  
+
     Interface _interface;
+
     int _gameState;
     
     /**

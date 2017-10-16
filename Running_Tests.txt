@@ -1,0 +1,6 @@
+1) Comment out Interface from game.h private variables
+2) Comment out GameLoop() from Game constructor
+3) Comment out contents of GameLoop()
+4) Comment out contents of CheckGameState()
+5) Comment out first for-loop of Update()
+6) Comment out contents of Render()

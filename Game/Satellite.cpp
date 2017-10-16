@@ -45,6 +45,7 @@ void Satellite::circularMove(int direction)
     }
     
     if(_gyrateAngle >= _angle - 5 && _gyrateAngle <= _angle + 5) {
+
         _shotCharged = true;
     }
     
@@ -52,9 +53,11 @@ void Satellite::circularMove(int direction)
     float vecY = sin(_gyrateAngle*(M_PI/180))*gyrateRadius;
 	_xCoord = _gyrateCoordX + vecX;
 	_yCoord = _gyrateCoordY + vecY;
+
     
     vecX = vecX/BULLET_SPEED_MODIFIER;
     vecY = vecY/BULLET_SPEED_MODIFIER;
+
     
     _pathVector[0] = vecX;
     _pathVector[1] = vecY;

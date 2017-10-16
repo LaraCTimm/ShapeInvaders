@@ -1,0 +1,3 @@
+<map id="EnemyBullet" name="EnemyBullet">
+<area shape="rect" id="node2" href="$class_game_object.html" title="{GameObject\n|# _xCoord\l# _yCoord\l# _objectHeight\l# _objectWidth\l# _angle\l# _hitRadius\l# _health\l# _points\l# _scale\l# _scaleFactor\l# _scaleCount\l# _objectShape\l# _pathVector\l# _objectType\l|+ GameObject()\l+ circularMove()\l+ lineMove()\l+ checkCollisions()\l+ getXCoord()\l+ setXCoord()\l+ getYCoord()\l+ setYCoord()\l+ getObjectHeight()\l+ setObjectHeight()\land 18 more...\l}" alt="" coords="27,145,162,560"/>
+</map>

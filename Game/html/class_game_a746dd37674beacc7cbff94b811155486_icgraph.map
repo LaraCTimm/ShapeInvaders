@@ -1,0 +1,9 @@
+<map id="Game::GenerateRandomNumber" name="Game::GenerateRandomNumber">
+<area shape="rect" id="node2" href="$class_game.html#a87beac4096711aa1802786b1a0de72c7" title="Game::SpawnGameObject" alt="" coords="264,97,441,124"/>
+<area shape="rect" id="node4" href="$class_game.html#a0cba1b2b1c2ad4922b3b5e051cd13bdc" title="Game::getCurrentScoreText" alt="" coords="937,72,1121,99"/>
+<area shape="rect" id="node6" href="$class_game.html#a1997bafd283d568cff4fc22d398343fe" title="Game::DecrementCooldowns" alt="" coords="699,199,889,225"/>
+<area shape="rect" id="node7" href="$class_game.html#ae6d1ab79411b280f18815109fc3b208d" title="Game::CreateGameObjects" alt="" coords="703,249,885,276"/>
+<area shape="rect" id="node3" href="$class_game.html#a5177cc57be0046eed29e87435b15034e" title="Game::Game" alt="" coords="520,72,620,99"/>
+<area shape="rect" id="node5" href="$class_game.html#a3c63ad376fdc05d012e20cbd2a95a835" title="Game::AddGameObject" alt="" coords="489,148,651,175"/>
+<area shape="rect" id="node8" href="$tests__asteroids__lasers_8cpp.html#a9aed8f5e32d527fb4d25e30e1c4a3715" title="TEST_CASE" alt="" coords="745,148,843,175"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Game::SpawnGameObject" name="Game::SpawnGameObject">
+<area shape="rect" id="node2" href="$class_game.html#a746dd37674beacc7cbff94b811155486" title="Game::GenerateRandomNumber" alt="" coords="231,5,441,32"/>
+<area shape="rect" id="node3" href="$class_laser_generator.html#a9400418ce3c633bcd54e2bc2e5a80134" title="LaserGenerator::getID" alt="" coords="261,56,411,83"/>
+<area shape="rect" id="node4" href="$class_laser_generator.html#ac00dedfdb8ae5b48d1647a467afad368" title="LaserGenerator::getSeparation\lAngle" alt="" coords="237,107,435,149"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="Game::getCurrentScoreText" name="Game::getCurrentScoreText">
+<area shape="rect" id="node2" href="$class_game.html#a5177cc57be0046eed29e87435b15034e" title="Game::Game" alt="" coords="529,51,629,78"/>
+<area shape="rect" id="node3" href="$class_game.html#a87beac4096711aa1802786b1a0de72c7" title="Game::SpawnGameObject" alt="" coords="731,68,908,95"/>
+<area shape="rect" id="node4" href="$class_game.html#a746dd37674beacc7cbff94b811155486" title="Game::GenerateRandomNumber" alt="" coords="956,187,1167,214"/>
+<area shape="rect" id="node7" href="$class_game.html#aaf52854dfe27cd1b398f39fbf56d1ebf" title="Game::MovePlayerObject" alt="" coords="247,304,418,331"/>
+<area shape="rect" id="node8" href="$class_game.html#a9e01be29f31d74fc472c3865104f81d2" title="Game::MoveLineObject" alt="" coords="254,355,411,382"/>
+<area shape="rect" id="node9" href="$class_game.html#a3c63ad376fdc05d012e20cbd2a95a835" title="Game::AddGameObject" alt="" coords="499,102,660,128"/>
+<area shape="rect" id="node10" href="$class_game.html#a0acc846dee18b707f495f692aac3db93" title="Game::ObjectCleanup" alt="" coords="257,406,408,432"/>
+<area shape="rect" id="node11" href="$class_game.html#a1997bafd283d568cff4fc22d398343fe" title="Game::DecrementCooldowns" alt="" coords="237,203,428,230"/>
+<area shape="rect" id="node13" href="$class_game.html#ae6d1ab79411b280f18815109fc3b208d" title="Game::CreateGameObjects" alt="" coords="241,152,424,179"/>
+<area shape="rect" id="node14" href="$class_game.html#a7ce66bc584fb475ba53b80e27fc98430" title="Game::CheckCollisions" alt="" coords="253,456,412,483"/>
+<area shape="rect" id="node5" href="$class_laser_generator.html#a9400418ce3c633bcd54e2bc2e5a80134" title="LaserGenerator::getID" alt="" coords="987,52,1136,79"/>
+<area shape="rect" id="node6" href="$class_laser_generator.html#ac00dedfdb8ae5b48d1647a467afad368" title="LaserGenerator::getSeparation\lAngle" alt="" coords="962,104,1161,145"/>
+<area shape="rect" id="node12" href="$class_enemy.html#a559f8443bd00dd6fc9e0371ab8d4a0d5" title="Enemy::decrementEnemyBullet\lCooldown" alt="" coords="476,254,683,296"/>
+</map>

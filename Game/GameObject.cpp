@@ -3,6 +3,7 @@
 
 GameObject::GameObject()
 : _pathVector{0.0f,0.0f}
+
 {  }
 
 void GameObject::circularMove(int direction)

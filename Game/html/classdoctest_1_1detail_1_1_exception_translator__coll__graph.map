@@ -1,0 +1,5 @@
+<map id="doctest::detail::ExceptionTranslator&lt; T &gt;" name="doctest::detail::ExceptionTranslator&lt; T &gt;">
+<area shape="rect" id="node2" href="$structdoctest_1_1detail_1_1_i_exception_translator.html" title="OCLINT destructor of virtual class. " alt="" coords="5,233,179,340"/>
+<area shape="rect" id="node3" href="$classdoctest_1_1_string.html" title="{doctest::String\n|+ buf\l|+ String()\l+ String()\l+ String()\l+ ~String()\l+ operator=()\l+ operator+=()\l+ operator+()\l+ isOnStack()\l+ operator[]()\l+ operator[]()\land 6 more...\l}" alt="" coords="203,175,309,399"/>
+<area shape="rect" id="node4" title="OCLINT avoid private static members. " alt="" coords="187,5,325,112"/>
+</map>

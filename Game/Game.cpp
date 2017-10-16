@@ -27,7 +27,7 @@ void Game::InitialiseGame()
     FileReader file("scores.txt");
     _highScore = make_shared<int>(file.getHighScore());
     
-    _interface.CreateLivesVector(_player_ptr->getHealth(), LIFE_RECT_SIZE);
+//    _interface.CreateLivesVector(_player_ptr->getHealth(), LIFE_RECT_SIZE);
 }
 
 void Game::GameLoop()
@@ -154,7 +154,9 @@ void Game::Update(vector<keyboardInput> keysPressed)
 
 void Game::Render()
 {
+
     _interface.Render(_GameObjectsVector, _score, _highScore, make_shared<int>(_player_ptr->getHealth()));    
+
 }
 
 shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index) 
@@ -179,6 +181,7 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
                 _GameObjectsVector.push_back(playerBullet_ptr);
                 
                 return shared_ptr<GameObject>(new PlayerBullet(player_ptr->getXCoordRight(), player_ptr->getYCoordRight(), player_ptr->getPathVectorRight(), player_ptr->getAngle() + Player::BULLET_OFFSET_ANGLE));
+
             }
             
             if(player_ptr->getGunLevel() == 3)
@@ -215,6 +218,7 @@ shared_ptr<GameObject> Game::SpawnGameObject(gameObjectType type, int index)
             ID++;
             
             shared_ptr<GameObject> satellite_ptr1(new Satellite(_GameObjectsVector[0]->getAngle(), ID));
+
             shared_ptr<GameObject> satellite_ptr2(new Satellite(_GameObjectsVector[0]->getAngle() + Satellite::SATELLITE_DEVIATION, ID));
             _GameObjectsVector.push_back(satellite_ptr1);
             _GameObjectsVector.push_back(satellite_ptr2);
@@ -301,6 +305,7 @@ void Game::DecrementCooldowns()
         if (_GameObjectsVector[i]->getObjectType() == gameObjectType::Satellite)
         {
             shared_ptr<Satellite> satellite_ptr = std::static_pointer_cast<Satellite>((*_GameObjectsVector[i]).getptr());
+
             float triggerAngle = satellite_ptr->getAngle() + 180;
           
             if(triggerAngle > 360)  {
@@ -359,7 +364,9 @@ void Game::CreateGameObjects()
     if (_satelliteCooldown <= 0)
     {
         AddGameObject(gameObjectType::Satellite, 0);
+
         _satelliteCooldown = GenerateRandomNumber(1000.0f, 1500.0f);
+
     }
 }
 

@@ -41,7 +41,10 @@
     <File Name="keyboardInput.h"/>
     <File Name="Satellite.h"/>
     <File Name="Satellite.cpp"/>
+<<<<<<< HEAD
+=======
 >>>>>>> b7c92ee5e0e86235255ad858c9e64b35fb6c001e
+>>>>>>> master
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

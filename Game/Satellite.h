@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Game.h"
 
+
 /**
  * @class Satellite
  * @brief Represents a satellite object. 
@@ -14,6 +15,7 @@
 class Satellite : public GameObject
 {
 public:
+
 
     static constexpr float SATELLITE_DEVIATION = 20.0f;
     

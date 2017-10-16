@@ -1,0 +1,8 @@
+<map id="GameObject::checkCollisions" name="GameObject::checkCollisions">
+<area shape="rect" id="node2" href="$class_game_object.html#ab434123390fc5f3139ee4131c6d8ea8c" title="GameObject::getHitRadius" alt="" coords="253,5,430,32"/>
+<area shape="rect" id="node3" href="$class_game_object.html#ae119eb674f05783d8603f6cf3cf989fc" title="GameObject::setHealth" alt="" coords="262,56,421,83"/>
+<area shape="rect" id="node4" href="$class_laser_generator.html#a9400418ce3c633bcd54e2bc2e5a80134" title="LaserGenerator::getID" alt="" coords="267,107,416,133"/>
+<area shape="rect" id="node5" href="$class_arc_segment.html#a2ace018230573baa385c3bb41e6f46d6" title="ArcSegment::getID" alt="" coords="275,157,407,184"/>
+<area shape="rect" id="node6" href="$class_game_object.html#a09ebcd7eff237945c114fd6dfde0b8a2" title="GameObject::getObjectType" alt="" coords="248,208,435,235"/>
+<area shape="rect" id="node7" href="$class_game_object.html#a125059f3b78eb4ef143316c3c901b7f2" title="GameObject::getptr" alt="" coords="273,259,409,285"/>
+</map>
