@@ -152,16 +152,6 @@ The game consists of various objects which move around the game area. These obje
 \end{itemize}
 
 All \textit{GameObjects} are required to handle collisions with all other objects, must be able to move and must be drawable. 
-%A visual representation of the domain model hierarchy can be found in Figure~\ref{fig:ModelHierarchy}.
-
-
-%\begin{figure}[h]
-%	\centering
-%	%\includegraphics[width=\columnwidth]{domainModel.png}
-%	\caption{}
-%	\raggedright
-%	\label{fig:ModelHierarchy}
-%\end{figure}
 
 \subsection{Data Layer Class Structure}
 
@@ -286,7 +276,6 @@ This is a computationally intensive algorithm with complexity of $\cal{O}$($n^{2
 \end{figure}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CODE TESTING}
 
@@ -297,26 +286,76 @@ This is a computationally intensive algorithm with complexity of $\cal{O}$($n^{2
 \subsection{Application Layer Testing Structure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{CRITICAL EVALUATION}
-
+\section{DISCUSSION}
+%Discussion maybe
+%Analysis and future recommendations
 \subsection{Functionality}
 
-The game meets the functionality requirements of the brief set out in Section~\ref{functionlity_requirements}. Also the level of functionality meets the requirement to be rated within the excellent tier; namely, basic functionality, three minor features and two major features have been implemented (see Section~\ref{functionlity_requirements} for specifics). The group members' intention was to implement better graphics, rather than simple SFML shapes. Due to time constraints, simple shapes, identifiable by their specific shape and colour, are used . It must be noted that enemies do scale depending on their proximity to the circle's circumference.
+The game meets the functionality requirements of the brief set out in Section~\ref{functionlity_requirements}. Also the level of functionality meets the requirement to be rated within the excellent tier; namely, basic functionality, three minor features and two major features have been implemented (see Section~\ref{functionlity_requirements} for detailes). 
+
+The group members' intention was to implement better graphics, rather than simple SFML shapes. Due to time constraints, simple shapes, identifiable by their specific shape and colour, are used . It must be noted that enemies do scale depending on their proximity to the circle's circumference.
+
+In addition to the game functionality described, the game also has additional functionality which improves the overall playability of the game. The first feature is that the game speeds up as play progresses. This is done to increase the difficulty of the game once the \texttt{Player's} gun has been upgraded to the maximum level. Making the frame rate faster also makes the \texttt{Player} move faster, requiring the user to adjust their playing style as the game progresses. Another feature which improves the playability of the game is that every time the \texttt{Player} loses a life the screen flashes red. This makes the user more aware of their lives decreasing as well as instils a sense of stress in the player as if they themselves had been injured. 
+
+\subsection{Code Structure and Implemented Design}\label{critical_code_structure}
+
+%modern c++14 things used like shared pointers, auto, for element : vector, const keyword, virtual and override to make sure compiler knows whats going on etc.
+
+% pointer downcasting not great, rather use composition and other containers. or virtual functions, although not always applicable to all classes.
+
+%interface class should not handle splashscreen and end-screen data files, should be loaded in in data layer rather.
+
+%Use of inheritance is mostly for base class code reuse, although this follows DRY principle it makes for tight coupling between classes, could be improved using composition relationship rather. -make more virtual functions, 
+
+%also all data in GameObject is protected, class can't preserve invarients, rather have private data members with protected access functions
+
+%good - no real getters and setters in logic class and interface, mostly private stuff which is nice. Problem is all the accessable stuff in GameObject, all the getters, very few setters.
+
+%game is a huge class doing far more than it should. should have smaller abstracted classes which perporm their functions without having to have such a hectic game class, should have prioritised functionality.
+
+%spawngameobject function - huge switch case, definitely not ideal as bad code smells.
+
+%using vector container, good for random access with complexity of O(1) for access and oushing to the back, however deleting in this way is computationally hectic On where n is number of elements after the deleted element as all iterators have to be reassignes and copied into new slots in memory. Maybe consider using a list container instead and iterators, this way all operations will be O1 including deleting but USE ITERATORS.
+
+%use of smart pointers is cool because mo memory leaks and direct access to objects without having to make copies or worry about passing by reference. Coping pointer is not taxing, Also to prevent memory handling errors use all shared pointers. No unique pointers employed just in case stuff goes wrong.
+
+%interface background spritesheet is computationally great as you load one png and then just update the spriterect, very quick and easy. 
+
+%separation of concerns yo, (again tho??) but decoupling of interface and game is pretty great, would be possible to use a different rendering library.
+
+%generally code was easily expandible because of the way the GAMEOBJECT class and functions like linemove were set up.
 
 
-
-\subsection{Code Structure and Implemented Design}
 
 \subsection{Testing structure and Implementation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{FUTURE IMPROVEMENTS}
+\section{FUTURE RECOMMENDATIONS}
 
 \subsection{Game Functionality}
 
+Although the game met the functionality requirements of the brief, some functionality was lacking substance. One key area which could be improved was the movement patterns of the \texttt{Enemy} objects. Making these objects capable of more complex movement patterns would make the game more dynamic and unpredictable, increasing the difficulty of the game and the challenge posed to the user.
+
+As mentioned, better graphics would be implemented if time has allowed it. The intention was to make satire of the vegan stereotype where butchers would be the enemies throwing their meat products at the vegan player. "VleisInvaders" would be an instant hit in South African culture with the introduction of 'wors-fields' and much more. This would definitely pose improvement for future.
+
+Additional improvements could be made to the \texttt{Interface} class. At present the frame rate is determined by this class as the use of \texttt{sf::Clock} was a convenient choice to flag how often the display should be updated. As this is a key aspect of the logic layer, this rate should be controlled by \texttt{Game} through the system clock and timers in C++. In the \texttt{RenderGameObject()} method, difficulty was experienced when drawing shapes that weren't of type \texttt{sf::RectangleShape}. This made rendering \texttt{Satellites} and \texttt{Asteriods} tricky. This method should be re-factored to improve rendering simplicity.
+
 \subsection{Code Structure and Design}\label{code_improvements}
 
+In addition to the suggestions for improvement discussed in Section~\ref{critical_code_structure} additional improvements to code structure are mentioned below.
+
+Separation of layers was a key factor to the designing of the code, yet it was only implemented after the second release of the game. This was a bad decision as it became difficult to move around large portions of the code and many functions that should have been private had to be public to achieve the desired functionality. It is recommended that in future coding projects key aspects should be considered from the beginning to prevent the need for code refactoring once much of the functionality has already been introduced.
+
+%layer separation happened later on than expected, not ideal as lots had to be changed but helped a lot with allowing member functions to be private and removing a lot of getters/setters. 
+
+In the current code there is minimal error handling, with the only error management being in the \texttt{FileReader} and \texttt{Interface} classes where files (scores, textures, fonts) are being loaded into the game from external sources. Minimal error handling could result in an unexpected error which could result in the game being unplayable. More error handling should be implemented to reduce these risks.
+
+The chosen collision detection algorithm is computationally taxing as every existing object is compared to every other existing object. An alternative collision detection algorithm, such as the 'Separation Axis Theorem for Collision Detection (as discussed in \cite{Collision_detection}) could reduce the computational complexity from $\cal{O}$($n^{2}$) to $\cal{O}$($cn$), a far more favourable result for large numbers of objects.
+
+
 \subsection{Testing structure}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CONCLUSION}

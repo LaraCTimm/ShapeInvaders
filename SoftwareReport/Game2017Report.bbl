@@ -1,6 +1,13 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\url}[1]{{\tt #1}}
 \providecommand{\urlprefix}{URL }
+
+\bibitem{Collision_detection}
+{Metanet Software Inc.}
+\newblock \enquote{Collision Detection and Response.}, 2011.
+\newblock
+  \urlprefix\url{http://www.metanetsoftware.com/technique/tutorialA.html}.
+\newblock Last Accessed: 16/10/2017.
 
 \end{thebibliography}
