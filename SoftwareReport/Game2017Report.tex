@@ -60,9 +60,9 @@
 \begin{document}
 
 
-\title{INSTRUCTIONS AND STYLE GUIDELINES FOR THE PREPARATION OF FINAL YEAR LABORATORY PROJECT PAPERS : 2005 VERSION}
+\title{Title}
 
-\author{Sasha Berkiwitz () \& Lara Timm (704157)
+\author{Sasha Berkiwitz (818737) \& Lara Timm (704157)
 \thanks{School of Electrical \& Information Engineering, University of the
 Witwatersrand, Private Bag 3, 2050, Johannesburg, South Africa}
 }
@@ -76,7 +76,7 @@ Witwatersrand, Private Bag 3, 2050, Johannesburg, South Africa}
 
 
 \maketitle
-\thispagestyle{empty}
+%\thispagestyle{empty}
 \pagestyle{plain}
 \setcounter{page}{1}
 
@@ -115,7 +115,7 @@ The game also contains the following features which enhance the game functionali
 	\item The game has additional game objects including asteroids, laser-generators and satellites.
 	\item Asteroids travel radially from the circle's centre directly at the player. Asteroids cannot be destroyed.
 	\item Laser generators appear in pairs at the circle's centre and laser force field is generated along an arc between them. If the player shoots either generator, the force field collapses.
-	\item Satellites appear in groups of three in front of the player. They gyrate in small circles and shoot at the player. If all three satellites are shot, the player's gun is upgraded. Losing a life results in the player's gun being downgraded.
+	\item Satellites appear in groups of three in front of the player. They gyrate in small circles and shoot at the player. If all three satellites are shot, the player's gun is upgraded.
 	
 \end{itemize}
 
@@ -126,14 +126,14 @@ To be deemed a success, the game should effectively implement the aforementioned
 
 \subsection{Constraints}
 
-The final product must run on the Windows platform and be coded using the \textit{SFML 2.3.2} library. The game must display correctly on a screen with a maximum resolution of $1920 \times 1080$ pixels.
+The final product must run on the Windows platform and be coded using the SFML 2.3.2 library. The game must display correctly on a screen with a maximum resolution of $1920 \times 1080$ pixels.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CODE STRUCTURE AND IMPLEMENTATION}
 
 On consideration of the design objectives in Section~\ref{probDef}, and in an attempt to code using good coding practises, the separation of layers principle was a pivotal design consideration. The remainder of this section describes the structure of the implemented code.
 
-The code is separated into three distinct layers: the data layer, application logic layer and presentation layer. This was done in an attempt to implement the separation of concerns principle which will allow for decoupling of dependencies between classes. Communication between layers is carried out using object conversions, ensuring that only the necessary information is exposed to the other layers.
+The code is separated into three distinct layers: the data layer, application logic layer and presentation layer. This was done in an attempt to implement the separation of concerns principle which will allow for decoupling of dependencies between classes. Communication between layers is carried out using object conversations, ensuring that only the necessary information is exposed to the other layers.
 
 The data layer is handled by the \texttt{FileReader} class, application logic layer by the \texttt{Game} class and interface layer handled by the \texttt{Interface} class.
 
@@ -170,7 +170,7 @@ This layer is responsible for the fetching and handling of data contained in fil
 \subsubsection{FileReader Class}
 ~\\
 ~\\
-This class functions as a simple file reader and writer. The class is responsible for reading in a previous high score from a text file, and in turn writing a new high score to the text file if the high score is beat in the current game. The high score data is thus obtained by the data layer and passed to the presentation layer, via the application logic layer, so that the high score can be rendered on the screen in game. This process ensures that \texttt{FileReader} does not have direct access to the interface layer.
+This class functions as a simple file reader and writer. The class is responsible for reading in a previous high score from a text file, and in turn writing a new high score to the text file if the high score is beaten in the current game. The high score data is thus obtained by the data layer and passed to the presentation layer, via the application logic layer, so that the high score can be rendered on the screen in game. This process ensures that \texttt{FileReader} does not have direct access to the interface layer.
 
 \subsection{Logic Layer Class Structure}
 
@@ -181,7 +181,7 @@ The logic layer forms the largest component of the game. This layer is responsib
 ~\\
 This class is the most important class in the game as it controls all game logic. Responsibilities of \texttt{Game} include setting up all pre-game variables and requirements, instantiating all required game objects for the game and running the game loop. This loop interacts with the \texttt{Interface} by providing it with all of the information it needs to render the correct game state as well as the progression and updating of the game during play. The inverse relationship also exists. \texttt{Interface} provides \texttt{Game} with information regarding user inputs, allowing the game to be updated accordingly. 
 
-Other responsibilities of \texttt{Game} include the initiation of object movements, keeping track of cooldowns, triggering new object instantiation when cooldowns expire, resetting cooldowns using randomly generated numbers and keeping track of the score and high score status. \texttt{Game} sets a new high score via the data layer's \texttt{FileReader} class. 
+Other responsibilities of \texttt{Game} include updating object positions, keeping track of cooldowns, triggering new object instantiation when cooldowns expire, resetting cooldowns using randomly generated numbers and keeping track of the score and high score status. \texttt{Game} sets a new high score via the data layer's \texttt{FileReader} class. 
 
 
 \subsubsection{GameObject Class}
@@ -189,29 +189,30 @@ Other responsibilities of \texttt{Game} include the initiation of object movemen
 ~\\
  This class is the base class from which all game objects are inherited. \texttt{GameObject} contains the base parameters and functionality for all objects which have a position, can move, can collide with other objects and are drawable. Each derived \texttt{GameObject} thus has a position and physical attributes which enable the presentation layer to render the object as required by the game.
  
- In addition to an object's position, each \texttt{GameObject} has a hit radius which enables the \texttt{Game} class to detect collisions between objects and provide the \texttt{Interface} with the appropriate updated object information for rendering.
+ In addition to an object's position, each \texttt{GameObject} has a hit radius which enables the \texttt{Game} class to detect collisions between objects and flag them for deletion. 
+ %\texttt{Game} then deleted all flagged objects and passes the updated vector of existing objects to the \texttt{Interface}. 
  
 \subsubsection{Player Class}
 ~\\
 ~\\
-This class represents the user controlled object in the game and inherits from the \texttt{GameObject} class. A \texttt{Player} object moves directly as a result of a keyboard input. This input is detected by the \texttt{Interface}, using SFML event polling, and is  subsequently converted into logic based events which are passed back to the logic layer for interpretation. The \texttt{Player} can move clockwise or anti-clockwise around a large circle. This object is also able to fire a \texttt{PlayerBullet} with a keyboard input detected by the interface. A \texttt{Player} object's life is reduced when it collides with any other \texttt{GameObject}. When the \texttt{Player's} life is reduced to zero, the game ends.
+This class represents the user controlled object in the game, inherited from the \texttt{GameObject} class. A \texttt{Player} object moves directly as a result of a keyboard input. This input is detected by the \texttt{Interface}, using SFML event polling, and is  subsequently converted into logic based events which are passed back to the logic layer for interpretation. The \texttt{Player} can move clockwise or anti-clockwise around a large circle. This object is also able to fire a \texttt{PlayerBullet} through a keyboard input. A \texttt{Player} object's life is reduced when it collides with any other \texttt{GameObject}. When the \texttt{Player's} life is reduced to zero, the game ends.
 
 \subsubsection{PlayerBullet Class}
 ~\\
 ~\\
-This class represents an object inherited from the \texttt{GameObject} class which is spawned at the current position of the \texttt{Player} and travels linearly towards the centre of the screen where it is deleted. A collision of a \texttt{PlayerBullet} with an \texttt{Enemy}, \texttt{LaserGenerator} or \texttt{Satellite} object results in both objects being destroyed. A collision of a \texttt{PlayerBullet} with a non-destroyable object (\texttt{Asteriod} and \texttt{ArcSegment}) results in only the bullet being destroyed.
+This class represents an object inherited from the \texttt{GameObject} class which is spawned at the current position of the \texttt{Player} and travels linearly towards the centre of the screen, where it is deleted. A collision of a \texttt{PlayerBullet} with an \texttt{Enemy}, \texttt{LaserGenerator} or \texttt{Satellite} object results in both objects being destroyed. A collision of a \texttt{PlayerBullet} with a non-destroyable object (\texttt{Asteriod} and \texttt{ArcSegment}) results in only the bullet being destroyed.
 
-Depending on the gun level of the \texttt{Player}, one to three \texttt{PlayerBullets} are fired by a single user input. The gun is upgraded when a \texttt{Satellite} array is destroyed and degraded when the \texttt{Player} loses a life.
+Depending on the gun level of the \texttt{Player}, one to three \texttt{PlayerBullets} are fired by a single user input. The gun is upgraded when a \texttt{Satellite} array is destroyed. 
 
 \subsubsection{Enemy Class}
 ~\\
 ~\\
-A class inherited from the \texttt{GameObject} class. This class represents an object which spawns at the centre of the screen and travels radially at a random trajectory angle towards the circle's circumference. A collision of an \texttt{Enemy} with the \texttt{Player} results on the \texttt{Enemy} being destroyed. There are an unlimited number of \texttt{Enemy} objects that can spawn throughout a game and these objects fire \texttt{Enemy Bullets} along their path vector towards the edge of the screen.
+A class inherited from the \texttt{GameObject} class. This class represents an object which spawns at the centre of the screen and travels radially at a random trajectory angle towards the circle's circumference. A collision of an \texttt{Enemy} with the \texttt{Player} results in the \texttt{Enemy} being destroyed. There are an unlimited number of \texttt{Enemy} objects that can spawn throughout a game. These objects fire \texttt{Enemy Bullets} along their path vector towards the edge of the screen.
 
 \subsubsection{EnemyBullet Class}
 ~\\
 ~\\
-This class represents an automatically generated bullet, fired by an \texttt{Enemy} object, which travels along the same trajectory as its \texttt{Enemy}. \texttt{Enemy Bullets} inherit from the \texttt{GameObject} class. A collision of an \texttt{Enemy Bullet} with the \texttt{Player} results on the \texttt{Enemy} being destroyed.
+This class represents an automatically generated bullet, fired by an \texttt{Enemy} object, which travels along the same trajectory as its \texttt{Enemy}. \texttt{Enemy Bullets} inherit from the \texttt{GameObject} class. A collision of an \texttt{Enemy Bullet} with the \texttt{Player} results in the bullets destruction.
 
 \subsubsection{Asteroid Class}
 ~\\
@@ -233,7 +234,7 @@ This class represents an object which forms an arc between two \texttt{LaserGene
 ~\\
 This class represents an object which spawns in an array of three directly in front of the \texttt{Player's} current position. \texttt{Satellites}, inherited from the \texttt{GameObject} class, gyrate in small circles and periodically fire bullets outwards.
 A collision of a \texttt{Satellite} with a \texttt{PlayerBullet} results in its destruction.
-The destruction of three associated \texttt{Satellites} results in an upgraded gun for the \texttt{Player}.
+The destruction of three associated \texttt{Satellites} results in an upgrade for the \texttt{Player's} gun.
 
 \subsection{Presentation Layer Class Structure}
 
@@ -254,22 +255,33 @@ The game is managed by the \texttt{Game} class, more specifically by the game lo
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{flowdiagram.png}
-	\caption{Flow Diagram}
+	\caption{Flow Diagram depicting the process of events in the game loop.}
 	\raggedright
 	\label{fig:flowDiagram}
 \end{figure}
 
 
-The game begins by launching game-state one, the splashscreen. \texttt{Interface} then polls for user input; the enter key progresses the game to game-state two and escape closes the window and ends the game. Game-state two (the playing game state) loops continuously while the window is open and the \texttt{Player's} number of lives is greater than zero. 
+The game begins by launching game-state one, the splashscreen. The \texttt{Interface} then polls for user input; the enter key progresses the game to game-state two and the escape key closes the window, ending the game. Game-state two (the playing game state) loops continuously while the window is open and the \texttt{Player's} number of lives is greater than zero. 
 
-The playing game-state proceeds in the following way. The \texttt{Interface} detects user input and the game is updated accordingly. New \texttt{GameObjects} are then created, collisions are detected, the score is updated and objects due for clean-up are deleted. If the \texttt{Player} object is deleted in clean-up, the end-game state is triggered and the game ends; otherwise the playing-state loops again.
+The playing game-state proceeds in the following way. The \texttt{Interface} detects user input and the game is updated accordingly. New \texttt{GameObjects} are then created, collisions are detected, the score is updated and objects due for clean-up are deleted. If the \texttt{Player} object is deleted in clean-up, the end-game state is triggered and the game ends; otherwise the playing-state repeats.
 
 \subsection{Game Input Polling}
 
-An important aspect of the game design is separation of layers. Separating the presentation layer and the logic layer was an important 
 
 
 \subsection{Collision Detection}
+
+Polling for object collisions is handled by the \texttt{Game} class through the \texttt{CheckCollisions()} function. In this function, each element in the vector containing all existing \texttt{GameObjects} is checked against every other existing \texttt{GameObject} to see if a collision has occurred. A collision is identified as the distance between the objects' origins being less than the sum of their hit radii. If a collision occurs between the player and a destroyable object, the players life is decremented and the objects health is set to zero. If a collision occurs between the player and a non-destroyable object, only the players life is decremented.
+
+This is a computationally intensive algorithm with complexity of $\cal{O}$($n^{2}$). Ideally a less taxing algorithm would have been used to improve the computation time of the game (see Section~\ref{code_improvements}). Figure~\ref{fig:collisions} demonstrates the collision relationships that exist between all game objects.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{collisions.png}
+	\caption{Illustration of the collision relationships that exist between game objects. Arrowheads indicate damage dealt.}
+	\raggedright
+	\label{fig:collisions}
+\end{figure}
 
 
 
@@ -296,7 +308,7 @@ An important aspect of the game design is separation of layers. Separating the p
 
 \subsection{Game Functionality}
 
-\subsection{Code Structure and Design}
+\subsection{Code Structure and Design}\label{code_improvements}
 
 \subsection{Testing structure}
 
