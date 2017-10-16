@@ -7,4 +7,12 @@ check one or both objects deleted after cleanup
  
  * player loses life when colliding with all objects
 add x points when blah blah object destroyed. 
+ 
+  * bullet destroyed when collliding with all other objects
+	enemy
+	enemy bullets
+	asteriods
+	arc segments
+	laser gen
+	satellite
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

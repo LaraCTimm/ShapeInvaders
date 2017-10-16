@@ -97,8 +97,9 @@ TEST_CASE("Check enemy gets deleted when off screen"){
 TEST_CASE("Check enemy bullet can be instantiated and is of type 'EnemyBullet'"){
 	Game newGame(5);
 	int oldSize = newGame.getGameObjectsVector().size();
+	newGame.AddGameObject(gameObjectType::Enemy, 1);
 	newGame.AddGameObject(gameObjectType::EnemyBullet, 1);
-	CHECK(newGame.getGameObjectsVector().size() == oldSize + 1);
+	CHECK(newGame.getGameObjectsVector().size() == oldSize + 2);
 	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() == gameObjectType::EnemyBullet);
 }
 

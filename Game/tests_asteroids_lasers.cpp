@@ -82,7 +82,17 @@ TEST_CASE("Check asteroid gets deleted when off screen"){
 	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() != gameObjectType::Asteriod);
 }
 
-// TO DO asteriods chase player
+TEST_CASE("Check asteroid is instantiated at same angle as player, ie chases player"){
+	Game newGame(5);
+	newGame.MovePlayerObject(1);
+	newGame.MovePlayerObject(1);
+	float playerAngle = newGame.getGameObjectsVector()[0]->getAngle();
+	
+	newGame.AddGameObject(gameObjectType::Asteriod, 0);
+	float astAngle = newGame.getGameObjectsVector()[1]->getAngle();
+	
+	CHECK(playerAngle == astAngle);
+}
 
 // Laser generator tests
 

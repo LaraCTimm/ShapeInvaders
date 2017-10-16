@@ -77,4 +77,14 @@ TEST_CASE("Check number of bullets shot increases with gun upgrade"){
 	
 }
 
-// satellites chase player
+TEST_CASE("Check satellite is instantiated at same angle as player, ie chases player"){
+	Game newGame(5);
+	newGame.MovePlayerObject(1);
+	newGame.MovePlayerObject(1);
+	float playerAngle = newGame.getGameObjectsVector()[0]->getAngle();
+	
+	newGame.AddGameObject(gameObjectType::Satellite, 0);
+	float satAngle = newGame.getGameObjectsVector()[1]->getAngle();
+	
+	CHECK(playerAngle == satAngle);
+}

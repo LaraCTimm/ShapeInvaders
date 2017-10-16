@@ -42,14 +42,15 @@ TEST_CASE("Check player can move in clockwise direction"){
 	CHECK(oldy > newy);
 }
 
+TEST_CASE("Check player is instantiated at start with 5 lives"){
+	Game newGame(5);
+	int lives = newGame.getGameObjectsVector()[0]->getHealth();
+	CHECK(lives==5);
+}
+
 /*~~~~~~~~~~~~~~~~ TESTS TO ADD ~~~~~~~~~~~~~~~~
 player:
-can move with user input
-player bullet spawns at player position
-player initialised with five lives
-player looses a life when colliding with enemy
 player gets destroyed after loosing all lives
-player points increase when bullets kill stuff
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // Player bullet tests
@@ -65,6 +66,16 @@ TEST_CASE("Check bullet is of type 'PlayerBullet'"){
 	Game newGame(5);
 	newGame.AddGameObject(gameObjectType::PlayerBullet, 1);
 	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() == gameObjectType::PlayerBullet);
+}
+
+TEST_CASE("Check bullet is instantiated at player's position"){
+	Game newGame(5);
+	newGame.AddGameObject(gameObjectType::PlayerBullet, 1);
+	float playX = newGame.getGameObjectsVector()[0]->getXCoord(), playY = newGame.getGameObjectsVector()[0]->getYCoord();
+	float bulX = newGame.getGameObjectsVector()[1]->getXCoord(), bulY = newGame.getGameObjectsVector()[1]->getYCoord();
+	
+	CHECK(bulX == playX - 15);
+	CHECK(bulY == playY);
 }
 
 TEST_CASE("Check bullet movement: negative x direction"){
@@ -184,15 +195,3 @@ TEST_CASE("Check player bullet gets deleted once it reaches middle of screen"){
 	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() != gameObjectType::PlayerBullet);
 }
 
-/*~~~~~~~~~~~~~~~~ TESTS TO ADD ~~~~~~~~~~~~~~~~
- * player bullet tests:
-bullet destroyed when collliding with all other objects
-	enemy
-	enemy bullets
-	asteriods
-	arc segments
-	laser gen
-	satellite
-bullet destroyed when out of bounds
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
