@@ -3,31 +3,35 @@
 
 #include "GameObject.h"
 #include "Game.h"
-//#include "ArcSegment.h"
 
+/**
+ * @class LaserGenerator - represents single laser generator in pair.
+ * Inherited from GameObject class.
+ */
 class LaserGenerator : public GameObject
 {
 public:
 
+    static constexpr int NUM_ARC_SEGS = 7;
+    static constexpr int SEPARATION_ANGLE = 8;
+    
+/**
+ * @brief Laser generator constructor.
+ * @param degrees - angle at which generator is instantiated and along which it moves.
+ * @param ID - unique ID assigned to set of generators and arc segments.
+ */
 LaserGenerator (float degrees, int ID);
-
-int &getID() {
+/**
+ * @brief Gets laser generator's ID unique to its set of generators and arc segments.
+ * @return Laser generator's ID.
+ */
+int getID() {
     return _ID;
-}
-
-int getNumArcSegs() {
-    return _NUM_ARC_SEGS;
-}
-
-int getSeparationAngle() {
-    return _SEPARATION_ANGLE;
 }
 
 private:
 
 int _ID;
-const int _NUM_ARC_SEGS = 7;
-const int _SEPARATION_ANGLE = 8;
 
 };
 

@@ -82,6 +82,8 @@ TEST_CASE("Check asteroid gets deleted when off screen"){
 	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() != gameObjectType::Asteriod);
 }
 
+// TO DO asteriods chase player
+
 // Laser generator tests
 
 TEST_CASE("Check laser generator can be instantiated, along with its pair and arc between the two."){
@@ -129,7 +131,7 @@ TEST_CASE("Check two separate laser generators have different IDs"){
 	shared_ptr<LaserGenerator> laserGen1_ptr = std::static_pointer_cast<LaserGenerator>((*laserGen1_GO).getptr());
 	int laserID1 = laserGen1_ptr->getID();
 	
-	shared_ptr<GameObject> laserGen2_GO = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1-(2+laserGen1_ptr->getNumArcSegs())];
+	shared_ptr<GameObject> laserGen2_GO = newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1-(2+7)];
 	shared_ptr<LaserGenerator> laserGen2_ptr = std::static_pointer_cast<LaserGenerator>((*laserGen2_GO).getptr());
 	int laserID2 = laserGen2_ptr->getID();
 	

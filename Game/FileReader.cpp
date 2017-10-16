@@ -22,8 +22,3 @@ void FileReader::setHighScore(int score)
 	file.close();
 	file.clear();
 }
-
-void FileReader::closeFile()
-{
-	file.close();
-}

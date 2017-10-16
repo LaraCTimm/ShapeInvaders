@@ -1,0 +1,52 @@
+player:
+can move with user input
+player bullet spawns at player position
+player initialised with five lives
+player looses a life when colliding with enemy
+player gets destroyed after loosing all lives
+player points increase when bullets kill stuff
+
+/*~~~~~~~~~~~~~~~~ TESTS TO ADD ~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+player bullet tests:
+bullet destroyed when collliding with all other objects
+	enemy
+	enemy bullets
+	asteriods
+	arc segments
+	laser gen
+	satellite
+bullet destroyed when out of bounds
+
+file reader tests:
+flie loads correctlt
+exception thrown if file not found
+returns correct high score
+can update high score
+
+Can add player entity
+can add enemy entity
+can add .... all entities
+
+can delete entities? onle with flag
+check collision results in health = 0
+check one or both objects deleted after cleanup
+
+enemy tests
+score increases after enemies are destroyed by player bullets
+asteriods chase player
+satellites chase player
+
+collision tests difficult
+
+player looses life when colliding with all objects
+add x points when blah blah object destroyed. 
+if old score is beaten test file gets updated correctly
+
+
+tests interface
+can close window with user input
+
+
+
+

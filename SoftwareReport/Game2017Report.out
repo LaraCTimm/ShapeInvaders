@@ -1,0 +1,39 @@
+\BOOKMARK [1][-]{section.1}{INTRODUCTION}{}% 1
+\BOOKMARK [1][-]{section.2}{PROBLEM DEFINITION}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Shape Invaders Game Play}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Requirements}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Success Criteria}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Constraints}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{CODE STRUCTURE AND IMPLEMENTATION}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Domain Model}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Data Layer Class Structure}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.2.1}{FileReader Class}{subsection.3.2}% 10
+\BOOKMARK [2][-]{subsection.3.3}{Logic Layer Class Structure}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Game Class}{subsection.3.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.3.2}{GameObject Class}{subsection.3.3}% 13
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Player Class}{subsection.3.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.3.4}{PlayerBullet Class}{subsection.3.3}% 15
+\BOOKMARK [3][-]{subsubsection.3.3.5}{Enemy Class}{subsection.3.3}% 16
+\BOOKMARK [3][-]{subsubsection.3.3.6}{EnemyBullet Class}{subsection.3.3}% 17
+\BOOKMARK [3][-]{subsubsection.3.3.7}{Asteroid Class}{subsection.3.3}% 18
+\BOOKMARK [3][-]{subsubsection.3.3.8}{LaserGenerator Class}{subsection.3.3}% 19
+\BOOKMARK [3][-]{subsubsection.3.3.9}{ArcSegment Class}{subsection.3.3}% 20
+\BOOKMARK [3][-]{subsubsection.3.3.10}{Satellite Class}{subsection.3.3}% 21
+\BOOKMARK [2][-]{subsection.3.4}{Presentation Layer Class Structure}{section.3}% 22
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Interface Class}{subsection.3.4}% 23
+\BOOKMARK [1][-]{section.4}{IN-GAME BEHAVIOUR}{}% 24
+\BOOKMARK [2][-]{subsection.4.1}{Game Input Polling}{section.4}% 25
+\BOOKMARK [2][-]{subsection.4.2}{Collision Detection}{section.4}% 26
+\BOOKMARK [1][-]{section.5}{CODE TESTING}{}% 27
+\BOOKMARK [2][-]{subsection.5.1}{Testing Environment}{section.5}% 28
+\BOOKMARK [2][-]{subsection.5.2}{Data Layer Testing Structure}{section.5}% 29
+\BOOKMARK [2][-]{subsection.5.3}{Application Layer Testing Structure}{section.5}% 30
+\BOOKMARK [1][-]{section.6}{CRITICAL EVALUATION}{}% 31
+\BOOKMARK [2][-]{subsection.6.1}{Game Functionality}{section.6}% 32
+\BOOKMARK [2][-]{subsection.6.2}{Code Structure and Implemented Design}{section.6}% 33
+\BOOKMARK [2][-]{subsection.6.3}{Testing structure and Implementation}{section.6}% 34
+\BOOKMARK [1][-]{section.7}{FUTURE IMPROVEMENTS}{}% 35
+\BOOKMARK [2][-]{subsection.7.1}{Game Functionality}{section.7}% 36
+\BOOKMARK [2][-]{subsection.7.2}{Code Structure and Design}{section.7}% 37
+\BOOKMARK [2][-]{subsection.7.3}{Testing structure}{section.7}% 38
+\BOOKMARK [1][-]{section.8}{CONCLUSION}{}% 39

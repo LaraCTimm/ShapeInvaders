@@ -42,6 +42,16 @@ TEST_CASE("Check player can move in clockwise direction"){
 	CHECK(oldy > newy);
 }
 
+/*~~~~~~~~~~~~~~~~ TESTS TO ADD ~~~~~~~~~~~~~~~~
+player:
+can move with user input
+player bullet spawns at player position
+player initialised with five lives
+player looses a life when colliding with enemy
+player gets destroyed after loosing all lives
+player points increase when bullets kill stuff
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 // Player bullet tests
 
 TEST_CASE("Check bullet can be instantiated"){
@@ -173,3 +183,16 @@ TEST_CASE("Check player bullet gets deleted once it reaches middle of screen"){
 	
 	CHECK(newGame.getGameObjectsVector()[newGame.getGameObjectsVector().size()-1]->getObjectType() != gameObjectType::PlayerBullet);
 }
+
+/*~~~~~~~~~~~~~~~~ TESTS TO ADD ~~~~~~~~~~~~~~~~
+ * player bullet tests:
+bullet destroyed when collliding with all other objects
+	enemy
+	enemy bullets
+	asteriods
+	arc segments
+	laser gen
+	satellite
+bullet destroyed when out of bounds
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
