@@ -5,7 +5,9 @@
 #include "Game.h"
 
 /**
- * @class Asteriod - represents enemy asteroid 
+ * @class Asteriod 
+ * @brief Represents an asteriod object.
+ *
  * Inherited from GameObject class
  */
 class Asteriod : public GameObject

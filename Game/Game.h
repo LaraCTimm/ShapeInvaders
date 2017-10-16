@@ -21,12 +21,14 @@
 #include <vector>
 #include <memory>
 
-using std::cout;
-using std::endl;
 using std::vector;
 using std::shared_ptr;
 using std::make_shared;
 
+/**
+ * @class Game
+ * @brief Handles all game logic.
+ */
 class Game
 {
 public:
@@ -38,6 +40,7 @@ public:
 
     /**
      * @brief Game constructor.
+     * 
      * Responsible for game creation, initialising of all objects (including the game
      * interface) and variables to do with the logic layer of the game.
      * @param integer - Required to launch the SFML window.
@@ -46,6 +49,7 @@ public:
 
     /**
      * @brief Responsible for spawning new GameObjects.
+     * 
      * New objects are spawned using the spawnGameObject function and added to the 
      * vector containing all existing GameObjects.
      * @param type - type of GameObject to be added.
@@ -96,58 +100,24 @@ public:
      * @brief Accessor for the vector containing all existing GameObjects.
      * @return Vector containing shared pointers to existing game objects.
      */
-     
     vector<shared_ptr<GameObject>> getGameObjectsVector() {
         return _GameObjectsVector;
     }
 
-    //void setGameObjectsVector(const vector<shared_ptr<GameObject>> newGameObjectsVector) {
-    //    _GameObjectsVector = newGameObjectsVector;
-    //}
-    //
-    //shared_ptr<int> getScore() {
-    //    return _score;
-    //}
-    //
-    //void setScore(const int newScore) {
-    //    shared_ptr<int> int_ptr(new int(newScore));
-    //    _score = int_ptr;
-    //}
-
-
-    //int getEnemyCooldown() {
-    //    return _enemyCooldown;
-    //}
-    //
-    //void setEnemyCooldown(const int newEnemyCooldown) {
-    //    _enemyCooldown = newEnemyCooldown;
-    //}
-    //
-    //int getAsteriodCooldown() {
-    //    return _asteriodCooldown;
-    //}
-    //
-    //void setAsteriodCooldown(const int newAsteriodCooldown) {
-    //    _asteriodCooldown = newAsteriodCooldown;
-    //}
-    //
-    //bool getShotFired() {
-    //    return _shotFired;
-    //}
-    //
-    //void setShotFired(const bool newShotFired) {
-    //    _shotFired = newShotFired;
-    //}
-
-    //shared_ptr<int> getHighScore(){
-    //    return _highScore;
-    //}
-    //
-    //void setHighScore(int highScore) {
-    //    _highScore = make_shared<int>(highScore);
-    //}
-
-    //////////////////////////////////////////////////////
+    /**
+     * @brief Accessor for the current player score.
+     * @return Shared pointer to integer score.
+     */
+    shared_ptr<int> getScore() {
+        return _score;
+    }
+    /**
+     * @brief  Accessor for the high score.
+     * @return Shared pointer to integer high score.
+     */
+    shared_ptr<int> getHighScore(){
+        return _highScore;
+    }
 
 private:
     vector<shared_ptr<GameObject>> _GameObjectsVector;
@@ -175,6 +145,7 @@ private:
     
     /**
      * @brief Handles the states of the game.
+     * 
      * Gameloop is responsible for determining the game state and instructing the interface 
      * as well as the game logic to function accordingly. Gameloop is the main function
      * controlling the game.
@@ -183,6 +154,7 @@ private:
     
     /**
      * @brief Checks if the game state must be updated depending on user input.
+     * 
      * The function is responsible for the translation between what is received from
      * the interface as user input and the corresponding response in the game during the
      * splashscreen and endscreen game states.
@@ -194,6 +166,7 @@ private:
     /**
      * @brief Is responsible for handling the interaction of user input and game logic 
      * while the game is being played. 
+     * 
      * The function translates user inputs into game functionality while in game. It 
      * triggers the movement of all non-player objects, collision detection and
      * object cleanup.
@@ -226,6 +199,7 @@ private:
     
     /**
      * @brief Set new high score.
+     * 
      * High score is stored in a text file and carries over from game to game.
      */
     void SetNewHighScore();

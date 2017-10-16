@@ -6,7 +6,9 @@
 #include "Enemy.h"
 
 /**
- * @class EnemyBullet - represents bullets shot by enemy
+ * @class EnemyBullet 
+ * @brief Represents bullets shot by enemy.
+ * 
  * Inherits from GameObject class
  */
 class EnemyBullet : public GameObject

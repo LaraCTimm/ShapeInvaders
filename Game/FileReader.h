@@ -5,19 +5,24 @@
 using namespace std;
 
 /**
-* @class FileCannotBeOpened - exception class used in error handling when file can't be opened.
+* @class FileCannotBeOpened 
+* @brief Exception class used in error handling when file can't be opened.
 */
 class FileCannotBeOpened{};
 
 /**
-* @class FileReader - manages the input and output of game high scores to and from a text file.
+* @class FileReader
+* @brief Manages the input and output of game high scores to and from a text file.
+* 
 * Loads in past high score for current game. Writes high score to file if a new high score is achieved.
 */
 class FileReader
 {
 public:	
 	/**
-	* @brief FileReader Constructor. Creates FileReader object which searches for a high score file to read from and write to.
+	* @brief FileReader Constructor. 
+    * 
+    * Creates FileReader object which searches for a high score file to read from and write to.
 	* @param file_name is a const reference to a string which contains the name of the file required to retrieve and output high score data.
 	*/
 	FileReader(const string& file_name);

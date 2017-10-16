@@ -5,7 +5,9 @@
 #include "Game.h"
 
 /**
- * @class Enemy - represents main enemy
+ * @class Enemy
+ * @brief Represents main enemy
+ * 
  * Inherits from GameObject class
  */
 class Enemy : public GameObject

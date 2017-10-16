@@ -7,7 +7,8 @@
 
 /**
  * @class PlayerBullet
- * @brief Represents the player's bullet object. 
+ * @brief Represents the bullet belonging to the player
+ * 
  * Inherited from the GameObject Class.
  */
 
