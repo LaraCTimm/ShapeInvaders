@@ -330,7 +330,22 @@ TEST_CASE("Satellite set deletion - check score update, deletions, gun power-up"
 
 // Other game collision scenarios
 TEST_CASE("All lives lost - check player is deleted, new game can be started"){
+	Game newGame(5);
+	int oldSize = newGame.getGameObjectsVector().size();
+	int oldHealth = newGame.getGameObjectsVector()[0]->getHealth();
 	
+	for(int a = 0;a<5;a++){
+		newGame.AddGameObject(gameObjectType::Asteriod, 1);
+		shared_ptr<GameObject> testAsteroid = newGame.getGameObjectsVector()[oldSize];
+		
+		while(newGame.getGameObjectsVector().size()==oldSize+1){
+			testAsteroid->lineMove();
+			newGame.CheckCollisions();
+			newGame.ObjectCleanup();
+			}
+	}
+	
+	CHECK(newGame.getGameObjectsVector().size()==0);
 }
 
 TEST_CASE("High score - check it is updated when new score is higher"){

@@ -68,12 +68,17 @@ TEST_CASE("Check number of bullets shot increases with gun upgrade"){
 	oldSize = newGame.getGameObjectsVector().size();
 	newGame.AddGameObject(gameObjectType::PlayerBullet, 0);
 	CHECK(newGame.getGameObjectsVector().size() == oldSize + 2);
+	CHECK(newGame.getGameObjectsVector()[oldSize]->getObjectType() == gameObjectType::PlayerBullet);
+	CHECK(newGame.getGameObjectsVector()[oldSize+1]->getObjectType() == gameObjectType::PlayerBullet);
 	
 	player_ptr->UpgradeGun();
 	
 	oldSize = newGame.getGameObjectsVector().size();
 	newGame.AddGameObject(gameObjectType::PlayerBullet, 0);
 	CHECK(newGame.getGameObjectsVector().size() == oldSize + 3);
+	CHECK(newGame.getGameObjectsVector()[oldSize]->getObjectType() == gameObjectType::PlayerBullet);
+	CHECK(newGame.getGameObjectsVector()[oldSize+1]->getObjectType() == gameObjectType::PlayerBullet);
+	CHECK(newGame.getGameObjectsVector()[oldSize+2]->getObjectType() == gameObjectType::PlayerBullet);
 	
 }
 

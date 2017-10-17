@@ -7,7 +7,7 @@ FileReader::FileReader(const string& file_name)
 int FileReader::getHighScore()
 {
 	file.open(_filename, ios::in);
-	if (!file) throw std::logic_error("FileReader::FileReader - File Not Found");
+	if (!file) throw(FileCannotBeOpened());
 	file >> _high_score;
 	file.close();
 	file.clear();
@@ -17,7 +17,7 @@ int FileReader::getHighScore()
 void FileReader::setHighScore(int score)
 {
 	file.open(_filename, ios::out);
-	if (!file) throw std::logic_error("FileReader::FileReader - File Not Found");
+	if (!file) throw(FileCannotBeOpened());
 	file << score;
 	file.close();
 	file.clear();

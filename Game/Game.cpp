@@ -27,7 +27,7 @@ void Game::InitialiseGame()
     FileReader file("scores.txt");
     _highScore = make_shared<int>(file.getHighScore());
     
-//    _interface.CreateLivesVector(_player_ptr->getHealth(), LIFE_RECT_SIZE);
+    _interface.CreateLivesVector(_player_ptr->getHealth(), LIFE_RECT_SIZE);
 }
 
 void Game::GameLoop()
