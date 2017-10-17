@@ -1,6 +1,8 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Game2017Report.aux
 The style file: witseie.bst
 Database file #1: gameBib.bib
+Warning--entry type for "vector_complexity" isn't style-file defined
+--line 2 of file gameBib.bib
 Warning--entry type for "Collision_detection" isn't style-file defined
 --line 13 of file gameBib.bib
-(There was 1 warning)
+(There were 2 warnings)

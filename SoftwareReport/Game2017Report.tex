@@ -114,7 +114,7 @@ The game also contains the following features which enhance the game functionali
 	\item A scoring system is implemented. The player is awarded points for destroying other game objects. High scores are saved from one game to the next. The player's current score and the high score are displayed at the top of the screen.
 	\item The game has additional game objects including asteroids, laser-generators and satellites.
 	\item Asteroids travel radially from the circle's centre directly at the player. Asteroids cannot be destroyed.
-	\item Laser generators appear in pairs at the circle's centre and laser force field is generated along an arc between them. If the player shoots either generator, the force field collapses.
+	\item Laser generators appear in pairs at the circle's centre; a laser force field is generated along an arc between them. If the player shoots either generator, the force field collapses.
 	\item Satellites appear in groups of three in front of the player. They gyrate in small circles and shoot at the player. If all three satellites are shot, the player's gun is upgraded.
 	
 \end{itemize}
@@ -133,13 +133,13 @@ The final product must run on the Windows platform and be coded using the SFML 2
 
 On consideration of the design objectives in Section~\ref{probDef} and in an attempt to code using good coding practises, the separation of layers principle was a pivotal design consideration. The remainder of this section describes the structure of the implemented code.
 
-The code is separated into three distinct layers: the data layer, application logic layer and presentation layer. This was done in an attempt to implement the separation of concerns principle which will allow for decoupling of dependencies between classes. Communication between layers is carried out using object conversations, ensuring that only the necessary information is exposed to the other layers.
+The code is separated into three distinct layers: the data layer, application logic layer and presentation layer. The code is separated in this way in an attempt to decouple the dependencies between classes. Communication between layers is carried out using object conversations, ensuring that only the necessary information is exposed to the other layers.
 
 The data layer is handled by the \texttt{FileReader} class, application logic layer by the \texttt{Game} class and interface layer handled by the \texttt{Interface} class.
 
 \subsection{Domain Model}
 
-The game consists of various objects which move around the game area. These objects are identified as \textit{GameObjects} and are listed below:
+The game consists of various objects which move around the game area. These objects are identified as \texttt{GameObjects} and are listed below:
 \begin{itemize}
 	\item Player
 	\item Player Bullet
@@ -151,20 +151,20 @@ The game consists of various objects which move around the game area. These obje
 	\item Satellite
 \end{itemize}
 
-All \textit{GameObjects} are required to handle collisions with all other objects, must be able to move and must be drawable. 
+The following requirements are imposed on all \texttt{GameObjects}: they must be able to handle collisions with all other objects, they must be able to move and they must be drawable. 
 
 \subsection{Data Layer Class Structure}
 
-This layer is responsible for the fetching and handling of data contained in files outside the Game executable. This data can then be provided to the game at runtime.
+This layer is responsible for fetching and handling data contained in files outside the game executable. This data can then be provided to the game at runtime.
 
 \subsubsection{FileReader Class}
 ~\\
 ~\\
-This class functions as a simple file reader and writer. The class is responsible for reading in a previous high score from a text file, and in turn writing a new high score to the text file if the high score is beaten in the current game. The high score data is thus obtained by the data layer and passed to the presentation layer, via the application logic layer, so that the high score can be rendered on the screen in game. This process ensures that \texttt{FileReader} does not have direct access to the interface layer.
+This class functions as a simple file reader and writer. The class is responsible for reading the game high score from a text file, and in turn writing a new high score to the text file if a new high score is achieved in the current game. The high score data is obtained by the data layer and passed to the presentation layer, via the application logic layer, so that the high score can be rendered on the screen in game. This process ensures that \texttt{FileReader} does not have direct access to the interface layer.
 
 \subsection{Logic Layer Class Structure}
 
-The logic layer forms the largest component of the game. This layer is responsible for the handling of all objects in the game, managing all in-game operations and launching and managing the game loop which controls all dynamic activity and game functionality. The layer can be divided into two main subsections. The first, logic, which manages the game operations and the flow of the game, and second, the domain classes, which manage all game objects and their interactions. 
+The logic layer forms the largest component of the game. This layer is responsible for the handling of all objects in the game, managing all in-game operations and launching and managing the game loop; which controls all dynamic activity and game functionality. The layer can be divided into two main subsections. The first, logic, which manages the game operations and the flow of the game, and second, the domain classes, which manage all game objects and their interactions. 
 
 \subsubsection{Game Class}
 ~\\
@@ -177,63 +177,62 @@ Other responsibilities of \texttt{Game} include updating object positions, keepi
 \subsubsection{GameObject Class}
 ~\\
 ~\\
- This class is the base class from which all game objects are inherited. \texttt{GameObject} contains the base parameters and functionality for all objects which have a position, can move, can collide with other objects and are drawable. Each derived \texttt{GameObject} thus has a position and physical attributes which enable the presentation layer to render the object as required by the game.
+ This class is the base class from which all game objects are derived. \texttt{GameObject} contains the base parameters and functionality for all objects which have a position, can move, can collide with other objects and are drawable. Each derived \texttt{GameObject} thus physical attributes (position, size, colour, etc.) which enable the presentation layer to render the object as required by the game.
  
- In addition to an object's position, each \texttt{GameObject} has a hit radius which enables the \texttt{Game} class to detect collisions between objects and flag them for deletion. 
- %\texttt{Game} then deleted all flagged objects and passes the updated vector of existing objects to the \texttt{Interface}. 
+ In addition to an object's position, each \texttt{GameObject} has a hit radius which enables the \texttt{Game} class to detect collisions between objects and flag them for deletion. Details regarding the inplemented collision detection algorithm can be found in Section~\ref{collision_detection}.
  
 \subsubsection{Player Class}
 ~\\
 ~\\
-This class represents the user controlled object in the game, inherited from the \texttt{GameObject} class. A \texttt{Player} object moves directly as a result of a keyboard input. This input is detected by the \texttt{Interface}, using SFML event polling, and is  subsequently converted into logic based events which are passed back to the logic layer for interpretation. The \texttt{Player} can move clockwise or anti-clockwise around a large circle. This object is also able to fire a \texttt{PlayerBullet} through a keyboard input. A \texttt{Player} object's life is reduced when it collides with any other \texttt{GameObject}. When the \texttt{Player's} life is reduced to zero, the game ends.
+This class represents the user controlled object in the game. A \texttt{Player} object moves directly as a result of a keyboard input. This input is detected by the \texttt{Interface}, using SFML event polling, and is  subsequently converted into logic based events which are passed back to the logic layer for interpretation. The \texttt{Player} can move clockwise or anti-clockwise around a large circle. This object is also able to fire a \texttt{PlayerBullet} through a keyboard input. 
+
+A \texttt{Player} object's life is reduced when it collides with any other \texttt{GameObject}. When the \texttt{Player's} life is reduced to zero, the game ends.
 
 \subsubsection{PlayerBullet Class}
 ~\\
 ~\\
-This class represents an object inherited from the \texttt{GameObject} class which is spawned at the current position of the \texttt{Player} and travels linearly towards the centre of the screen, where it is deleted. A collision of a \texttt{PlayerBullet} with an \texttt{Enemy}, \texttt{LaserGenerator} or \texttt{Satellite} object results in both objects being destroyed. A collision of a \texttt{PlayerBullet} with a non-destroyable object (\texttt{Asteriod} and \texttt{ArcSegment}) results in only the bullet being destroyed.
+This class represents an which is spawned at the current position of the \texttt{Player} and travels linearly towards the centre of the screen. A collision of a \texttt{PlayerBullet} with an \texttt{Enemy}, \texttt{LaserGenerator} or \texttt{Satellite} object results in both objects being destroyed. A collision of a \texttt{PlayerBullet} with a non-destroyable object (\texttt{Asteriod} and \texttt{ArcSegment}) results in only the bullet being destroyed.
 
-Depending on the gun level of the \texttt{Player}, one to three \texttt{PlayerBullets} are fired by a single user input. The gun is upgraded when a \texttt{Satellite} array is destroyed. 
+Depending on the gun level of the \texttt{Player}, one, two or three \texttt{PlayerBullets} are fired by a single user input. The gun is upgraded when a \texttt{Satellite} array is destroyed. 
 
 \subsubsection{Enemy Class}
 ~\\
 ~\\
-A class inherited from the \texttt{GameObject} class. This class represents an object which spawns at the centre of the screen and travels radially at a random trajectory angle towards the circle's circumference. A collision of an \texttt{Enemy} with the \texttt{Player} results in the \texttt{Enemy} being destroyed. There are an unlimited number of \texttt{Enemy} objects that can spawn throughout a game. These objects fire \texttt{Enemy Bullets} along their path vector towards the edge of the screen.
+This class represents an object which spawns at the centre of the screen and travels radially at a random trajectory angle towards the circle's circumference. A collision of an \texttt{Enemy} with the \texttt{Player} results in the \texttt{Enemy} being destroyed. There are an unlimited number of \texttt{Enemy} objects that can spawn throughout a game. These objects fire \texttt{Enemy Bullets} along their path vector towards the edge of the screen.
 
 \subsubsection{EnemyBullet Class}
 ~\\
 ~\\
-This class represents an automatically generated bullet, fired by an \texttt{Enemy} object, which travels along the same trajectory as its \texttt{Enemy}. \texttt{Enemy Bullets} inherit from the \texttt{GameObject} class. A collision of an \texttt{Enemy Bullet} with the \texttt{Player} results in the bullets destruction.
+This class represents an automatically generated bullet, fired by an \texttt{Enemy} object, which travels along the same trajectory as its \texttt{Enemy}. When colliding with the \texttt{Player}, the bullet is destroyed.
 
 \subsubsection{Asteroid Class}
 ~\\
 ~\\
-This class represents non-destroyable objects which travel from the centre of the screen towards the \texttt{Player's} current position. This class is inherited from the \texttt{GameObject} class. 
+This class represents a non-destroyable object which travels from the centre of the screen towards the \texttt{Player's} current position.
 
 \subsubsection{LaserGenerator Class}
 ~\\
 ~\\
-This class is inherited from the \texttt{GameObject} class and represents an object which is instantiated in a pair and travels radially outwards. A pair of \texttt{LaserGenerators} is connected by a number of \texttt{ArcSegments} which travel in an arc between them. A collision of a \texttt{LaserGenerator} with the \texttt{Player} results in the destruction of the entire configuration. A collision of a \texttt{LaserGenerator} with a \texttt{PlayerBullet} results its destruction, as well as the destruction of all associated \texttt{ArcSegments}; namely the forcefield collapses.
+This class represents an object which is instantiated as a pair and travels radially outwards. A pair of \texttt{LaserGenerators} is connected by a number of \texttt{ArcSegments} which travel in an arc between them. A collision of a \texttt{LaserGenerator} with the \texttt{Player} results in the destruction of the entire configuration. A collision of a \texttt{PlayerBullet} with a \texttt{LaserGenerator} results its destruction, as well as the destruction of all associated \texttt{ArcSegments}; namely the force field collapses.
 
 \subsubsection{ArcSegment Class}
 ~\\
 ~\\
-This class represents an object which forms an arc between two \texttt{LaserGenerators}, and is inherited from the \texttt{GameObject} class. A collision of an \texttt{ArcSegment} with the \texttt{Player} results in the destruction of the entire configuration.
+This class represents an object which forms an arc between two \texttt{LaserGenerators}. A collision of an \texttt{ArcSegment} with the \texttt{Player} results in the destruction of the entire configuration.
 
 \subsubsection{Satellite Class}
 ~\\
 ~\\
-This class represents an object which spawns in an array of three directly in front of the \texttt{Player's} current position. \texttt{Satellites}, inherited from the \texttt{GameObject} class, gyrate in small circles and periodically fire bullets outwards.
-A collision of a \texttt{Satellite} with a \texttt{PlayerBullet} results in its destruction.
-The destruction of three associated \texttt{Satellites} results in an upgrade for the \texttt{Player's} gun.
+This class represents an object which spawns in an array of three directly in front of the \texttt{Player's} current position. These \texttt{Satellites} gyrate in small circles and periodically fire bullets outwards. A collision of a \texttt{Satellite} with a \texttt{PlayerBullet} results in its destruction. The destruction of three associated \texttt{Satellites} results in the \texttt{Player's} gun being upgraded.
 
 \subsection{Presentation Layer Class Structure}
 
-This layer is responsible for polling of all user inputs and managing and rendering to the game window. The majority of presentation layer functionality is dependant of the \textit{SFML} library. This layer can be thought of as an interchangeable layer whereby any multimedia library could be used to replace it. SFML is used solely in the presentation layer allowing the application logic layer to function independently of it.
+This layer is responsible for polling of all user inputs and managing and rendering to the game window. The majority of presentation layer functionality is dependant on the \textit{SFML} library. This layer can be thought of as an interchangeable layer whereby any multimedia library could be used to replace it. SFML is used solely in the presentation layer allowing the application logic layer to function independently of it.
 
 \subsubsection{Interface Class}
 ~\\
 ~\\
-This class is responsible for polling user inputs and rendering of all objects to the SFML \textit{RenderWindow}. User inputs are communicated to the logic layer via a vector of logic layer events to which all polled input events are added. Additionally, object conversations allow for game objects, passed from the logic layer to the presentation layer, to be rendered correctly to the window. 
+This class is responsible for polling user inputs and rendering of all objects to the \texttt{sf::RenderWindow}. User inputs are passed to the logic layer in a vector of \texttt{keyboardInputs}. The logic events in the vector correspond to all relevant \texttt{sf::Events} detected in that frame. The shape properties of all game objects are passed from the logic layer to the presentation layer to enable them to be rendered correctly to the window. 
 
 Other responsibilities of the \texttt{Interface} include rendering the \texttt{Player's} remaining number of lives, the current score and the high score to the window. The \texttt{Interface} also renders the game splashscreen and game-over screen depending on the current game state.
 
@@ -242,9 +241,9 @@ Other responsibilities of the \texttt{Interface} include rendering the \texttt{P
 
 The game is managed by the \texttt{Game} class, more specifically by the game loop. This loop is described by the flow of operations seen in Figure~\ref{fig:flowDiagram}. 
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{flowdiagram.png}
+	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{flowdiagram.png}
 	\caption{Flow Diagram depicting the process of events in the game loop.}
 	\raggedright
 	\label{fig:flowDiagram}
@@ -259,15 +258,15 @@ The playing game-state proceeds in the following way. The \texttt{Interface} det
 
 User inputs are detected by the \texttt{Interface} using SFML event polling. The \texttt{ProcessGameEvents()} function populates a vector with \texttt{keyboardInputs} corresponding to specific keys pressed or released. In this way, only the vector of enumerations need be passed from the presentation layer to the application logic layer, allowing the logic layer to not have any dependencies of the SFML library.
 
-User inputs include \texttt{Player} movement and the firing of \texttt{PlayerBullets}. By polling for both the press and the release of the fire key, a single bullet per keyboard input can be instantiated using boolean logic. When in the splashscreen and end-screen states, the \texttt{Interface} polls for start game and exit user input.
+User inputs control \texttt{Player} movement and the firing of \texttt{PlayerBullets}. By polling for both the press and the release of the fire key, a single bullet per keyboard input can be instantiated using boolean logic. When in the splashscreen and end-screen states, the \texttt{Interface} polls for start game and exit user input.
 
-\subsection{Collision Detection}
+\subsection{Collision Detection}\label{collision_detection}
 
-Object collisions are handled by the \texttt{Game} class through the \texttt{CheckCollisions()} function. In this function, each element in the vector containing all existing \texttt{GameObjects} is checked against every other existing \texttt{GameObject} to see if a collision has occurred. A collision is identified as the distance between the objects' origins being less than the sum of their hit radii. If a collision occurs between the player and a destroyable object, the players life is decremented and the objects health is set to zero. If a collision occurs between the player and a non-destroyable object, only the players life is decremented.
+Object collisions are handled by the \texttt{Game} class through the \texttt{CheckCollisions()} function. In this function, each element in the vector containing all existing \texttt{GameObjects} is checked against every other existing \texttt{GameObject} to see if a collision has occurred. A collision is identified as the distance between the objects' origins being less than the sum of their hit radii. If a collision occurs between the \texttt{Player} and a destroyable object, the \texttt{Player's} life is decremented and the objects health is set to zero. If a collision occurs between the \texttt{Player} and a non-destroyable object, only the \texttt{Player's} life is decremented.
 
 This is a computationally intensive algorithm with complexity of $\cal{O}$($n^{2}$). Ideally a less taxing algorithm would have been used to improve the computation time of the game (see Section~\ref{code_improvements}). Figure~\ref{fig:collisions} demonstrates the collision relationships that exist between all game objects.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\columnwidth]{collisions.png}
 	\caption{Illustration of the collision relationships that exist between game objects. Arrowheads indicate damage taken.}
@@ -291,41 +290,36 @@ This is a computationally intensive algorithm with complexity of $\cal{O}$($n^{2
 %Analysis and future recommendations
 \subsection{Functionality}
 
-The game meets the functionality requirements of the brief set out in Section~\ref{functionlity_requirements}. Also the level of functionality meets the requirement to be rated within the excellent tier; namely, basic functionality, three minor features and two major features have been implemented (see Section~\ref{functionlity_requirements} for detailes). 
+The game meets the functionality requirements of the brief, set out in Section~\ref{functionlity_requirements}. The level of functionality achieved is sufficient to be rated within the excellent tier; namely, basic functionality, three minor features and two major features have been implemented (see Section~\ref{functionlity_requirements} for details). 
 
-The group members' intention was to implement better graphics, rather than simple SFML shapes. Due to time constraints, simple shapes, identifiable by their specific shape and colour, are used . It must be noted that enemies do scale depending on their proximity to the circle's circumference.
+The group members' intention was to implement proper graphics, rather than simple SFML shapes. Due to time constraints, simple shapes, identifiable by their specific geometry and colour, are used. Scaling of objects is implemented whereby all moving objects scale depending on their proximity to the circle's circumference.
 
-In addition to the game functionality described, the game also has additional functionality which improves the overall playability of the game. The first feature is that the game speeds up as play progresses. This is done to increase the difficulty of the game once the \texttt{Player's} gun has been upgraded to the maximum level. Making the frame rate faster also makes the \texttt{Player} move faster, requiring the user to adjust their playing style as the game progresses. Another feature which improves the playability of the game is that every time the \texttt{Player} loses a life the screen flashes red. This makes the user more aware of their lives decreasing as well as instils a sense of stress in the player as if they themselves had been injured. 
+In addition to the game functionality described, the game has extra features which improve the overall playability of the game. The first feature is that the game speeds up as play progresses. This is done to increase the difficulty of the game, which seems fairly easy once the \texttt{Player's} gun has been upgraded to the maximum level. Making the frame rate faster also makes the \texttt{Player} move faster, requiring the user to adjust their playing style as the game progresses. Another feature which improves the playability of the game is that every time the \texttt{Player} loses a life the screen flashes red. This makes the user more aware of their lives decreasing as well as instils a sense of stress in the player as if they themselves had been injured. 
 
 \subsection{Code Structure and Implemented Design}\label{critical_code_structure}
 
-An attempt was made to make use of C++14 functionality and keywords where appropriate. Thorough use of smart pointers, or more specifically \texttt{std::shared\_ptr} was used throughout the code. Smart pointers provide a much simplified 
+An attempt was made to make use of modern  C++11/C++14 features, where appropriate, to improve the quality of code. Smart pointers, or more specifically the \texttt{std::shared\_ptr}, is used throughout the code to mitigate memory management problems experienced with traditional C++ pointers.  The \texttt{auto} keyword was used where appropriate to allow the compiler to define types dynamically. Also, the expression \texttt{for(auto element:vector)} is used to iterate through vectors without the use of indices or iterators. The \texttt{GameObject} class makes use of \texttt{virtual} functions which are defined for specific derived objects using the \texttt{override} keyword. This ensures the compiler knows to make use of the object defined implementation.
 
-%modern c++14 things used like shared pointers, auto, for element : vector, const keyword, virtual and override to make sure compiler knows whats going on etc.
-%use of smart pointers is cool because mo memory leaks and direct access to objects without having to make copies or worry about passing by reference. Coping pointer is not taxing, Also to prevent memory handling errors use all shared pointers. No unique pointers employed just in case stuff goes wrong.
+In the current code implementation, the presentation layer handles some functionality which does not fall within its expected responsibilities. In this way, the separation of concerns principle is not fully adhered to. The data layer should be responsible for loading the game textures into the game at runtime, rather than the \texttt{Interface} class. A class which loads all SFML required files, which may include textures, fonts and audio files, should be implemented. \texttt{Interface} also makes use of the SFML clock to keep track of time and control the frame rate. This should be the responsibility of the logic layer as this level of game logic should not depend on the interface in any way.
+
+A success of the \texttt{Interface} class is its efficiency. All textures are loaded only once, upon interface instantiation. Also, the background animation is rendered using a single sprite-sheet. In this way, only the sprite rectangle needs to updated every frame rather than its texture. This reduces the computational complexity of rendering during play.
+
+Throughout the code, the STL \texttt{vector} container is used. This choice was made in an attempt to reduce computational complexity as much as possible while still having the code remain intuitive. Throughout, indices are used rather than iterators. For this container, a complexity of $\cal{O}$($1$) exists for access using indices and adding objects to the end of the vector using \texttt{push\_back()}~\cite{vector_complexity}. Deleting objects randomly from the vector however introduces a complexity of  $\cal{O}$($n$), as every iterator after the deleted object has to be reassigned~\cite{vector_complexity}. Almost every collision results in an object being deleted from the \texttt{\_GameObjectsVector}, and thus the trade-off between intuitiveness and computation time was made. For this implementation, deleted objects are most often near the beginning of the vector and thus deletions are very inefficient. 
+
+%As an alternative, an STL list and iterators could have been used for all containers from which objects are deleted. This will reducing the complexity of all required functionality to $\cal{O}$($1$), which would significantly reduce computation time.
+
+Within the \texttt{Game} class, bad code smells have been introduced. This class is monolithic and needs to be broken up into smaller, more abstracted classes with prioritised functionality. These smaller classes could perform functions such as collision detection and timing to reduce the complexity of the logic class, making the code more understandable. It is also noted that the \texttt{spawnGameObject()} method contains a large switch statement which depends on the type of \texttt{GameObject} being spawned. This is also a bad code smell and should be re-factored for better implementation.
+
+The \texttt{GameObject} class is used as the base class from which all objects are derived. \texttt{GameObject} provides its child classes with the attributes and functionality they require. Regarding the \texttt{linemove()} function, as well as getters and setters, inheritance has been used for code reuse. This introduces tight coupling between the base and derived classes, yet is implemented as such to follow the DRY principle.
+
+In an attempt to further the DRY principle, static \texttt{shared\_ptr} downcasting is used to access methods which only exist in specific derived class implementations. Only \texttt{Satellite}, \texttt{LaserGenerator} and \texttt{ArcSegment} objects are required to have an ID, and thus these parameters should not be inherited by all \texttt{GameObjects}. In addition, only the \texttt{Player} object is required to have an \texttt{UpgradeGun()} method. By making use of static pointer casting, it is ensured that the compiler determines if any rules are violated before run-time, thus preventing run-time errors.
 
 
-%interface class should not handle splashscreen and end-screen data files, should be loaded in in data layer rather.
-%interface background spritesheet is computationally great as you load one png and then just update the spriterect, very quick and easy. 
+To prevent code reuse through inheritance and pointer typecasting, a composition relationship may be preferred to an inheritance relationship.  Derived object classes would instead contain a \texttt{GameObject} object, as well as their own parameters and methods which would be easily accessible. This would however require more than one container for all game objects and all code would need to be re-factored.
 
-%separation of concerns yo, (again tho??) but decoupling of interface and game is pretty great, would be possible to use a different rendering library.
+All variables in the \texttt{GameObject} base class are protected, rather than private. Although these variables are only accessible by their derived classes, the \texttt{GameObject} class cannot preserve any invariants. A better alternative would be to have private data members and protected functions that access these variables. Overall, the \texttt{Game} and \texttt{Interface} classes make good use of private data members and functions, and provide public access to the methods that other classes need to make the game function properly. 
 
-
-%using vector container, good for random access with complexity of O(1) for access and oushing to the back, however deleting in this way is computationally hectic On where n is number of elements after the deleted element as all iterators have to be reassignes and copied into new slots in memory. Maybe consider using a list container instead and iterators, this way all operations will be O1 including deleting but USE ITERATORS.
-
-%spawngameobject function - huge switch case, definitely not ideal as bad code smells.
-%game is a huge class doing far more than it should. should have smaller abstracted classes which perporm their functions without having to have such a hectic game class, should have prioritised functionality
-
-%Use of inheritance is mostly for base class code reuse, although this follows DRY principle it makes for tight coupling between classes, could be improved using composition relationship rather. -make more virtual functions, 
-
-%also all data in GameObject is protected, class can't preserve invarients, rather have private data members with protected access functions
-
-%pointer downcasting not great, rather use composition and other containers. or virtual functions, although not always applicable to all classes.
-
-%good - no real getters and setters in logic class and interface, mostly private stuff which is nice. Problem is all the accessable stuff in GameObject, all the getters, very few setters.
-
-%generally code was easily expandible because of the way the GAMEOBJECT class and functions like linemove were set up.
-
+%The code is structured in such a way as to make the addition of functionality simple, without having to modify the code which had already been implemented.
 
 \subsection{Testing structure and Implementation}
 
@@ -338,19 +332,21 @@ An attempt was made to make use of C++14 functionality and keywords where approp
 
 Although the game met the functionality requirements of the brief, some functionality was lacking substance. One key area which could be improved was the movement patterns of the \texttt{Enemy} objects. Making these objects capable of more complex movement patterns would make the game more dynamic and unpredictable, increasing the difficulty of the game and the challenge posed to the user.
 
-As mentioned, better graphics would be implemented if time has allowed it. The intention was to make satire of the vegan stereotype where butchers would be the enemies throwing their meat products at the vegan player. "VleisInvaders" would be an instant hit in South African culture with the introduction of 'wors-fields' and much more. This would definitely pose improvement for future.
+%As mentioned, better graphics would be implemented if time has allowed. The intention was to make satire of the vegan stereotype where butchers would be the enemies throwing their meat products at the vegan player. "VleisInvaders" would be an instant hit in South African culture with the introduction of 'wors-fields' and much more. This would definitely pose improvement for future.
 
-Additional improvements could be made to the \texttt{Interface} class. At present the frame rate is determined by this class as the use of \texttt{sf::Clock} was a convenient choice to flag how often the display should be updated. As this is a key aspect of the logic layer, this rate should be controlled by \texttt{Game} through the system clock and timers in C++. In the \texttt{RenderGameObject()} method, difficulty was experienced when drawing shapes that weren't of type \texttt{sf::RectangleShape}. This made rendering \texttt{Satellites} and \texttt{Asteriods} tricky. This method should be re-factored to improve rendering simplicity.
+Additional improvements could be made to the \texttt{Interface} class. At present the frame rate is determined by this class as the use of \texttt{sf::Clock} was a convenient choice to flag how often the display should be updated. As this is a key aspect of the logic layer, this rate should be controlled by \texttt{Game} through the system clock and timers in C++. In the \texttt{RenderGameObject()} method, difficulty was experienced when drawing shapes that weren't of type \texttt{sf::RectangleShape}. This made rendering \texttt{Satellites} and \texttt{Asteroids} tricky. This method should be re-factored to improve rendering simplicity.
 
 \subsection{Code Structure and Design}\label{code_improvements}
 
 In addition to the suggestions for improvement discussed in Section~\ref{critical_code_structure} additional improvements to code structure are mentioned below.
 
-Separation of layers was a key factor to the designing of the code, yet it was only implemented after the second release of the game. This was a bad decision as it became difficult to move around large portions of the code and many functions that should have been private had to be public to achieve the desired functionality. It is recommended that in future coding projects key aspects should be considered from the beginning to prevent the need for code refactoring once much of the functionality has already been introduced.
+Separation of layers was a key factor to the designing of the code, yet it was only implemented after the second release of the game. This was a bad decision as it became difficult to move around large portions of the code and many functions that should have been private had to be public to achieve the desired functionality. It is recommended that in future coding projects key aspects should be considered from the beginning to prevent the need for code re-factoring once much of the functionality has already been introduced.
 
 In the current code there is minimal error handling, with the only error management being in the \texttt{FileReader} and \texttt{Interface} classes where files (scores, textures, fonts) are being loaded into the game from external sources. Minimal error handling could result in an unexpected error which could result in the game being unplayable. More error handling should be implemented to reduce these risks.
 
 The chosen collision detection algorithm is computationally taxing as every existing object is compared to every other existing object. An alternative collision detection algorithm, such as the 'Separation Axis Theorem for Collision Detection (as discussed in \cite{Collision_detection}) could reduce the computational complexity from $\cal{O}$($n^{2}$) to $\cal{O}$($cn$), a far more favourable result for large numbers of objects.
+
+In an attempt to further reduce computational complexity, an alternative to vectors, the \texttt{STL list} and \texttt{iterators} should be used for all containers from which objects are deleted. This will reducing the complexity of all required functionality to $\cal{O}$($1$), which would significantly reduce computation time.
 
 
 \subsection{Testing structure}

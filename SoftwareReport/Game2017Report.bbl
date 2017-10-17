@@ -3,6 +3,13 @@
 \providecommand{\url}[1]{{\tt #1}}
 \providecommand{\urlprefix}{URL }
 
+\bibitem{vector_complexity}
+J.~Ahlgren.
+\newblock \enquote{STL Container Performance.}, October 2013.
+\newblock
+  \urlprefix\url{http://john-ahlgren.blogspot.co.za/2013/10/stl-container-performance.html}.
+\newblock Last Accessed: 16/10/2017.
+
 \bibitem{Collision_detection}
 {Metanet Software Inc.}
 \newblock \enquote{Collision Detection and Response.}, 2011.
