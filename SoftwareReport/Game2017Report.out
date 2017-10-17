@@ -35,19 +35,20 @@
 \BOOKMARK [3][-]{subsubsection.5.2.6}{Asteroid Class}{subsection.5.2}% 35
 \BOOKMARK [3][-]{subsubsection.5.2.7}{LaserGenerator Class}{subsection.5.2}% 36
 \BOOKMARK [3][-]{subsubsection.5.2.8}{Satellite Class}{subsection.5.2}% 37
-\BOOKMARK [2][-]{subsection.5.3}{Advanced Game-play Testing Structure}{section.5}% 38
-\BOOKMARK [3][-]{subsubsection.5.3.1}{Asteroid Collisions}{subsection.5.3}% 39
-\BOOKMARK [3][-]{subsubsection.5.3.2}{Enemy Collisions}{subsection.5.3}% 40
-\BOOKMARK [3][-]{subsubsection.5.3.3}{LaserGenerator Collisions}{subsection.5.3}% 41
-\BOOKMARK [3][-]{subsubsection.5.3.4}{Satellite Collisions}{subsection.5.3}% 42
-\BOOKMARK [3][-]{subsubsection.5.3.5}{GameEnd Simulation}{subsection.5.3}% 43
-\BOOKMARK [3][-]{subsubsection.5.3.6}{HighScore Functionality}{subsection.5.3}% 44
-\BOOKMARK [1][-]{section.6}{DISCUSSION}{}% 45
-\BOOKMARK [2][-]{subsection.6.1}{Functionality}{section.6}% 46
-\BOOKMARK [2][-]{subsection.6.2}{Code Structure and Implemented Design}{section.6}% 47
-\BOOKMARK [2][-]{subsection.6.3}{Testing structure and Implementation}{section.6}% 48
-\BOOKMARK [1][-]{section.7}{FUTURE RECOMMENDATIONS}{}% 49
-\BOOKMARK [2][-]{subsection.7.1}{Game Functionality}{section.7}% 50
-\BOOKMARK [2][-]{subsection.7.2}{Code Structure and Design}{section.7}% 51
-\BOOKMARK [2][-]{subsection.7.3}{Testing structure}{section.7}% 52
-\BOOKMARK [1][-]{section.8}{CONCLUSION}{}% 53
+\BOOKMARK [2][-]{subsection.5.3}{FileReader Class}{section.5}% 38
+\BOOKMARK [2][-]{subsection.5.4}{Advanced Game-play Testing Structure}{section.5}% 39
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Asteroid Collisions}{subsection.5.4}% 40
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Enemy Collisions}{subsection.5.4}% 41
+\BOOKMARK [3][-]{subsubsection.5.4.3}{LaserGenerator Collisions}{subsection.5.4}% 42
+\BOOKMARK [3][-]{subsubsection.5.4.4}{Satellite Collisions}{subsection.5.4}% 43
+\BOOKMARK [3][-]{subsubsection.5.4.5}{GameEnd Simulation}{subsection.5.4}% 44
+\BOOKMARK [3][-]{subsubsection.5.4.6}{HighScore Functionality}{subsection.5.4}% 45
+\BOOKMARK [1][-]{section.6}{DISCUSSION}{}% 46
+\BOOKMARK [2][-]{subsection.6.1}{Functionality}{section.6}% 47
+\BOOKMARK [2][-]{subsection.6.2}{Code Structure and Implemented Design}{section.6}% 48
+\BOOKMARK [2][-]{subsection.6.3}{Testing structure and Implementation}{section.6}% 49
+\BOOKMARK [1][-]{section.7}{FUTURE RECOMMENDATIONS}{}% 50
+\BOOKMARK [2][-]{subsection.7.1}{Game Functionality}{section.7}% 51
+\BOOKMARK [2][-]{subsection.7.2}{Code Structure and Design}{section.7}% 52
+\BOOKMARK [2][-]{subsection.7.3}{Testing structure}{section.7}% 53
+\BOOKMARK [1][-]{section.8}{CONCLUSION}{}% 54

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.4.6)  17 OCT 2017 08:36
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.4.6)  17 OCT 2017 11:16
 entering extended mode
 **Game2017Report.tex
 
@@ -778,7 +778,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 234--237
 
  []
 
-<flowdiagram.png, id=234, 286.06876pt x 1077.02374pt>
+<flowdiagram.png, id=238, 286.06876pt x 1077.02374pt>
 File: flowdiagram.png Graphic file (type png)
  <use flowdiagram.png>
 Package pdftex.def Info: flowdiagram.png used on input line 247.
@@ -796,7 +796,7 @@ Underfull \hbox (badness 1365) in paragraph at lines 266--267
  \OT1/cmr/m/n/10 class
  []
 
-<collisions.png, id=243, 412.54124pt x 272.01625pt>
+<collisions.png, id=247, 412.54124pt x 272.01625pt>
 File: collisions.png Graphic file (type png)
  <use collisions.png>
 Package pdftex.def Info: collisions.png used on input line 272.
@@ -849,39 +849,39 @@ OT1/cmtt/m/n/10 LaserGenerator
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 2334) in paragraph at lines 331--332
+Underfull \hbox (badness 2334) in paragraph at lines 333--334
 \OT1/cmr/m/n/10 ob-jects are cre-ated at a ran-dom an-gle. The
  []
 
 
-Underfull \hbox (badness 1173) in paragraph at lines 331--332
+Underfull \hbox (badness 1173) in paragraph at lines 333--334
 \OT1/cmr/m/n/10 po-si-tion of the \OT1/cmtt/m/n/10 Player \OT1/cmr/m/n/10 is th
 ere-fore ad-justed us-
  []
 
 
-Underfull \hbox (badness 4441) in paragraph at lines 341--342
+Underfull \hbox (badness 4441) in paragraph at lines 343--344
 \OT1/cmr/m/n/10 where, on col-li-sion with the \OT1/cmtt/m/n/10 Player\OT1/cmr/
 m/n/10 , dam-age
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 343--344
- \OT1/cmr/m/sl/10 5.3.4 Satel-lite Col-li-sions[][] \OT1/cmr/m/n/10 Tests men-t
+Underfull \hbox (badness 1424) in paragraph at lines 345--346
+ \OT1/cmr/m/sl/10 5.4.4 Satel-lite Col-li-sions[][] \OT1/cmr/m/n/10 Tests men-t
 ioned above
- []
-
-
-Underfull \hbox (badness 3343) in paragraph at lines 349--351
- \OT1/cmr/m/sl/10 5.3.6 High-Score Func-tion-al-ity[][] \OT1/cmr/m/n/10 Us-ing 
-the above
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-Underfull \hbox (badness 1122) in paragraph at lines 364--365
+Underfull \hbox (badness 3343) in paragraph at lines 351--353
+ \OT1/cmr/m/sl/10 5.4.6 High-Score Func-tion-al-ity[][] \OT1/cmr/m/n/10 Us-ing 
+the above
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 366--367
 \OT1/cmtt/m/n/10 std::shared[]ptr \OT1/cmr/m/n/10 was used through-out the code
 .
  []
@@ -890,7 +890,7 @@ Underfull \hbox (badness 1122) in paragraph at lines 364--365
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1867) in paragraph at lines 417--418
+Underfull \hbox (badness 1867) in paragraph at lines 410--411
 []\OT1/cmr/m/n/10 Additional im-prove-ments could be made to the
  []
 
@@ -916,27 +916,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--12
 
 )
 \Changes@OutFile=\write4
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 450.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 442.
  [7 <C:/Users/Sasha/Desktop/Wits/2017 Wits/ELEN3009 Software Dev II/Project/Sub
 mission v2.0 TempRepo/VleisInvaders/SoftwareReport/flowdiagram.png>] [8
 
  <C:/Users/Sasha/Desktop/Wits/2017 Wits/ELEN3009 Software Dev II/Project/Submis
 sion v2.0 TempRepo/VleisInvaders/SoftwareReport/collisions.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 450.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 442.
 
 ("C:\Users\Sasha\Desktop\Wits\2017 Wits\ELEN3009 Software Dev II\Project\Submis
 sion v2.0 TempRepo\VleisInvaders\SoftwareReport\Game2017Report.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 450.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 450.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 442.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 442.
 Package rerunfilecheck Info: File `Game2017Report.out' has not changed.
-(rerunfilecheck)             Checksum: C6D88B34BA67B2F439D329BD59862D9D;3837.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 450.
+(rerunfilecheck)             Checksum: 9AEFF1963CD3975F5491E8D652552509;3904.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 442.
  ) 
 Here is how much of TeX's memory you used:
- 11752 strings out of 493921
- 177824 string characters out of 3144877
+ 11754 strings out of 493921
+ 177854 string characters out of 3144877
  320654 words of memory out of 3000000
- 14747 multiletter control sequences out of 15000+200000
+ 14748 multiletter control sequences out of 15000+200000
  28268 words of font info for 95 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,6n,77p,797b,375s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -951,9 +951,9 @@ KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 
 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.
 9/fonts/type1/urw/times/utmb8a.pfb>
-Output written on Game2017Report.pdf (8 pages, 218620 bytes).
+Output written on Game2017Report.pdf (8 pages, 219503 bytes).
 PDF statistics:
- 327 PDF objects out of 1000 (max. 8388607)
- 66 named destinations out of 1000 (max. 500000)
- 435 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 332 PDF objects out of 1000 (max. 8388607)
+ 67 named destinations out of 1000 (max. 500000)
+ 443 words of extra memory for PDF output out of 10000 (max. 10000000)
 

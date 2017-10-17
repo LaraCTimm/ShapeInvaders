@@ -200,7 +200,6 @@ TEST_CASE("ArcSegment-player collision - check deletion, damage dealt"){
 	CHECK(newGame.getGameObjectsVector()[0]->getHealth() == oldHealth-1);
 }
 
-
 TEST_CASE("ArcSegment-playerBullet collision - check deletion"){
 	Game newGame(5);
 	newGame.AddGameObject(gameObjectType::LaserGenerator, 1);

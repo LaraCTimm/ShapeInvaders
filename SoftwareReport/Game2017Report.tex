@@ -281,7 +281,7 @@ This is a computationally intensive algorithm with complexity of $\cal{O}$($n^{2
 Unit testing plays an important role in the development of software as it assists in detecting issues in code early on in development.
 This section highlights the tests written and compiled during the development of the project. 
 
-A total of X test cases are compiled with Y unit tests being run.
+A total of 53 test cases are compiled with 132 unit tests being run.
 
 \subsection{Testing Environment}
 Doctest 1.2.1, a C++ unit testing framework, was used to compile and write tests. Its function 'CHECK' was used to compare expected values and 'CHECK\_NOTHROW' and 'CHECK\_THROWS\_AS' to handle error exceptions.
@@ -291,7 +291,7 @@ Each class has an extensive set of simple tests written to confirm expected outc
 \subsubsection{GameObject Class}
 The \texttt{GameObject} class has no direct tests, however each of its member functions are tested as the classes mentioned below are inherited \texttt{GameObject} objects.
 \subsubsection{Player Class}
-On start of the game,a \texttt{Player} object is present on-screen. A \texttt{Game} object is therefore initialised and the above is confirmed. Its starting position is checked along with its movement function \texttt{MovePlayerObject()}, assuring that a \texttt{Player} object has the ability to rotate both clockwise and anti-clockwise around the screen. Its starting health of five lives is also confirmed. 
+On start of the game, a \texttt{Player} object should be present on-screen. A \texttt{Game} object is therefore initialised and the above is tested. Its starting position is checked along with its movement function \texttt{MovePlayerObject()}, assuring that a \texttt{Player} object has the ability to rotate both clockwise and anti-clockwise around the screen. Its starting health of five lives is also tested. 
 \subsubsection{PlayerBullet Class}
 The instantiation of a \texttt{PlayerBullet} of the correct type at the player's position is tested. As a \texttt{PlayerBullet} moves inwards from the position at which it is instantiated, its movement in the correct x- and y-directions are tested in each quadrant, as well as along the four axes. The deletion of the bullet object upon reaching the centre of the screen is tested by looping its \texttt{LineMove()} function, inherited from the \texttt{GameObject} class, until the object no longer exists.
 \subsubsection{Enemy Class}
@@ -301,22 +301,24 @@ The instantiation of an \texttt{EnemyBullet} object of the correct type is teste
 \subsubsection{Asteroid Class}
 As the \texttt{Enemy} and \texttt{EnemyBullet} classes above, the \texttt{Asteroid} class is tested to be of the correct type, as well as its movement ability and deletion when out of scope. 
 
-In addition, as the asteroid 'follows' the player, its angle at instantiation is compared to that of the player, both making use of the \texttt{getAngle()} function inherited from the \texttt{GameObject} class.
+In addition, as the asteroid 'follows' the player, its angle at instantiation is compared to that of the player. Both the \texttt{Player} and the \texttt{Asteroid} make use of the \texttt{getAngle()} function inherited from the \texttt{GameObject} class.
 \subsubsection{LaserGenerator Class}
 \texttt{LaserGenerator} objects are created in pairs, along with seven \texttt{ArcSegment} objects. Each are given a matching, unique \texttt{ID}. 
 
-The creation of the nine objects with their correct types are tested. The \texttt{ID} of each object is tested to be the same as the rest, and a second set is instantiated in order to check that their \texttt{ID} is different to that of the first.
+The creation of the nine objects with their correct types are tested. The \texttt{ID} of each object is tested to be the same as the others in its set, and a second set is instantiated in order to check that their \texttt{ID} is different to that of the first.
 
-The deletion of the objects once off-screen is tested using the \texttt{LineMove()} function as mentioned above. 
+The deletion of the objects moving off-screen is tested using the \texttt{LineMove()} function as mentioned above. 
 \subsubsection{Satellite Class}
 Similar to the \texttt{LaserGenerator} object, satellites are created in groups of threes, all having the same, unique \texttt{ID}. The creation of such, their correct type, \texttt{ID} and separate \texttt{ID} to that of another set is tested. 
 
 As the satellites 'follow' the player, their angles are compared to that of \texttt{Player} using the inherited \texttt{getAngle()} function, as with the \texttt{Asteroid} object explained above.
 
-Lastly, on destruction of all three satellites in the pair, the player experiences a gun upgrade with an extra bullet. These upgrades are tested by creating a bullet and counting the number of new \texttt{GameObject} objects added to the game.
+Lastly, on destruction of all three satellites in the set, the player experiences a gun upgrade with an extra bullet. These upgrades are tested by creating a bullet and counting the number of new \texttt{GameObject} objects added to the game.
 
+\subsection{FileReader Class}
+The \texttt{FileReader} class is tested through checking no exception is thrown when accessing the file storing high scores, and expecting an exception when trying to access non-existent files. These make up the data-layer tests.
 \subsection{Advanced Game-play Testing Structure}
-In order to check that collisions occur and that their outcomes are that which is expected, more complicated tests are compiled. These attempt to simulate game-play through the testing framework. This assures that the most important factors of the expected playing experience is achieved.
+In order to check that collisions occur and that their outcomes are those which are expected, more complicated tests are compiled. These attempt to simulate game-play through the testing framework. This assures that the most important factors of the expected playing experience is achieved.
 
 The following sub-sections describe the code written for each collision in order to achieve the above described.
 \subsubsection{Asteroid Collisions}
@@ -340,7 +342,7 @@ A \texttt{Player} collision with the \texttt{LaserGenerator} is tested with rele
 
 Similarly, collisions with an \texttt{ArcSegment} are tested where, on collision with the \texttt{Player}, damage and deletions are tested and, on collision with a \texttt{PlayerBullet}, deletion of the bullet is tested.
 \subsubsection{Satellite Collisions}
-Tests mentioned above are applied to collisions with a \texttt{Satellite}. In addition, the player's \texttt{GunLevel} is tested in deletion of all three \texttt{Satellite} objects.
+Tests mentioned above are applied to collisions with a \texttt{Satellite}. In addition, the player's \texttt{GunLevel} is tested on deletion of all three \texttt{Satellite} objects.
 \subsubsection{GameEnd Simulation}
 The game ends and the \texttt{Player} object is deleted once it loses all its lives and its \texttt{Health} is reduced to zero.
 
@@ -391,21 +393,12 @@ An attempt was made to make use of C++14 functionality and keywords where approp
 
 \subsection{Testing structure and Implementation}
 
-<<<<<<< HEAD
-% Main functions all tested in depth
+Sufficient basic tests were written to cover all relevant member functions of the classes in the game. In addition, more advanced tests were written to tests the occurrence of events such as collisions in the game. 
 
-% Advanced stuff all tested
-% Messy and complicated but good tradeoff for keeping things private
+It should be noted that the collision tests written are complicated and as a result may need testing of their own. This is a cost incurred for keeping functions used to set positions and angles of objects private, making one unable to code simple collisions. Additionally, as a result of these private functions, while loops were used in order to test objects moving out of scope. Both of the above were decided to be worthwhile tradeoffs for the program itself having cleaner and more secure code.
 
-%Tests for user input not prioritised - rather focused on visual representation, aslo window close, etc
-% No tests for presentation layer (FIRST)
+There were no tests written for the game's presentation layer due to time constraints. Rather, it was decided to rely on visual cues whilst running the game. 
 
-%loops used in going out of scope
-=======
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
->>>>>>> 2760e38d17517acec0d43fc13ae3977c8774a133
 \section{FUTURE RECOMMENDATIONS}
 
 \subsection{Game Functionality}
@@ -428,12 +421,11 @@ The chosen collision detection algorithm is computationally taxing as every exis
 
 
 \subsection{Testing structure}
+At the time of final submission, there are no tests implemented for the game's presentation layer. Future versions of the game could implement tests checking the successful loading of graphics, etc.
 
-% Uniform fancy tests
+Automated tests could also be added. By doing so, it would irradiate the need for the over-complicated tests currently used to detect collisions, and the results of user inputs could be tested.
 
-% Presentation layer testing
-
-% User input testing
+Finally, with more features added to the game, other relevant, additional tests would be required.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
