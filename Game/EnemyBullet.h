@@ -24,18 +24,11 @@ public:
 	 * @param scaleCount - enables the bullet to be spawned at the correct scale depending on how far along the vector the Enemy is.
 	 */
 	EnemyBullet(float xCoord, float yCoord, vector<float> pathVector, float angle, int scaleCount);
-    
-<<<<<<< HEAD
-    
-private:
 
-    
-=======
 private: 
 
     const float SPEED_MULTIPLIER = 2.0f;
 
->>>>>>> master
 };
 
 #endif
