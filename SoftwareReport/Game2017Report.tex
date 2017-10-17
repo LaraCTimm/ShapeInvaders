@@ -361,36 +361,37 @@ In addition to the game functionality described, the game also has additional fu
 
 \subsection{Code Structure and Implemented Design}\label{critical_code_structure}
 
-%modern c++14 things used like shared pointers, auto, for element : vector, const keyword, virtual and override to make sure compiler knows whats going on etc.
+An attempt was made to make use of C++14 functionality and keywords where appropriate. Thorough use of smart pointers, or more specifically \texttt{std::shared\_ptr} was used throughout the code. Smart pointers provide a much simplified 
 
-% pointer downcasting not great, rather use composition and other containers. or virtual functions, although not always applicable to all classes.
+%modern c++14 things used like shared pointers, auto, for element : vector, const keyword, virtual and override to make sure compiler knows whats going on etc.
+%use of smart pointers is cool because mo memory leaks and direct access to objects without having to make copies or worry about passing by reference. Coping pointer is not taxing, Also to prevent memory handling errors use all shared pointers. No unique pointers employed just in case stuff goes wrong.
+
 
 %interface class should not handle splashscreen and end-screen data files, should be loaded in in data layer rather.
+%interface background spritesheet is computationally great as you load one png and then just update the spriterect, very quick and easy. 
+
+%separation of concerns yo, (again tho??) but decoupling of interface and game is pretty great, would be possible to use a different rendering library.
+
+
+%using vector container, good for random access with complexity of O(1) for access and oushing to the back, however deleting in this way is computationally hectic On where n is number of elements after the deleted element as all iterators have to be reassignes and copied into new slots in memory. Maybe consider using a list container instead and iterators, this way all operations will be O1 including deleting but USE ITERATORS.
+
+%spawngameobject function - huge switch case, definitely not ideal as bad code smells.
+%game is a huge class doing far more than it should. should have smaller abstracted classes which perporm their functions without having to have such a hectic game class, should have prioritised functionality
 
 %Use of inheritance is mostly for base class code reuse, although this follows DRY principle it makes for tight coupling between classes, could be improved using composition relationship rather. -make more virtual functions, 
 
 %also all data in GameObject is protected, class can't preserve invarients, rather have private data members with protected access functions
 
+%pointer downcasting not great, rather use composition and other containers. or virtual functions, although not always applicable to all classes.
+
 %good - no real getters and setters in logic class and interface, mostly private stuff which is nice. Problem is all the accessable stuff in GameObject, all the getters, very few setters.
-
-%game is a huge class doing far more than it should. should have smaller abstracted classes which perporm their functions without having to have such a hectic game class, should have prioritised functionality.
-
-%spawngameobject function - huge switch case, definitely not ideal as bad code smells.
-
-%using vector container, good for random access with complexity of O(1) for access and oushing to the back, however deleting in this way is computationally hectic On where n is number of elements after the deleted element as all iterators have to be reassignes and copied into new slots in memory. Maybe consider using a list container instead and iterators, this way all operations will be O1 including deleting but USE ITERATORS.
-
-%use of smart pointers is cool because mo memory leaks and direct access to objects without having to make copies or worry about passing by reference. Coping pointer is not taxing, Also to prevent memory handling errors use all shared pointers. No unique pointers employed just in case stuff goes wrong.
-
-%interface background spritesheet is computationally great as you load one png and then just update the spriterect, very quick and easy. 
-
-%separation of concerns yo, (again tho??) but decoupling of interface and game is pretty great, would be possible to use a different rendering library.
 
 %generally code was easily expandible because of the way the GAMEOBJECT class and functions like linemove were set up.
 
 
-
 \subsection{Testing structure and Implementation}
 
+<<<<<<< HEAD
 % Main functions all tested in depth
 
 % Advanced stuff all tested
@@ -400,6 +401,11 @@ In addition to the game functionality described, the game also has additional fu
 % No tests for presentation layer (FIRST)
 
 %loops used in going out of scope
+=======
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+>>>>>>> 2760e38d17517acec0d43fc13ae3977c8774a133
 \section{FUTURE RECOMMENDATIONS}
 
 \subsection{Game Functionality}
@@ -415,8 +421,6 @@ Additional improvements could be made to the \texttt{Interface} class. At presen
 In addition to the suggestions for improvement discussed in Section~\ref{critical_code_structure} additional improvements to code structure are mentioned below.
 
 Separation of layers was a key factor to the designing of the code, yet it was only implemented after the second release of the game. This was a bad decision as it became difficult to move around large portions of the code and many functions that should have been private had to be public to achieve the desired functionality. It is recommended that in future coding projects key aspects should be considered from the beginning to prevent the need for code refactoring once much of the functionality has already been introduced.
-
-%layer separation happened later on than expected, not ideal as lots had to be changed but helped a lot with allowing member functions to be private and removing a lot of getters/setters. 
 
 In the current code there is minimal error handling, with the only error management being in the \texttt{FileReader} and \texttt{Interface} classes where files (scores, textures, fonts) are being loaded into the game from external sources. Minimal error handling could result in an unexpected error which could result in the game being unplayable. More error handling should be implemented to reduce these risks.
 
