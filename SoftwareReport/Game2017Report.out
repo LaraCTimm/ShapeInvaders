@@ -26,14 +26,29 @@
 \BOOKMARK [2][-]{subsection.4.2}{Collision Detection}{section.4}% 26
 \BOOKMARK [1][-]{section.5}{CODE TESTING}{}% 27
 \BOOKMARK [2][-]{subsection.5.1}{Testing Environment}{section.5}% 28
-\BOOKMARK [2][-]{subsection.5.2}{Data Layer Testing Structure}{section.5}% 29
-\BOOKMARK [2][-]{subsection.5.3}{Application Layer Testing Structure}{section.5}% 30
-\BOOKMARK [1][-]{section.6}{DISCUSSION}{}% 31
-\BOOKMARK [2][-]{subsection.6.1}{Functionality}{section.6}% 32
-\BOOKMARK [2][-]{subsection.6.2}{Code Structure and Implemented Design}{section.6}% 33
-\BOOKMARK [2][-]{subsection.6.3}{Testing structure and Implementation}{section.6}% 34
-\BOOKMARK [1][-]{section.7}{FUTURE RECOMMENDATIONS}{}% 35
-\BOOKMARK [2][-]{subsection.7.1}{Game Functionality}{section.7}% 36
-\BOOKMARK [2][-]{subsection.7.2}{Code Structure and Design}{section.7}% 37
-\BOOKMARK [2][-]{subsection.7.3}{Testing structure}{section.7}% 38
-\BOOKMARK [1][-]{section.8}{CONCLUSION}{}% 39
+\BOOKMARK [2][-]{subsection.5.2}{Base Functionality Testing Structure}{section.5}% 29
+\BOOKMARK [3][-]{subsubsection.5.2.1}{GameObject Class}{subsection.5.2}% 30
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Player Class}{subsection.5.2}% 31
+\BOOKMARK [3][-]{subsubsection.5.2.3}{PlayerBullet Class}{subsection.5.2}% 32
+\BOOKMARK [3][-]{subsubsection.5.2.4}{Enemy Class}{subsection.5.2}% 33
+\BOOKMARK [3][-]{subsubsection.5.2.5}{EnemyBullet Class}{subsection.5.2}% 34
+\BOOKMARK [3][-]{subsubsection.5.2.6}{Asteroid Class}{subsection.5.2}% 35
+\BOOKMARK [3][-]{subsubsection.5.2.7}{LaserGenerator Class}{subsection.5.2}% 36
+\BOOKMARK [3][-]{subsubsection.5.2.8}{Satellite Class}{subsection.5.2}% 37
+\BOOKMARK [2][-]{subsection.5.3}{FileReader Class}{section.5}% 38
+\BOOKMARK [2][-]{subsection.5.4}{Advanced Game-play Testing Structure}{section.5}% 39
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Asteroid Collisions}{subsection.5.4}% 40
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Enemy Collisions}{subsection.5.4}% 41
+\BOOKMARK [3][-]{subsubsection.5.4.3}{LaserGenerator Collisions}{subsection.5.4}% 42
+\BOOKMARK [3][-]{subsubsection.5.4.4}{Satellite Collisions}{subsection.5.4}% 43
+\BOOKMARK [3][-]{subsubsection.5.4.5}{GameEnd Simulation}{subsection.5.4}% 44
+\BOOKMARK [3][-]{subsubsection.5.4.6}{HighScore Functionality}{subsection.5.4}% 45
+\BOOKMARK [1][-]{section.6}{DISCUSSION}{}% 46
+\BOOKMARK [2][-]{subsection.6.1}{Functionality}{section.6}% 47
+\BOOKMARK [2][-]{subsection.6.2}{Code Structure and Implemented Design}{section.6}% 48
+\BOOKMARK [2][-]{subsection.6.3}{Testing structure and Implementation}{section.6}% 49
+\BOOKMARK [1][-]{section.7}{FUTURE RECOMMENDATIONS}{}% 50
+\BOOKMARK [2][-]{subsection.7.1}{Game Functionality}{section.7}% 51
+\BOOKMARK [2][-]{subsection.7.2}{Code Structure and Design}{section.7}% 52
+\BOOKMARK [2][-]{subsection.7.3}{Testing structure}{section.7}% 53
+\BOOKMARK [1][-]{section.8}{CONCLUSION}{}% 54

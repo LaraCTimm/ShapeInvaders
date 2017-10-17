@@ -12,12 +12,4 @@ TEST_CASE("Check files can be loaded, and exception thrown when files aren't fou
 	
 	}
 
-/*~~~~~~~~~~~~~~~~ TESTS TO ADD ~~~~~~~~~~~~~~~~
- 
-file reader tests:
-returns correct high score
-can update high score
- 
-  * if old score is beaten test file gets updated correctly
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
